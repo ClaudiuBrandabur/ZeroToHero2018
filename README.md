@@ -3,4 +3,4 @@ multa mancare
 yfj
 lalala
 Salut! Sper sa va placa workshopul :D
-knlgkljsfd
+Da, e foarte dragut :)
