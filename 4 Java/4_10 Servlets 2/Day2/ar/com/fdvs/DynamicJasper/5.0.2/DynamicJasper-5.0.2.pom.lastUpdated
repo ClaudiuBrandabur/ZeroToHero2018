@@ -1,0 +1,18 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Tue Apr 25 11:09:56 EEST 2017
+@default-internal-http\://nexus/content/groups/public/.lastUpdated=1493107796718
+https\://repository.jboss.org/nexus/content/repositories/releases/.lastUpdated=1484817185867
+https\://repository.jboss.org/nexus/content/repositories/thirdparty-releases/.lastUpdated=1484817185664
+https\://repository.jboss.org/nexus/content/repositories/releases/.error=
+@default-jaspersoft-http\://nexus/content/groups/public/.lastUpdated=1493107796718
+@default-central-http\://nexus/content/groups/public/.lastUpdated=1493107796718
+http\://nexus/content/repositories/eagriculture-releases/.error=Could not transfer artifact ar.com.fdvs\:DynamicJasper\:pom\:5.0.2 from/to internal-eag (http\://nexus/content/repositories/eagriculture-releases/)\: nexus
+https\://repo.maven.apache.org/maven2/.lastUpdated=1484732780317
+https\://repo.maven.apache.org/maven2/.error=
+http\://repo1.maven.org/maven2/.error=
+http\://repo1.maven.org/maven2/.lastUpdated=1484817185914
+https\://repository.jboss.org/nexus/content/repositories/thirdparty-releases/.error=
+http\://repo.teamnet.ro/apia-public/.lastUpdated=1484750184545
+@default-jboss-public-repository-http\://nexus/content/groups/public/.lastUpdated=1493107796734
+@default-internal-eag-http\://nexus/content/repositories/eagriculture-releases/.lastUpdated=1493107796703
+http\://nexus/content/groups/public/.error=Could not transfer artifact ar.com.fdvs\:DynamicJasper\:pom\:5.0.2 from/to jboss-public-repository (http\://nexus/content/groups/public/)\: nexus
