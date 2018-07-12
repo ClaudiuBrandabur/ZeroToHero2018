@@ -7,3 +7,5 @@ lalala
 <br>
 Salut! Sper sa va placa workshopul :D
 <br>
+Da, e foarte dragut :)
+<br>
