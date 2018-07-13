@@ -49,7 +49,11 @@ function showList() {
             employeesList[i].phone + '</td><td>' + employeesList[i].salary + '</td> <td><button onclick="vizualizare('+i+')">Vizualizare</button> </td> <td><button onclick="stergere('+i+')">Stergere</button> </td> </tr>';
     }
 
-    myTable += '<tr><td>'+cmd_aparitie()+'</td><td>'+nr_unique_names()+'</td></tr>';
+    myTable += '<tr><td>'+cmd_aparitie()+
+        '</td><td>'+nr_unique_names()+
+        '</td><td>'+nrfrequency()+
+        '</td><td>'+average()+
+        '</td></tr>';
     myTable += '</table>';
 
     var container = document.getElementById('listcontainer');
@@ -164,6 +168,15 @@ function showList() {
 
     }
 
+    function compareLast(a,b) {
+        if(a.lastName < b.lastName)
+            return -1;
+        if(a.lastName > b.lastName)
+            return 1;
+
+
+}
+
 
 
     function nr_app(nr) {
@@ -198,7 +211,9 @@ function showList() {
     function numberTel(x) {
         var i = 0;
         var vect;
-        vect = [0];
+        //vect = new Array(10);
+        //vect.fill(0);
+        vect = [0,0,0,0,0,0,0,0,0,0];
 
         for(i = 0; i < x.length; i++){
             vect[parseInt(x.charAt(i))] += 1;
@@ -210,19 +225,93 @@ function showList() {
     function nrfrequency() {
 
         var vect;
-        vect=[0];
+        vect = [0,0,0,0,0,0,0,0,0,0];
+
         var myvect ;
-        vect=[0];
+        myvect = [0,0,0,0,0,0,0,0,0,0];
+
         var i=0;
         var j=0;
 
         for(i=0; i < employeesList.length; i++) {
 
-            myvect = numberTel(employeesList[i].salary);
-            for (j = 0; j < employeesList[i].salary.length; j++) {
-                vect[j] += myvect[j];
+            myvect = numberTel(employeesList[i].phone);
+            for (j = 0; j < employeesList[i].phone.length; j++) {
+                vect[j] += parseInt(myvect[j]);
             }
         }
 
+        var finalVect ;
+        var max = 0;
+        finalVect = [];
+
+        for(i=0;i<5;i++){
+
+            max = maxInd(vect);
+            finalVect.push(vect[max]);
+            vect.splice(max,1);
+        }
+
+        return finalVect;
+    }
+
+    function maxInd(vct) {
+
+        var contor =0;
+        var index = 0;
+        var max = vct[0];
+        for(i=0;i<vct.length;i++){
+            if (vct[i]> max){
+                max = vct[i];
+                index = i;
+            }
+        }
+
+        return index;
 
     }
+
+    function average() {
+
+        var mySum = 0;
+        for(var i in employeesList){
+            mySum += parseFloat(employeesList[i].salary);
+        }
+
+        var average =0 ;
+
+        average= mySum / employeesList.length;
+        return average;
+
+    }
+
+
+    function SortBy() {
+        var input = document.getElementById("sort").value;
+        switch (input) {
+            case "1":
+                employeesList.sort(compareFirst);
+                showList();
+                break;
+            case "2":
+                employeesList.sort(compareLast);
+                showList();
+                break;
+            case "3":
+                employeesList.sort(compareTel);
+                showList();
+                break;
+            case "4":
+                employeesList.sort(function (a, b) { return parseInt(a.salary) - parseInt(b.salary) });
+                showList();
+                break;
+        }
+
+    }
+
+function compareTel(a,b) {
+    return a.phone.localeCompare(b.phone);
+
+}
+
+
