@@ -1,0 +1,12 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Wed Jan 18 16:46:01 EET 2017
+@default-internal-http\://nexus/content/groups/public/.lastUpdated=1484732785733
+@default-jaspersoft-http\://nexus/content/groups/public/.lastUpdated=1484732785796
+@default-central-http\://nexus/content/groups/public/.lastUpdated=1484732789095
+http\://nexus/content/repositories/eagriculture-releases/.error=Could not transfer artifact ar.com.fdvs\:DynamicJasper\:jar\:5.0.2 from/to internal-eag (http\://nexus/content/repositories/eagriculture-releases/)\: nexus
+https\://repo.maven.apache.org/maven2/.lastUpdated=1484732783349
+https\://repo.maven.apache.org/maven2/.error=
+http\://repo.teamnet.ro/apia-public/.lastUpdated=1484750761429
+@default-jboss-public-repository-http\://nexus/content/groups/public/.lastUpdated=1484732785843
+@default-internal-eag-http\://nexus/content/repositories/eagriculture-releases/.lastUpdated=1484732785688
+http\://nexus/content/groups/public/.error=Could not transfer artifact ar.com.fdvs\:DynamicJasper\:jar\:5.0.2 from/to central (http\://nexus/content/groups/public/)\: nexus
