@@ -31,6 +31,14 @@ var employeesList = [
     }
 
 ];
+
+var facts = [
+'Chuck Norris threw a grenade and killed 50 people, then it exploded.',
+'Chuck Norris counted to infinity. Twice.',
+'Chuck Norris can kill two stones with one bird.',
+'Chuck Norris can hear sign language.'
+];
+
 var x = false;
 
 function showList() {
@@ -117,18 +125,50 @@ function averageSalary(){
 }
 
 function sortBy() {
-    var num = document.getElementById("in");
+    var num = document.getElementById("in").value;
     if(num == 1){
-
+        employeesList = employeesList.sort(function (a, b) {
+            if(a.firstName.toUpperCase() < b.firstName.toUpperCase())
+                return -1;
+            else if(a.firstName.toUpperCase() > b.firstName.toUpperCase())
+                return 1;
+            else
+                return 0;
+        })
+        showList();
     }
     if(num == 2){
-
+        employeesList = employeesList.sort(function (a, b) {
+            if(a.lastName.toUpperCase() < b.lastName.toUpperCase())
+                return -1;
+            else if(a.lastName.toUpperCase() > b.lastName.toUpperCase())
+                return 1;
+            else
+                return 0;
+        })
+        showList();
     }
     if(num == 3){
-
+        employeesList = employeesList.sort(function (a, b) {
+            if(a.phone < b.phone)
+                return -1;
+            else if(a.phone > b.phone)
+                return 1;
+            else
+                return 0;
+        })
+        showList();
     }
     if(num == 4){
-
+        employeesList = employeesList.sort(function (a, b) {
+            if(a.salary < b.salary)
+                return -1;
+            else if(a.salary > b.salary)
+                return 1;
+            else
+                return 0;
+            })
+        showList();
     }
 
 }
