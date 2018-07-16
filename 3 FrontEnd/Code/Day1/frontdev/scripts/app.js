@@ -211,8 +211,7 @@ function showList() {
     function numberTel(x) {
         var i = 0;
         var vect;
-        //vect = new Array(10);
-        //vect.fill(0);
+
         vect = [0,0,0,0,0,0,0,0,0,0];
 
         for(i = 0; i < x.length; i++){
@@ -241,32 +240,35 @@ function showList() {
             }
         }
 
-        var finalVect ;
+
+        var aux;
+        aux =[0,0,0,0,0,0,0,0,0,0];
+
+        var finalVector ;
+        finalVector = [0,0,0,0,0];
         var max = 0;
-        finalVect = [];
 
         for(i=0;i<5;i++){
 
-            max = maxInd(vect);
-            finalVect.push(vect[max]);
-            vect.splice(max,1);
+            max = maxInd(vect,aux);
+            finalVector.push(max);
+            aux[max] = 1;
         }
 
-        return finalVect;
+        return finalVector;
     }
 
-    function maxInd(vct) {
+    function maxInd(vct,aux) {
 
-        var contor =0;
+        var i =0;
         var index = 0;
-        var max = vct[0];
+        var max = 0;
         for(i=0;i<vct.length;i++){
-            if (vct[i]> max){
+            if (parseInt(vct[i])> parseInt(max) && aux[i] === 0){
                 max = vct[i];
                 index = i;
             }
         }
-
         return index;
 
     }
@@ -311,6 +313,32 @@ function showList() {
 
 function compareTel(a,b) {
     return a.phone.localeCompare(b.phone);
+
+}
+
+function findme(){
+    var input = document.getElementById("help").value;
+
+    var i;
+    var index = 0;
+    var ok = 0;
+    for(i = 0; i < employeesList.length; i++){
+        if(input === employeesList[i].firstName ||
+            input === employeesList[i].lastName ||
+            input === employeesList[i].phone ||
+            input === employeesList[i].salary ){
+                ok = 1;
+                index = i;
+        }
+    }
+
+    if(ok === 0){
+        alert("Nothing to show.");
+    }else{
+        vizualizare(index);
+    }
+
+
 
 }
 
