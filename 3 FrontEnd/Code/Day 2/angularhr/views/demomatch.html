@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<div ng-app="hrApp">
+    <div ng-controller="mathOperators">
+        <div class="panel-body">
+            <p>Number A: <input type="number" ng-model="numA"></p>
+            <p>Number B: <input type="number" ng-model="numB"></p>
+            <p>Addition: A + B = <span ng_bind="sum"></span></p>
+            <p>Subtraction: A - B = <span ng_bind="dif"></span></p>
+            <p>Multiplication: A * B = <span ng_bind="prod"></span></p>
+            <p>Division: A / B = <span ng_bind="div"></span></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
