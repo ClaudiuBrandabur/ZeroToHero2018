@@ -8,7 +8,7 @@ var employeesList= [
     },
     {
         firstName: 'Steven',
-        lastName: 'Gerard',
+        lastName: 'King',
         phone: '22222222',
         salary: 4456,
         euroSalary: ''
@@ -70,18 +70,24 @@ var freq2Dig= [
         Freq: 0,
     }
 ];
+var facts = [
+    'Chuck Norris threw a grenade and killed 50 people, then it exploded.',
+    'Chuck Norris counted to infinity. Twice.',
+    'Chuck Norris can kill two stones with one bird.',
+    'Chuck Norris can hear sign language.'
+];
+
+var mySet= new Set();
 function showList() {
     var myTable = '<table id="employeeTable" class="table table-striped"><tr><th>First Name</th><th>Last Name</th><th>Phone</th><th>Salary</th></tr>';
     for (var i in employeesList) {
         for (var j in employeesList[i].phone)
             freq2Dig[parseInt(employeesList[i].phone[j])].Freq++;
+        mySet.add(employeesList[i].lastName);
         myTable+= '<tr><td>'+employeesList[i].firstName+'</td><td>'+employeesList[i].lastName+'</td><td>'+employeesList[i].phone+'</td><td>'+employeesList[i].salary+'<button id="button" onclick="convertSalary('+i+')">Convert salary</button><td id="euroSum'+i+'">'+employeesList[i].euroSalary+'</td></td><td>'+'<button onclick="visualisation('+i+')">Vizualizare</button></td><td><button onclick="deleteRows('+i+')">Stergere</button></td></tr>';
     }
-
-    var verificare="";
-    for (var i in freq2Dig)
-        verificare+=freq2Dig[i].Freq+', ';
-    myTable+='<tr><td>'+freqFirstName()+'</td><td>'+cntUniqLastName()+'</td><td>'+freqUsed5Digits()+'</td><td>'+salariesAverage()+'</td></tr>';
+    var cntUniqLastName= mySet.size;
+    myTable+='<tr><td>'+freqFirstName()+'</td><td>'+cntUniqLastName+'</td><td>'+freqUsed5Digits()+'</td><td>'+salariesAverage()+'</td></tr>';
     myTable+= '</table>';
     var container = document.getElementById('listcontainer');
     container.innerHTML = myTable;
@@ -161,7 +167,6 @@ function salariesAverage() {
 
 function makeSort() {
     var num=document.getElementById('sorted').value;
-    alert(num);
     if (num==1) {
         employeesList = employeesList.sort(function (a, b) {
             return a.firstName.localeCompare(b.firstName);
@@ -188,5 +193,29 @@ function makeSort() {
                 return 1;
             return 0;
         })
+        showList();
     }
+}
+
+function freqFirstName() {
+
+}
+
+function search() {
+    var input= document.getElementById("searching").value;
+    var myTable = '<table id="employeeTable" class="table table-striped"><tr><th>First Name</th><th>Last Name</th><th>Phone</th><th>Salary</th></tr>';
+    for (var i in employeesList) {
+        if (employeesList[i].lastName == input || employeesList[i].phone == input || employeesList[i].salary == input || employeesList[i].firstName) {
+            if (employeesList[i].lastName == input)
+                myTable += '<tr><td>' + employeesList[i].firstName + '</td><td style="font-weight: bold">' + employeesList[i].lastName + '</td><td>' + employeesList[i].phone + '</td><td>' + employeesList[i].salary + '</td></tr>';
+            else if (employeesList[i].firstName == input)
+                myTable += '<tr><td style="font-weight: bold">' + employeesList[i].firstName + '</td><td>' + employeesList[i].lastName + '</td><td>' + employeesList[i].phone + '</td><td>' + employeesList[i].salary + '</td></tr>';
+            else if (employeesList[i].phone == input)
+                myTable += '<tr><td>' + employeesList[i].firstName + '</td><td>' + employeesList[i].lastName + '</td><td style="font-weight: bold">' + employeesList[i].phone + '</td><td>' + employeesList[i].salary + '</td></tr>';
+            else if (employeesList[i].salary == input)
+                myTable += '<tr><td>' + employeesList[i].firstName + '</td><td>' + employeesList[i].lastName + '</td><td>' + employeesList[i].phone + '</td><td style="font-weight: bold">' + employeesList[i].salary + '</td></tr>';
+        }
+    }
+    var container= document.getElementById('listcontainer');
+    container.innerHTML= myTable;
 }
