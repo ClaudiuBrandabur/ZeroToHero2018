@@ -170,5 +170,21 @@ function sortBy() {
             })
         showList();
     }
+}
 
+function filter() {
+    var input = document.getElementById("filter");
+    var filter = input.value.toUpperCase();
+    var table = document.getElementById("employeeTable");
+    var tr = table.getElementsByTagName("tr");
+
+    for (var i = 0; i < tr.length; i++) {
+
+        if (tr[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+        } else {
+            tr[i].style.display = "none";
+        }
+
+    }
 }
