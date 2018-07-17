@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div ng-app="hrApp">
+    <div ng-controller="MathController">
+        <p>
+            Number A: <input type="number" ng-model="numA">
+        </p>
+        <p>
+            Number B: <input type="number" ng-model="numB">
+        </p>
+        <p>
+            Addition: {{numA + numB}}
+        </p>
+        <p>
+            Subtraction: {{numA - numB}}
+        </p>
+        <p>
+            Multiplication: {{numA * numB}}
+        </p>
+        <p>
+            Division: {{numA / numB}}
+        </p>
+    </div>
+</div>
+<script type="text/javascript" src="../bower_components/jquery/jquery.js"></script>
+<script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+<script type="text/javascript" src="../bower_components/angular-resource/angular-resource.js"></script>
+<script type="text/javascript" src="../bower_components/angular-route/angular-route.js"></script>
+<script type="text/javascript" src="../scripts/app.js"></script>
+<script type="text/javascript" src="../scripts/controllers/MathController.js"></script>
+</body>
+</html>

@@ -7,10 +7,13 @@ app.controller('DescriptionController', ['$rootScope', '$scope', function ($root
     $scope.setFirstVariable = function(val) {
         $scope.firstVariable = val;
     };
-    function toggleDescriptionShow(){
-        boolean toggle = false;
-
-    }
+    $scope.toggle = false;
+    $scope.toggleDescriptionShow= function () {
+        if($scope.toggle == false)
+            $scope.toggle = true;
+        else if($scope.toggle == true)
+            $scope.toggle = false;
+        }
 }]);
 
 
