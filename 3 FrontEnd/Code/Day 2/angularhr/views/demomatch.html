@@ -3,15 +3,23 @@
 <body>
 <div ng-app="hrApp">
     <div ng-controller="mathOperators">
-        <div class="panel-body">
-            <p>Number A: <input type="number" ng-model="numA"></p>
-            <p>Number B: <input type="number" ng-model="numB"></p>
-            <p>Addition: A + B = <span ng_bind="sum"></span></p>
-            <p>Subtraction: A - B = <span ng_bind="dif"></span></p>
-            <p>Multiplication: A * B = <span ng_bind="prod"></span></p>
-            <p>Division: A / B = <span ng_bind="div"></span></p>
-        </div>
+        <p>Number A: <input type="number" ng-model="num1" ng-click="alert(num1)"/></p>
+        <p>Number B: <input type="number" ng-model="num2"/></p>
+        <!--<button ng-click="alert('mesaj')" ></button>-->
+        <p>Addition A + B = {{ num1 + num2}}</p>
+        <p>Subtraction: A - B = {{ num1 - num2}}</p>
+        <p>Multiplication: A * B = {{num1 * num2}}</p>
+        <p>Division: A / B = {{num1 / num2}}</p>
     </div>
 </div>
+<script type="text/javascript" src="../bower_components/jquery/jquery.js"></script>
+<script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+<script type="text/javascript" src="../bower_components/angular-resource/angular-resource.js"></script>
+<script type="text/javascript" src="../bower_components/angular-route/angular-route.js"></script>
+<script type="text/javascript" src="../scripts/app.js"></script>
+<script type="text/javascript" src="../scripts/mathOperators.js"></script>
 </body>
+
+
 </html>

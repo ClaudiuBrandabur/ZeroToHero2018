@@ -1,6 +1,5 @@
-app.controller('mathOperators', ['$rootScope', '$scope', function ($rootScope, $scope) {
-    $scope.sum = $scope.numA + $scope.numB;
-    $scope.dif = $scope.numA - $scope.numB;
-    $scope.prod = $scope.numA * $scope.numB;
-    $scope.div = $scope.numA / $scope.numB;
+angular.module('hrApp',[]).controller('mathOperators', ['$rootScope', '$scope', function ($rootScope, $scope) {
+    $scope.num1=0;
+    $scope.num2=0;
+    // console.log("ALERT");
 }]);
