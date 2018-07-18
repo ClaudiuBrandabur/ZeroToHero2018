@@ -1,0 +1,32 @@
+<body>
+<div ng-app="hrApp">
+    <div ng-controller="MathController">
+        <!--TODO #7-->
+        <p>Number a: <input type="number" ng-model="nA"/></p>
+
+        <p>Number b: <input type="number" ng-model="nB"/></p>
+
+        <p>
+            <!--TODO Button for calculating values-->
+            <button class="btn btn-primary" ng-click="calculate()"></button>
+        </p>
+
+        <p> a + b = <span>{{op1}}</span></p>
+
+        <p> a - b = <span>{{op2}}</span></p>
+
+        <p> a * b = <span>{{op3}}</span></p>
+
+        <p> a / b = <span>{{op4}}</span></p>
+
+        <!--<p> a + b = <span ng-bind="op1(nA,nB)"></span></p>-->
+
+        <!--<p> a - b = <span ng-bind="op2(nA,nB)"></span></p>-->
+
+        <!--<p> a * b = <span ng-bind="op3(nA,nB)"></span></p>-->
+
+        <!--<p> a / b = <span ng-bind="op4(nA,nB)"></span></p>-->
+    </div>
+</div>
+
+</body>
