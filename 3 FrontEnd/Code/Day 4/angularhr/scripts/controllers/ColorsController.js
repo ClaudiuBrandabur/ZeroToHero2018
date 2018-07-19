@@ -33,7 +33,7 @@ hrApp.controller('ColorsController', ['$scope', function($scope) {
         }
     ];
 
-    $scope.changeColor = function () {
+   /* $scope.changeColor = function () {
 
-    }
+    }*/
 }]);
