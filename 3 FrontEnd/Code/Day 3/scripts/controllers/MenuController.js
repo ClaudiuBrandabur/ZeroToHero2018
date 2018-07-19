@@ -5,6 +5,7 @@ hrApp.controller('MenuController', ['$scope', 'employeeActionsService', function
     }];
 
     // TODO #12 - load menu items from Value
+    $scope.employeeActionList = employeeActionsService;
 
     $scope.currentDate = new Date();
 
