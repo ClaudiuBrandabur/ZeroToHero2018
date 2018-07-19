@@ -24,9 +24,13 @@ hrApp.config(['$routeProvider',
                 templateUrl:'../views/employeelist.html',
                 controller:'EmployeeListController'
                 }).
-            when('/employeeview/:employeeid',{
+            when('/employeeview/:employeeId',{
                 templateUrl:'../views/employeeview.html',
                 controller:'EmployeeViewController'
+                }).
+            when('/user',{
+                templateUrl:'views/user.html',
+                controller:'UserController'
                 })
     }]);
 // TODO #4 add #/numbers route and use redirectTo

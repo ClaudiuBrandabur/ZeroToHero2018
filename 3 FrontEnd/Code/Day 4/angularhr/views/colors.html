@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <select ng-options="color.text for color in colors"></select>
+    <select ng-options="color.text group by text for color in colors"></select>
+</body>
+</html>

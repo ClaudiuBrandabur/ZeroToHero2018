@@ -17,12 +17,14 @@ hrApp.controller('UserController', ['$scope', '$location', 'userService', functi
         this.id = id;
     };
 
+    $scope.users = [];
+    
     $scope.save = function() {
         userService.push( new $scope.user($scope.fname, $scope.lname, $scope.age, $scope.id));
         alert("Saved");
         $scope.users = userService;
     };
-    $scope.users = [];
+
     $scope.showList = false;
 
     $scope.show = function(){

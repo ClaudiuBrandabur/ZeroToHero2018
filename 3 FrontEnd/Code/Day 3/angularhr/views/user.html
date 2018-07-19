@@ -1,3 +1,4 @@
+<div ng-controller="UserController">
 <p> First Name: <input type="text" ng-model ="fname"> </p>
 <p> Last Name: <input type="text" ng-model ="lname"> </p>
 <p> Id: <input type="text" ng-model="id"> </p>
@@ -8,10 +9,10 @@
 <p> <button type="button" ng-click="save()">Save</button> </p>
 <p> <button type="button" ng-click="show()">Show/Hide</button> </p>
 
+</div>
 
 
-
-<div ng-if="showList">
+<div ng-if="showList" ng-controller="UserController">
     <table class="table table-striped">
         <tr>
             <th>ID</th>
@@ -33,6 +34,7 @@
                 <th class="text-center">
                     {{user.age}}
                 </th>
+
         </tr>
     </table>
 </div>
