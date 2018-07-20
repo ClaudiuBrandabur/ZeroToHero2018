@@ -1,0 +1,23 @@
+<ng-form name="myForm" ng-controller="FormsController" class="my-form">
+    userType: <input name="input" ng-model="userType" required>
+    <span class="error" ng-show="myForm.input.$error.required">Required!</span><br>
+    userType = {{userType}}<br>
+    $pristine<br>
+    The user has not interacted with the form yet: {{myForm.input.$pristine}}<br>
+    $dirty<br>
+    The user has interacted with the form: {{myForm.input.$dirty}}<br>
+    $valid<br>
+    The input's valid state is: {{myForm.input.$valid}}<br>
+    $invalid<br>
+    The form is invalid: {{myForm.$invalid}}<br>
+    $error<br>
+    The errors of input:{{myForm.input.$error}}<br>
+    $submitted<br>
+    The user has submitted the form: {{myForm.$submitted}}<br>
+    <p><br><br>
+        <form ng-submit="submitFunction()">
+            <input type="submit" value="Submit"/>
+        </form>
+    </p>
+    <p>{{ state }}</p>
+</ng-form>

@@ -1,0 +1,21 @@
+
+<div ng-controller="ColorsController">
+    <p>
+        <label>Text
+            <select ng-options="color.text for color in colors track by color.text" ng-model="myText"></select>
+        </label>
+    </p>
+    <p>
+        <label>Text grouped by type
+            <select ng-options="color.text group by color.type for color in colors" ng-model="TxtByType"></select>
+        </label>
+    </p>
+    <p>
+        <label>Class
+            <select ng-options="color as color.class for color in colors" ng-model="selectedClass" ng-change="changeColor()"></select>
+        </label>
+    </p>
+    <p>
+        <span class="{{ selected }}">Some text</span>
+    </p>
+</div>
