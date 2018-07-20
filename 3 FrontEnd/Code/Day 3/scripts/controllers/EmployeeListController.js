@@ -10,7 +10,7 @@ hrApp.controller('EmployeeListController', ['$scope', '$http', '$location', 'Com
             })
             .error(function (data, status, headers, config) {
                 alert("error:" + status);
-            })
+            });
 
         $scope.viewEmployee = function (employeeId) {
             $location.url('/employeeview/' + employeeId);

@@ -1,7 +1,7 @@
 'use strict';
 
 hrApp.factory('CommonResourcesFactory', function() {
-        var baseUrl = "/app/mvc/";
+        var baseUrl = "http://10.6.198.94:8089/MVCApp/mvc/";
         return {
             findAllDepartmentsUrl: baseUrl + "departments/all",
             findAllEmployeesUrl: baseUrl + "employees/all",

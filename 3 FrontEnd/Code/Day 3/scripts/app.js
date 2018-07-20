@@ -23,9 +23,13 @@ hrApp.config(['$routeProvider', function($routeProvider) {
         templateUrl: 'views/employeelist.html',
         controller: 'EmployeeListController'
     })
-        .when('/employeeview/:employeeid', {
+        .when('/employeeview/:employeeId', {
             templateUrl: 'views/employeeview.html',
             controller: 'EmployeeViewController'
+        })
+        .when('/user', {
+            templateUrl: 'views/user.html',
+            controller: 'UserController'
         });
 
 }]);
