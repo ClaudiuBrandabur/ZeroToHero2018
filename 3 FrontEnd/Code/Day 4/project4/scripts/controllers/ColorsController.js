@@ -35,4 +35,5 @@ colorApp.controller('ColorsController', ['$scope', function ($scope) {
     $scope.changeColor = function() {
         $scope.selected = $scope.selectedClass.class;
     };
+
 }]);
