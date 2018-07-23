@@ -1,5 +1,14 @@
-
+<div ng-app="hrApp">
     <div ng-controller="ColorsController">
-        <select ng-options="color as color.text for color in colors" ng-model="selected"></select>
+        <p><label><select ng-options="color.text for color in colors" ng-model="selected">text</select></label></p>
+        <p><label><select ng-options="color.text group by color.type for color in colors" ng-model="selected2">text by type</select></label></p>
+        <p><label><select ng-options="color.class for color in colors" ng-model="selectedClass" ng-change="changeColor()"></select></label>
+        <p><span ng-class="" >Some text</span></p>
+        <input type="text" ng-model="text1"><br>
+        <input type="text" ng-model="text2"><br>
 
+        <div ng-repeat="x in colors | filter:text1 | orderBy:sortare(text2)" >
+            {{x.text}}
+        </div>
     </div>
+</div>
