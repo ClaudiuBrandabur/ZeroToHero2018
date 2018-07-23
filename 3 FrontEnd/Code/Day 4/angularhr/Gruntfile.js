@@ -1,6 +1,7 @@
 // Generated on 2015-01-28 using generator-jhipster 2.0.0
 'use strict';
 
+var modRewrite = require('connect-modrewrite');
 var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
 
 // usemin custom step
@@ -115,6 +116,7 @@ module.exports = function (grunt) {
                     ],
                     middleware: function (connect) {
                         return [
+                            modRewrite(['!\\.html|\\.js|\\.svg|\\.css|\\.png$ /index.html [L]']),
                             proxySnippet,
                             connect.static('.tmp'),
                             connect.static('src/main/webapp')

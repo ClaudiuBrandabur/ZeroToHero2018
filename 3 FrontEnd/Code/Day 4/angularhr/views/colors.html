@@ -1,13 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Hello</title>
-</head>
-<body ng-controller="ColorsController">
 
-    <select ng-options="color.text for color in colors"></select>
-    <select ng-options="color.text group by text for color in colors"></select>
+<div ng-controller="ColorsController">
 
-</body>
-</html>
+    <p>
+        <label>Text
+            <select ng-options="color.text for color in colors track by color.text" ng-model="myText"></select>
+        </label>
+    </p>
+    <div>
+        <label>Text for groups
+            <select ng-options="color.text group by color.type for color in colors" ng-model="Text"></select>
+        </label>
+    </div>
+    <div>
+        <label>Class
+            <select ng-options="color as color.class for color in colors" ng-model="selectedColor" ng-change="changeColor()"></select>
+        </label>
+    </div>
+    <p>
+        <span  ng-class="colorClass" >Some Text</span>
+    </p>
+
+    <p>First: <input type="text" ng-model="text1"/> </p>
+    <p>Second: <input type="text" ng-model="text2"/></p>
+
+
+
+   <table border="1">
+       <tr>
+
+       </tr>
+       <tr ng-repeat="txt in colors | filter:text1 | orderBy: mysort(text2)">
+            <td>{{txt.text}}</td>
+       </tr>
+    </table>
+
+    <!--<ul>-->
+        <!--<li ng-repeat="txt in colors">-->
+            <!--{{txt.text}}-->
+        <!--</li>-->
+    <!--</ul>-->
+
+
+
+</div>

@@ -1,4 +1,4 @@
-hrApp.controller('ColorsController', ['$scope', function($scope) {
+colorApp.controller('ColorsController', ['$scope', function($scope) {
 
     $scope.colors = [
         {
@@ -33,7 +33,27 @@ hrApp.controller('ColorsController', ['$scope', function($scope) {
         }
     ];
 
-   /* $scope.changeColor = function () {
 
-    }*/
+    $scope.selectedColor ='';
+    $scope.changeColor = function () {
+        $scope.colorClass = $scope.selectedColor.class;
+
+    };
+
+    $scope.cmp = function (a,b) {
+        if(a.text < b.text)
+            return -1;
+        if(a.text > b.text)
+            return 1;
+    };
+    
+    $scope.mysort = function (text2) {
+        if (text2 === "a"){
+            $scope.colors.sort($scope.cmp);
+        }
+    };
+
+
+
+
 }]);

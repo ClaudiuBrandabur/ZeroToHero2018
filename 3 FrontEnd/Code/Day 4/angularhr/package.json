@@ -2,7 +2,9 @@
   "name": "hrApp",
   "version": "0.0.1",
   "description": "Description for hrApp",
-  "dependencies": {},
+  "dependencies": {
+    "connect-modrewrite": "^0.10.2"
+  },
   "devDependencies": {
     "bower": "1.3.8",
     "grunt": "0.4.4",
