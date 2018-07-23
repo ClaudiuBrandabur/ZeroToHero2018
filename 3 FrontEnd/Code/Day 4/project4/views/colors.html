@@ -18,4 +18,26 @@
     <p>
         <span class="{{ selected }}">Some text</span>
     </p>
+    <p>
+        Filter list by: <input type="text" ng-model="filterer"/>
+    <p>
+    <p>
+        Sort list by: <input type="text" ng-model="orderer"/>
+    </p><br>
+    <ul>
+        <li ng-repeat="color in colors"> {{ color.text }}</li>
+    </ul>
+    <br>
+    <ul> Filtered list:
+        <li ng-repeat="color in colors | filter: filterer">
+            {{ color.text }}
+        </li>
+    </ul>
+    <br>
+    <table id="orderBySome" class="table"> Ordered list:
+        <th>Text</th><th>Class</th><th>Type</th>
+        <tr ng-repeat="color in colors | orderBy : orderer">
+            <td>{{ color.text }}</td><td>{{ color.class }}</td><td>{{ color.type }}</td>
+        </tr>
+    </table>
 </div>

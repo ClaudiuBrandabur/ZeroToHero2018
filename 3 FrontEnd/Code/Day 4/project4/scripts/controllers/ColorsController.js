@@ -31,6 +31,8 @@ colorApp.controller('ColorsController', ['$scope', function ($scope) {
             type: "boring"
         }
     ];
+    $scope.filterer='';
+    $scope.orderer='';
     $scope.selectedClass='';
     $scope.changeColor = function() {
         $scope.selected = $scope.selectedClass.class;
