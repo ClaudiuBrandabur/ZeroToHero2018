@@ -28,9 +28,13 @@ hrApp.config(['$routeProvider',
                 templateUrl: 'views/employeeAdd.html',
                 controller: 'EmployeeAddController'
             })
-            .when('/employeeEdit',{
+            .when('/employeeEdit/:employeeId',{
                 templateUrl: 'views/employeeEdit.html',
                 controller: 'EmployeeEditController'
+            })
+            .when('/jobList',{
+                templateUrl:'views/jobList.html',
+                controller: 'JobListController'
             })
             .otherwise({
                 templateUrl: 'views/main.html',

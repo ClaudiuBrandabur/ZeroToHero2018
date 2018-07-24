@@ -1,4 +1,4 @@
-<table class="table table-striped table-bordered" ng-controller="EmployeeListController">
+<table class="table table-striped table-bordered">
     <tr>
         <th>Id</th>
         <th>First Name</th>
@@ -51,6 +51,7 @@
             <button type="button" class="btn btn-link" ng-click="viewEmployee(employee.employeeId)">View</button>
             <!-- TODO #HR6 -->
             <button type="button" class="btn btn-primary" ng-click="editEmployee(employee.employeeId)">Edit</button>
+            <button type="button" class="btn btn-link" ng-click="deleteEmployee(employee.employeeId)">Delete</button>
         </td>
     </tr>
 </table>

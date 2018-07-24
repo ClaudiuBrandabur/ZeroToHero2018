@@ -1,4 +1,4 @@
-<div class="panel panel-default" ng-controller="EmployeeAddController">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h2 class="panel-title">Add employee</h2>
     </div>
@@ -69,8 +69,8 @@
                     <div class="form-group" ng-class="{'has-error':employeeAddForm.job.$invalid}">
                         <!--TODO#HR2-->
                         <label>Job Title:</label>
-                        <input type="text" id="job" name="job"  ng-model="employee.job" class="form-control"
-                               placeholder="Job" required>
+                        <select type="text" id="job" name="job"  ng-model="employee.job" class="form-control" required
+                        ng-options="job.jobTitle for job in jobs"></select>
                         <span class="help-block" ng-show="employeeAddForm.job.$error.pattern
                              && employeeAddForm.job.$dirty">{{patternDateNotRespectedMessage}}</span>
                     </div>
@@ -106,8 +106,8 @@
                     <div class="form-group" ng-class="{'has-error':employeeAddForm.department.$invalid}">
                         <!--TODO#HR2-->
                         <label>Department:</label>
-                        <input type="text" id="department" name="department" ng-model="employee.department" class="form-control"
-                               placeholder="Department" required>
+                        <select id="department" name="department" ng-model="employee.department" class="form-control" required
+                        ng-options="department.departName for department in departments"></select>
                         <span class="help-block" ng-show="employeeAddForm.department.$error.pattern
                              && employeeAddForm.department.$dirty">{{patternDateNotRespectedMessage}}</span>
                     </div>

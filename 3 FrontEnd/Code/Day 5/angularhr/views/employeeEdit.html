@@ -1,4 +1,4 @@
-<div class="panel panel-default" ng-controller="EmployeeEditController">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h2 class="panel-title">Edit employee <b>{{employee.firstName}} {{employee.lastName}}</b></h2>
     </div>
@@ -55,9 +55,11 @@
             </div>
             <div class="row">
                 <div class="col-lg-6">
-                    <div class="form-group" ng-class="{ 'has-error': employeeAddForm.hireDate.$invalid && employeeAddForm.hireDate.$dirty }">
+                    <div class="form-group"
+                         ng-class="{ 'has-error': employeeAddForm.hireDate.$invalid && employeeAddForm.hireDate.$dirty }">
                         <label for="hireDate">Hire Date:</label>
-                        <input type="text" id="hireDate" name="hireDate" class="form-control" ng-model="employee.hireDate"
+                        <input type="text" id="hireDate" name="hireDate" class="form-control"
+                               ng-model="employee.hireDate"
                                placeholder="Hire Date" ng-pattern="datePattern" required>
                         <span class="help-block" ng-show="employeeAddForm.hireDate.$error.required
                              && employeeAddForm.hireDate.$dirty">{{requiredErrorMessage}}</span>
@@ -69,15 +71,14 @@
                     <!--TODO#HR3-->
                     <div class="form-group" ng-class="{'has-error':employeeAddForm.job.$invalid}">
                         <!--TODO#HR2-->
-                        <label>Job Title:</label>
-                        <input type="text" id="job" name="job"  ng-model="employee.job" class="form-control"
-                               placeholder="Job" required>
+                        <label for="job">Job Title:</label>
+                        <select type="text" id="job" name="job" ng-model="employee.job" class="form-control" required
+                                ng-options="job.jobTitle for job in jobs"></select>
                         <span class="help-block" ng-show="employeeAddForm.job.$error.pattern
                              && employeeAddForm.job.$dirty">{{patternDateNotRespectedMessage}}</span>
                     </div>
                 </div>
-            </div>
-            <div class="row">
+
                 <div class="col-lg-6">
                     <!--TODO#HR3-->
                     <div class="form-group" ng-class="{'has-error':employeeAddForm.salary.$invalid}">
@@ -90,9 +91,11 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="form-group" ng-class="{ 'has-error': employeeAddForm.commissionPct.$invalid && employeeAddForm.commissionPct.$dirty }">
+                    <div class="form-group"
+                         ng-class="{ 'has-error': employeeAddForm.commissionPct.$invalid && employeeAddForm.commissionPct.$dirty }">
                         <label for="commissionPct">Commission:</label>
-                        <input type="text" id="commissionPct" name="commissionPct" class="form-control" ng-model="employee.commissionPct"
+                        <input type="text" id="commissionPct" name="commissionPct" class="form-control"
+                               ng-model="employee.commissionPct"
                                placeholder="Commission" ng-pattern="commissionPattern" required>
                         <span class="help-block" ng-show="employeeAddForm.commissionPct.$error.required
                              && employeeAddForm.commissionPct.$dirty">{{requiredErrorMessage}}</span>
@@ -107,8 +110,8 @@
                     <div class="form-group" ng-class="{'has-error':employeeAddForm.department.$invalid}">
                         <!--TODO#HR2-->
                         <label>Department:</label>
-                        <input type="text" id="department" name="department" ng-model="employee.department" class="form-control"
-                               placeholder="Department" required>
+                        <select id="department" name="department" ng-model="employee.department" class="form-control" required
+                                ng-options="department.departName for department in departments"></select>
                         <span class="help-block" ng-show="employeeAddForm.department.$error.pattern
                              && employeeAddForm.department.$dirty">{{patternDateNotRespectedMessage}}</span>
                     </div>

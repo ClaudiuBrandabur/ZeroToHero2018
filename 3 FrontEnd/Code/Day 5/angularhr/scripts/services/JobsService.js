@@ -1,7 +1,7 @@
 hrApp.service('JobsService',['$http','CommonResourceFactory',function ($http,CommonResourcesFactory) {
     return {
-        findByJobs: function () {
-            return $http.get(CommonResourcesFactory.findAllJobsUrl)
+        findByIdJob: function (jobId) {
+            return $http.get(CommonResourcesFactory.findAllJobsUrl + jobId)
                 .success(function (data) {
                     return data;
                 })
