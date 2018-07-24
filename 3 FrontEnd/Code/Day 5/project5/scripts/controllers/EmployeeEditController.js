@@ -1,29 +1,58 @@
-hrApp.controller('EmployeeEditController', ['$scope', '$http', '$routeParams', '$location', 'commonResourcesFactory',
-    function ($scope, $http, $routeParams, $location, commonResourcesFactory) {
+hrApp.controller('EmployeeEditController', ['$scope', '$http', '$routeParams', '$location', 'CommonResourcesFactory', 'EmployeeService',
+    function ($scope, $http, $routeParams, $location, CommonResourcesFactory, EmployeeService) {
+        $scope.employee = {};
+        $scope.jobs = [];
+        $scope.manager = [];
+        $scope.departments = [];
         $scope.requiredErrorMessage = "Please fill out this form!";
         $scope.patternDateNotRespectedMessage = "The date format should be yyyy-mm-dd";
         $scope.patternCommisionNotRespectedMessage = "Commission should be in the format 0.XX";
 
         //TODO #HR5
-        $http.get(CommonResourcesFactoryBackup.findAllDepartmentsUrl)
+        $http.get(CommonResourcesFactory.findOneEmployeeUrl+$routeParams.employeeId)
             .success(function (data) {
-               $scope.departments = data;
+                $scope.employee=data;
+            })
+            .error(function (data, status) {
+                alert("Error: " + status);
             });
 
-        $http.get(CommonResourcesFactoryBackup.findAllEmployeesUrl)
-            .success(function (data) {
-                $scope.managers = data;
+        EmployeeService.findManagers()
+            .then(function (res) {
+                $scope.managers = EmployeeService.findManagersFromEmployees(res.data);
+            }, function (err) {
+                console.log("Error: " + err);
             });
 
-        $http.get(CommonResourcesFactoryBackup.findAllJobsUrl)
-            .success(function (data) {
-                $scope.jobs = data;
+        EmployeeService.findDepartments()
+            .then(function (res) {
+                $scope.departments = res.data;
+            }, function (err) {
+                console.log("Error: " + err);
             });
 
-        $http.get(CommonResourcesFactoryBackup.findOneEmployeeUrl + $routeParams.employeeId)
-            .success(function (data) {
-                $scope.employee = data;
+        EmployeeService.findJobs()
+            .then(function (res) {
+                $scope.jobs = res.data;
+            }, function (err) {
+                console.log("Error: " + err);
             });
+        /**
+         * Reset form
+         */
+        $scope.reset = function () {
+            $scope.employee = {};
+        };
+
+        $scope.delete = function (deleteEmployee) {
+            $http({url: CommonResourcesFactory.deleteEmployeeUrl, method: 'DELETE',headers: {
+                    "Content-Type": "application/json"}, data: deleteEmployee})
+                .success(function (data) {
+                    $scope.employee = data;
+                    $location.url('/employeeView/' + $scope.employee.employeeId);
+                });
+        };
+
         /**
          * Reset form
          */
@@ -36,7 +65,7 @@ hrApp.controller('EmployeeEditController', ['$scope', '$http', '$routeParams', '
          * @param addEmployee - employee to be persisted
          */
         $scope.create = function (addEmployee) {
-            $http({url: commonResourcesFactory.editEmployeeUrl, method: 'PUT', data: addEmployee})
+            $http({url: CommonResourcesFactory.editEmployeeUrl, method: 'PUT', data: addEmployee})
                 .success(function (data) {
                     $scope.employee = data;
                     $location.url('/employeeView/' + $scope.employee.employeeId);
