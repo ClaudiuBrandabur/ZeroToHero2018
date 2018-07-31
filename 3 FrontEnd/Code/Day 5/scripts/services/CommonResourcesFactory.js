@@ -1,18 +1,18 @@
 hrApp.factory('CommonResourcesFactory', function () {
-        var baseUrl = "http://10.16.8.77:8181/hrapp/";
+        var baseUrl = "http://10.6.198.94:8089/MVCApp/mvc/";
         return {
-            findAllDepartmentsUrl: baseUrl + "departments/findAll",
-            findAllEmployeesUrl: baseUrl + "employees/findAll",
-            findAllJobsUrl: baseUrl + "jobs/findAll",
-            findAllLocationsUrl: baseUrl + "locations/findAll",
-            findOneDepartmentUrl: baseUrl + "departments/findOne/",
-            findOneEmployeeUrl: baseUrl + "employees/findOne/",
-            findOneJobUrl: baseUrl + "jobs/findOne/",
-            findOneLocationUrl: baseUrl + "locations/findOne/",
-            deleteDepartmentUrl: baseUrl + "departments/delete",
-            deleteEmployeeUrl: baseUrl + "employees/delete",
-            deleteJobUrl: baseUrl + "jobs/delete",
-            deleteLocationUrl: baseUrl + "locations/delete",
+            findAllDepartmentsUrl: baseUrl + "departments/all",
+            findAllEmployeesUrl: baseUrl + "employees/all",
+            findAllJobsUrl: baseUrl + "jobs/all",
+            findAllLocationsUrl: baseUrl + "locations/all",
+            findOneDepartmentUrl: baseUrl + "departments/one",
+            findOneEmployeeUrl: baseUrl + "employees/one",
+            findOneJobUrl: baseUrl + "jobs/one",
+            findOneLocationUrl: baseUrl + "locations/one",
+            deleteDepartmentUrl: baseUrl + "departments/one",
+            deleteEmployeeUrl: baseUrl + "employees/one",
+            deleteJobUrl: baseUrl + "jobs/one",
+            deleteLocationUrl: baseUrl + "locations/one",
             addDepartmentUrl: baseUrl + "departments/create",
             addEmployeeUrl: baseUrl + "employees/create",
             addJobUrl: baseUrl + "jobs/create",
@@ -25,8 +25,8 @@ hrApp.factory('CommonResourcesFactory', function () {
     }
 );
 
-hrApp.factory('CommonResourcesFactoryBackup', function () {
-        var baseUrl = "http://10.16.8.77:8181/hrapp/";
+hrApp.factory('commonResourcesFactoryBackup', function () {
+        var baseUrl = "http://hrapp-zth.rhcloud.com/hrapp/";
         return {
             findAllDepartmentsUrl: baseUrl + "departments",
             findAllEmployeesUrl: baseUrl + "employees",
@@ -35,19 +35,7 @@ hrApp.factory('CommonResourcesFactoryBackup', function () {
             findOneDepartmentUrl: baseUrl + "departments/",
             findOneEmployeeUrl: baseUrl + "employees/",
             findOneJobUrl: baseUrl + "jobs/",
-            findOneLocationUrl: baseUrl + "locations/",
-            deleteDepartmentUrl: baseUrl + "departments",
-            deleteEmployeeUrl: baseUrl + "employees",
-            deleteJobUrl: baseUrl + "jobs",
-            deleteLocationUrl: baseUrl + "locations",
-            addDepartmentUrl: baseUrl + "departments",
-            addEmployeeUrl: baseUrl + "employees",
-            addJobUrl: baseUrl + "jobs",
-            addLocationUrl: baseUrl + "locations",
-            editDepartmentUrl: baseUrl + "departments",
-            editEmployeeUrl: baseUrl + "employees",
-            editJobUrl: baseUrl + "jobs",
-            editLocationUrl: baseUrl + "locations"
+            findOneLocationUrl: baseUrl + "locations/"
         };
     }
 );

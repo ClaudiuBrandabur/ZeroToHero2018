@@ -1,6 +1,8 @@
 package exercise.exercise2;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.ListIterator;
 
 /**
  * Created by Radu.Hoaghe on 20.04.2015.
@@ -40,12 +42,104 @@ public class MyList<Integer> extends ArrayList<Integer> {
     // A counter to hold the number of adds that were made on the list
     private int differentElements;
 
-    public MyList(){
+    public MyList() {
         differentElements = 0;
     }
 
+
+    @Override
+    public boolean add(Integer integer) {
+        if( !this.contains(integer)){
+            differentElements++;
+        }
+        return super.add(integer);
+    }
+
+    @Override
+    public void add(int index, Integer element) {
+        if( !this.contains(element)){
+            differentElements++;
+        }
+        super.add(index, element);
+    }
+
+    @Override
+    public boolean addAll(int index, Collection<? extends Integer> c) {
+
+        for (Integer i : c) {
+            if (!this.contains(i)) {
+                this.differentElements++;
+            }
+        }
+        return super.addAll(index, c);
+    }
+
+    @Override
+    public boolean addAll(Collection<? extends Integer> c) {
+        for (Integer i : c) {
+            if (!this.contains(i)) {
+                this.differentElements++;
+            }
+        }
+        return super.addAll(c);
+    }
     // TODO Exercise #2 a) Override add() and addAll() methods so that the list should retain the number of
     // TODO Exercise #2 a) different elements (Hint: check out the methods signatures on the List documentation)
+
+
+    @Override
+    public Integer remove(int index) {
+            Integer x = this.get(index);
+            int occurences = 0;
+            ListIterator it = this.listIterator();
+            while(it.hasNext()) {
+                if (x == it.next()) {
+                    occurences++;
+                }
+            }
+            if(occurences == 1){
+                differentElements--;
+            }
+        return super.remove(index);
+    }
+
+    @Override
+    public boolean remove(Object o) {
+        int occurences = 0;
+        ListIterator it = this.listIterator();
+        while(it.hasNext()) {
+            if (o == it.next()) {
+                occurences++;
+            }
+        }
+        if(occurences == 1){
+            differentElements--;
+        }
+        return super.remove(o);
+    }
+
+
+    //    @Override
+//    public boolean remove(Integer element) {
+//        int occurences = 0;
+//        ListIterator it = this.listIterator();
+//        while(it.hasNext()) {
+//            if (element == it.next()) {
+//                occurences++;
+//            }
+//        }
+//        if(occurences == 1){
+//            differentElements--;
+//        }
+//        return super.remove(element);
+//    }
+
+    @Override
+    public void clear() {
+        super.clear();
+        differentElements = 0;
+    }
+
 
     // TODO Exercise #2 b) Override the remove methods so that the number of different elements is updated when
     // TODO Exercise #2 b) an element is removed
@@ -56,6 +150,7 @@ public class MyList<Integer> extends ArrayList<Integer> {
 
     // TODO Exercise #2 d) Return the number of different elements that exist into the list
     public int getDifferentElements() {
-        return 0;
+        return differentElements;
     }
+
 }

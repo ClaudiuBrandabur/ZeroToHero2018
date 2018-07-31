@@ -1,8 +1,6 @@
 package exercise1;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Radu.Hoaghe on 4/20/2015.
@@ -34,6 +32,11 @@ public class Exercise1 {
         // TODO Exercise #1 a) and add the countries that start with 'R' character into the seekingCountries list
         // TODO Exercise #1 a) hint: see String documentation
 
+
+        for(String s :countries.keySet()){
+            if(s.charAt(0) == 'R')
+                seekingCountries.add(s);
+        }
         return seekingCountries;
     }
 
@@ -45,7 +48,11 @@ public class Exercise1 {
         // TODO Exercise #1 b) You need to iterate over the map entries using a foreach loop (see Map.Entry)
         // TODO Exercise #1 b) and convert to lowercase (hint: String documentation) all the countries that contain 'Q'
         // TODO Exercise #1 b) or 'q' letter into the seekingCountries list
-
+        for(Map.Entry e : countries.entrySet()){
+            if(e.getKey().toString().charAt(0) == 'Q' || e.getKey().toString().charAt(0) == 'q'){
+                seekingCountries.add(e.getKey().toString().toLowerCase());
+            }
+        }
         return seekingCountries;
     }
 
@@ -56,6 +63,13 @@ public class Exercise1 {
 
         // TODO Exercise #1 c) You need to iterate over the map values using a foreach loop (see Map.values())
         // TODO Exercise #1 c) and find the capital city with the longest name
+        int maxlength = 0;
+        for(String s :countries.values()){
+            if(s.length() > maxlength){
+                maxlength = s.length();
+                seekingCapital = s;
+            }
+        }
 
         return seekingCapital;
     }
