@@ -107,7 +107,7 @@
                         <!--TODO#HR2-->
                         <label>Department:</label>
                         <select id="department" name="department" ng-model="employee.department" class="form-control" required
-                        ng-options="department.departName for department in departments"></select>
+                        ng-options="department.departmentName for department in departments"></select>
                         <span class="help-block" ng-show="employeeAddForm.department.$error.pattern
                              && employeeAddForm.department.$dirty">{{patternDateNotRespectedMessage}}</span>
                     </div>
