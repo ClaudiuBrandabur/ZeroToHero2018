@@ -17,18 +17,29 @@ public class MyHashMap {
 
     private final int BUCKET_ARRAY_SIZE = 16;
 
-    public MyHashMap() {
+    private int size;
 
-        // TODO Initialize buckets list
+    public MyHashMap() {
+        buckets = new ArrayList<LinkedList<MyEntry>>(BUCKET_ARRAY_SIZE);
+        size = 0;
     }
 
     public String get(String key) {
-        // TODO
+        int index = key.hashCode() % BUCKET_ARRAY_SIZE;
+        int i;
+        if(key == null){
+            return null;
+        }
+        else{
+            for(i = 0; i < buckets.size(); i++){
+
+            }
+        }
         return null;
     }
 
     public void put(String key, String value) {
-        // TODO
+
     }
 
     public Set<String> keySet() {

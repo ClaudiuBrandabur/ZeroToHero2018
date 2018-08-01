@@ -24,8 +24,10 @@ Create a class for a Student and add the first name and last name properties.
     hash code: must be correctly implemented for all the properties.
     equals: must be correctly implemented for all the properties.
 
-Now create another class that suits the main() method where we create 4 MAPS where the KEY will be of type STUDENT and the VALUE will be a BigDecimal representing the age (or whatever).
-In the first Map, the key will be an object from point (a), in the second map it will be an object from point (b), in the third map it will be an object from point (c) and in the last map it be an object from point (d).
+Now create another class that suits the main() method where we create 4 MAPS where the
+KEY will be of type STUDENT and the VALUE will be a BigDecimal representing the age (or whatever).
+In the first Map, the key will be an object from point (a), in the second map it will be an object
+ from point (b), in the third map it will be an object from point (c) and in the last map it be an object from point (d).
 Think and set the proper properties for the objects in order to observe what can go wrong with our dictionaries.
 
 Give suggestive names for the classes and print the content of the dictionaries using Iterator!
