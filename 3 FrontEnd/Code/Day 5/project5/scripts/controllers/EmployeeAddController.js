@@ -43,9 +43,10 @@ hrApp.controller('EmployeeAddController', ['$scope', '$http', '$location', 'Comm
                 });
         };
 
-        EmployeeService.findManagers()
+        EmployeeService.findManagersFromEmployees()
             .then(function (res) {
-                $scope.managers = EmployeeService.findManagersFromEmployees(res.data);
+                if(!$scope.managers.hasOwnProperty($scope.managers))
+                $scope.managers = res.data;
             }, function (err) {
                 console.log("Error "+err);
             });
