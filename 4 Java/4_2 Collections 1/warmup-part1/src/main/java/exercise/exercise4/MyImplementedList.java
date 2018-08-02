@@ -21,7 +21,7 @@ package exercise.exercise4;
  * @author Cristian.Dumitru
  * @since 7/3/2017.
  */
-public class MyImplementedList<E> extends iter{
+public class MyImplementedList<E>  {
 
     /**
      * The maximum accepted load property of the data structure.

@@ -1,9 +1,9 @@
 package exercise5;
 
+import exercise.exercise4.MyImplementedList;
 import exercise4.MyHashMap;
 
-import java.util.Collection;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Create a HashMap that uses to store the buckets your implementation of MyImplementedList that you
@@ -14,65 +14,136 @@ import java.util.Set;
 public class MyHashMapWithMyImplementedList {
 
     // TODO uncomment the following line and add your MyImplementedList implementation to the project
-//    private MyImplementedList<LinkedList<MyEntry>> buckets;
+    private exercise.exercise4.MyImplementedList<LinkedList<MyEntry>> buckets;
 
     private final int BUCKET_ARRAY_SIZE = 16;
 
     public MyHashMapWithMyImplementedList() {
-        // TODO
+        buckets = new MyImplementedList<LinkedList<MyEntry>>();
+        for(int i = 0; i < BUCKET_ARRAY_SIZE; i++){
+            buckets.add(new LinkedList<MyEntry>());
+        }
     }
 
     public String get(String key) {
-        // TODO
+        if(key == null){
+            return null;
+        }
+        int index = Math.abs(key.hashCode()) % BUCKET_ARRAY_SIZE;
+        int i;
+        for(i = 0; i < buckets.get(index).size(); i++){
+            if(buckets.get(index).get(i).getKey().equals(key)){
+                return buckets.get(index).get(i).getValue();
+            }
+        }
         return null;
     }
 
     public void put(String key, String value) {
-        // TODO
+        if(key == null) {
+            buckets.get(0).add(new MyEntry(null, value));
+            return;
+        }
+        int index = Math.abs(key.hashCode()) % BUCKET_ARRAY_SIZE;
+        for(int i = 0; i < buckets.get(index).size(); i++){
+            if(buckets.get(index).get(i).getKey().equals(key)){
+                buckets.get(index).get(i).setValue(value);
+                return;
+            }
+        }
+        buckets.get(index).add(new MyEntry(key, value));
     }
 
     public Set<String> keySet() {
-        // TODO
-        return null;
+        HashSet keyset = new HashSet();
+        for(int i = 0; i < buckets.size(); i++){
+            for(int j = 0; j < buckets.get(i).size(); j++){
+                keyset.add(buckets.get(i).get(j).getKey());
+            }
+        }
+        return keyset;
     }
 
     public Collection<String> values() {
-        // TODO
-        return null;
+       ArrayList<String> values = new ArrayList<String>();
+        for(int i = 0; i < buckets.size(); i++){
+            for(int j = 0; j < buckets.get(i).size(); j++){
+                values.add(buckets.get(i).get(j).getValue());
+            }
+        }
+        return values;
     }
 
     public String remove(String key) {
-        // TODO Returns the value associated with the key removed from the map or null if the key wasn't found
+        String value = new String();
+        int index = Math.abs(key.hashCode()) % BUCKET_ARRAY_SIZE;
+        for(int i = 0; i < buckets.get(index).size(); i++){
+            if(buckets.get(index).get(i).getKey().equals(key))
+                value = buckets.get(index).get(i).getValue();
+            buckets.get(index).remove(i);
+            return value;
+        }
         return null;
     }
 
     public boolean containsKey(String key) {
-        // TODO
+        for(int i = 0; i < buckets.size(); i++){
+            for(int j = 0; j < buckets.get(i).size(); j++){
+                if(buckets.get(i).get(j).getKey().equals(key)){
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
     public boolean containsValue(String value) {
-        // TODO
+        for(int i = 0; i < buckets.size(); i++){
+            for(int j = 0; j < buckets.get(i).size(); j++){
+                if(buckets.get(i).get(j).getValue().equals(value)){
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
     public int size() {
-        // TODO Return the number of the Entry objects stored in all the buckets
-        return 0;
+        int size = 0;
+        for(int i = 0; i < buckets.size(); i++){
+            for(int j = 0; j < buckets.get(i).size(); j++){
+                size++;
+            }
+        }
+        return size;
     }
 
     public void clear() {
-        // TODO Remove all the Entry objects from the bucket list
+        for(int i = 0; i < buckets.size(); i++){
+            for(int j = 0; j < buckets.get(i).size(); j++){
+                buckets.get(i).remove(j);
+            }
+        }
     }
 
     public Set<MyHashMap.MyEntry> entrySet() {
-        // TODO Return a Set containing all the Entry objects
-        return null;
+        HashSet <MyHashMap.MyEntry > hashSet = new HashSet<>();
+
+        for(int i = 0; i < buckets.size(); i++)
+            for(int j = 0; j < buckets.get(i).size(); j++)
+                hashSet.add(new MyHashMap.MyEntry(buckets.get(i).get(j).getKey(),buckets.get(i).get(j).getValue()));
+        return hashSet;
     }
 
     public boolean isEmpty() {
-        // TODO
-        return false;
+        int size;
+        size = size();
+        if(size == 0){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     public static class MyEntry {

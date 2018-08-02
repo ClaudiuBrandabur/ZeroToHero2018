@@ -129,8 +129,12 @@ public class MyHashMap {
     }
 
     public Set<MyEntry> entrySet() {
-        // TODO Return a Set containing all the Entry objects
-        return null;
+        HashSet <MyHashMap.MyEntry > hashSet = new HashSet<>();
+
+        for(int i = 0; i < buckets.size(); i++)
+            for(int j = 0; j < buckets.get(i).size(); j++)
+                hashSet.add(new MyHashMap.MyEntry(buckets.get(i).get(j).getKey(),buckets.get(i).get(j).getValue()));
+        return hashSet;
     }
 
     public boolean isEmpty() {
