@@ -1,6 +1,6 @@
 package ro.teamnet.hello2;
 
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 /**
  * Created by Petrus.Prangate on 7/4/2016.
