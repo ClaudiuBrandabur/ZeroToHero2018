@@ -1,6 +1,8 @@
 package exercise6;
 
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -42,67 +44,231 @@ public class MyResizableHashMap<K, V> {
      * The number of entries stored in the Map.
      */
     private int size;
+    private int capacity ;
 
     public MyResizableHashMap() {
 
-        // TODO Initialize buckets list
+        size = 0;
+        capacity = DEFAULT_BUCKET_ARRAY_SIZE;
+        buckets = new Node[capacity];
+
     }
 
     private void resize() {
-        // TODO function that does the rehashing of the HashMap
+        if((capacity * LOAD_FACTOR) < size){
+
+            Node<K, V>[] clone = buckets.clone();
+            Node<K, V> iter;
+
+            capacity *= INCREASE_SIZE_FACTOR;
+            buckets = new Node[capacity];
+            size = 0;
+
+            for (int i = 0; i < clone.length; i++) {
+                iter = clone[i];
+
+                while (iter != null) {
+                    put(iter.getEntry().getKey(), iter.getEntry().getValue());
+                    iter = iter.getNextElement();
+                }
+            }
+        }
     }
 
     public V get(K key) {
-        // TODO
+        if(key == null){
+            Node <K,V> iter = buckets[0];
+
+            while(iter != null){
+                if(iter.getEntry().getKey() == null)
+                    return iter.getEntry().getValue();
+                iter = iter.getNextElement();
+            }
+            return null;
+        }
+
+        int index = Math.abs(key.hashCode() % capacity);
+        Node <K,V> iter = buckets[index];
+
+        while(iter != null) {
+            if (iter.getEntry().getKey().equals(key))
+                return iter.getEntry().getValue();
+            //iter = iter.getNextElement();
+        }
+
         return null;
     }
 
     public void put(K key, V value) {
-        // TODO
+        if (key == null) {
+            Node<K, V> iter = buckets[0];
+            boolean found = false;
+
+            while (iter != null) {
+                if (iter.getEntry().getKey() == null) {
+                    iter.getEntry().setValue(value);
+                    found = true;
+                    break;
+                }
+
+                iter = iter.getNextElement();
+            }
+
+            if (!found) {
+                buckets[0] = new Node<K, V>(new MyEntry<K, V>(key, value), 0, buckets[0]);
+                size++;
+            }
+        } else {
+            int bucketIndex = Math.abs(key.hashCode()) % capacity;
+            Node<K, V> iter = buckets[bucketIndex];
+            boolean found = false;
+
+            while (iter != null) {
+                if (iter.getEntry().getKey().equals(key)) {
+                    iter.getEntry().setValue(value);
+                    found = true;
+                    break;
+                }
+
+                iter = iter.getNextElement();
+            }
+
+            if (!found) {
+                buckets[bucketIndex] = new Node<K, V>(new MyEntry<K, V>(key, value), Math.abs(key.hashCode()) % capacity, buckets[bucketIndex]);
+                size++;
+            }
+        }
+
+        resize();
+
     }
 
     public Set<K> keySet() {
-        // TODO
-        return null;
+        HashSet<K> set = new HashSet<K>();
+        Node<K, V> iter;
+
+        for(int i = 0; i < buckets.length; i++){
+            iter = buckets[i];
+
+            while (iter != null) {
+                set.add(iter.getEntry().getKey());
+                iter = iter.getNextElement();
+            }
+        }
+
+        return set;
     }
 
     public Collection<V> values() {
-        // TODO
-        return null;
+        HashSet set = new HashSet();
+        Node<K, V> iter;
+
+        for (int i = 0; i < buckets.length; i++){
+            iter = buckets[i];
+
+            while(iter != null){
+                set.add(iter.getEntry().getValue());
+                iter =iter.getNextElement();
+            }
+        }
+
+        return set;
     }
 
     public V remove(K key) {
-        // TODO Returns the value associated with the key removed from the map or null if the key wasn't found
-        return null;
+        int bucketIndex = Math.abs(key.hashCode()) % capacity;
+        Node<K, V> iter = buckets[bucketIndex];
+        Node<K, V> prev = null;
+        V value = null;
+
+        while (iter != null) {
+            if (iter.getEntry().getKey().equals(key)) {
+                value = iter.getEntry().getValue();
+                size--;
+
+                if (prev == null)
+                    buckets[bucketIndex] = iter.getNextElement();
+                else
+                    prev.setNextElement(iter.getNextElement());
+            }
+
+            prev = iter;
+            iter = iter.getNextElement();
+        }
+
+        return value;
     }
 
     public boolean containsKey(K key) {
-        // TODO
+        if (key == null) {
+            Node<K, V> iter = buckets[0];
+
+            while (iter != null) {
+                if (iter.getEntry().getKey() == null)
+                    return true;
+                iter = iter.getNextElement();
+            }
+
+            return false;
+        }
+
+        int bucketIndex = Math.abs(key.hashCode()) % capacity;
+        Node<K, V> iter = buckets[bucketIndex];
+
+        while (iter != null) {
+            if (iter.getEntry().getKey().equals(key))
+                return true;
+            iter = iter.getNextElement();
+        }
+
         return false;
+
     }
 
     public boolean containsValue(V value) {
-        // TODO
+        Node<K, V> iter;
+
+        for (int i = 0; i < buckets.length; i++) {
+            iter = buckets[i];
+
+            while (iter != null) {
+                if ((value == null && iter.getEntry().getValue() == null) || iter.getEntry().getValue().equals(value))
+                    return true;
+                iter = iter.getNextElement();
+            }
+        }
+
         return false;
     }
 
     public int size() {
-        // TODO Return the number of the Entry objects stored in all the buckets
-        return 0;
+        return size;
     }
 
     public void clear() {
-        // TODO Remove all the Entry objects from the bucket list
+        for (int i = 0; i < buckets.length; i++)
+            buckets[i] = null;
+        size = 0;
     }
 
     public Set<MyEntry> entrySet() {
-        // TODO Return a Set containing all the Entry objects
-        return null;
+        Set<MyEntry> entries = new HashSet<MyEntry>();
+        Node<K, V> iter;
+
+        for (int i = 0; i < buckets.length; i++) {
+            iter = buckets[i];
+
+            while (iter != null) {
+                entries.add(iter.getEntry());
+                iter = iter.getNextElement();
+            }
+        }
+
+        return entries;
     }
 
     public boolean isEmpty() {
-        // TODO
-        return false;
+        return size == 0;
     }
 
     public static class MyEntry<K, V> {
@@ -152,6 +318,10 @@ public class MyResizableHashMap<K, V> {
 
         public Node<K, V> getNextElement() {
             return nextElement;
+        }
+
+        public void setNextElement(Node<K, V> nextElement) {
+            this.nextElement = nextElement;
         }
     }
 }

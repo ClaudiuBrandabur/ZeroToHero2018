@@ -1,6 +1,6 @@
 package exercise5;
 
-import exercise.exercise4.MyImplementedList;
+
 import exercise4.MyHashMap;
 
 import java.util.*;
@@ -14,7 +14,7 @@ import java.util.*;
 public class MyHashMapWithMyImplementedList {
 
     // TODO uncomment the following line and add your MyImplementedList implementation to the project
-    private exercise.exercise4.MyImplementedList<LinkedList<MyEntry>> buckets;
+    private MyImplementedList<LinkedList<MyEntry>> buckets;
 
     private final int BUCKET_ARRAY_SIZE = 16;
 

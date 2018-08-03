@@ -55,13 +55,12 @@ public class MyImplementedList<E>  {
      */
     private int capacityAfterExtending;
 
-    private int capacity;
     //TODO a) implement the empty constructor for the your data structure
     public MyImplementedList() {
         //TODO a) HINT - DEFAULT_CAPACITY, capacityAfterExtending and elementData properties
-        elementData = new Object[DEFAULT_CAPACITY];
-        capacity = DEFAULT_CAPACITY;
+        capacityAfterExtending = DEFAULT_CAPACITY;
         size = 0;
+        elementData = new Object[capacityAfterExtending];
     }
 
     //TODO b) create the int size() method that returns the size of the data structure
@@ -69,11 +68,10 @@ public class MyImplementedList<E>  {
         return size;
     }
     //TODO c) create the boolean add(E e) method that adds at the end of the data structure an element
-    public void add(E e){
-        if(LOAD_FACTOR * capacity < (size - 1) )
-            capacity = extendCapacity();
+    public boolean add(E e){
+        extendCapacity();
         elementData[size++] = e;
-
+        return true;
     }
 
     //TODO pay attention to the LOAD_FACTOR of the data structure
@@ -99,14 +97,17 @@ public class MyImplementedList<E>  {
     }
     //TODO f) create the int indexOf(Object o_O) method that returns the position in the data structure of the object o_O
     //TODO if exists, otherwise return -1
-    public int indexOf(Object o_O){
-        int indexOf = -1;
-        for(int i = 0; i < size; i++){
-            if(o_O.equals(elementData[i])){
-                indexOf = i;
-            }
+    public int indexOf(E e){
+        if( e == null){
+            for(int i = 0; i < size; i++)
+                if(elementData[i] == null)
+                    return i;
+        }else{
+            for(int i = 0; i < size; i++)
+                if(elementData[i] == e)
+                    return i;
         }
-        return indexOf;
+        return -1;
     }
 
 
@@ -151,9 +152,14 @@ public class MyImplementedList<E>  {
     }
     //TODO k) extend the current default capacity, if the number of elements in the data structure is > 75% of it
     //TODO you should name it: void extendCapacity() - HINT use capacity, DEFAULT_CAPACITY, LOAD_FACTOR and INCREASE_SIZE_FACTOR
-    public int extendCapacity(){
-        capacityAfterExtending = INCREASE_SIZE_FACTOR * capacity;
-        return capacityAfterExtending;
+    public void extendCapacity(){
+        if(size/DEFAULT_CAPACITY > LOAD_FACTOR){
+            capacityAfterExtending = INCREASE_SIZE_FACTOR * capacityAfterExtending;
+            Object[] newArray = new Object[capacityAfterExtending];
+            for(int i = 0; i < size; i++)
+                newArray[i] = elementData[i];
+            elementData = newArray;
+        }
     }
     //TODO l) implement the iterator() method in order to use the foreach statement over your data structure - HINT Iterable interface
     //TODO and implement a custom iterator for your custom data structure - methods boolean hasNext(), Object next() and void remove()
