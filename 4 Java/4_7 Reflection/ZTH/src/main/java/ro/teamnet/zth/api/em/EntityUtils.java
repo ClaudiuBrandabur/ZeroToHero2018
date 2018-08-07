@@ -52,10 +52,11 @@ public class EntityUtils {
     public static Object castFromSqlType(Object value, Class wantedType){
 
         if(value instanceof BigDecimal){
-           if(wantedType.equals(Integer.TYPE)) return (Integer)value;
-           if(wantedType.equals(Long.TYPE)) return (Long)value;
-           if(wantedType.equals(Float.TYPE)) return (Float)value;
-           if(wantedType.equals(Double.TYPE)) return (Double)value;
+            BigDecimal bd = (BigDecimal) value;
+           if(wantedType.getClass().equals(Integer.TYPE)) return bd.intValue();
+           if(wantedType.getClass().equals(Long.TYPE)) return bd.longValue();
+           if(wantedType.getClass().equals(Float.TYPE)) return bd.floatValue();
+           if(wantedType.getClass().equals(Double.TYPE)) return bd.doubleValue();
 
         }
 

@@ -8,7 +8,7 @@ public class ColumnInfo {
     private boolean isId;
     private Object value;
 
-    public String getColumnName(String name) {
+    public String getColumnName() {
         return columnName;
     }
 
@@ -16,7 +16,7 @@ public class ColumnInfo {
         this.columnName = columnName;
     }
 
-    public Class getColumnType(Class<?> type) {
+    public Class getColumnType() {
         return columnType;
     }
 
@@ -24,7 +24,7 @@ public class ColumnInfo {
         this.columnType = columnType;
     }
 
-    public String getDbColumnName(String name) {
+    public String getDbColumnName() {
         return dbColumnName;
     }
 
