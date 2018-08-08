@@ -42,9 +42,31 @@ public class BehaviourParameterisation {
      *
      * @param inventory
      */
-    public static void prettyPrintOnlyWeightApple(List<Apple> inventory) {
+    public static void prettyPrintOnlyWeightApple(List<Apple> inventory, Printer printer) {
         Objects.requireNonNull(inventory, "Inventory must not be null");
-        //TODO
+        for(Apple apple : inventory){
+            printer.print(apple);
+        }
     }
+}
 
+
+interface Printer{
+    public void print(Apple apple);
+}
+
+
+class AppleWeightPrint implements Printer{
+    @Override
+    public void print(Apple apple) {
+        System.out.println("An Apple of" + apple.getWeight() + "grams");
+    }
+}
+
+
+class AppleColorPrint implements Printer{
+    @Override
+    public void print(Apple apple) {
+        System.out.println("A" + apple.getColor() + "apple");
+    }
 }
