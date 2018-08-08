@@ -1,6 +1,8 @@
 package com.java_8_training.problems.lambdas;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 public class SortAndFilterList {
@@ -18,5 +20,13 @@ public class SortAndFilterList {
         // 3. alphabetically
         // 4. put the strings that contain 'e' first in the list. The other ones last.
         // 5. filter only the strings that have the first letter capitalized
+        animals.sort(Comparator.comparingInt(String::length));
+
+        Comparator<String> comparator = String::compareToIgnoreCase;
+        animals.sort(comparator.reversed());
+
+        animals.sort(String::compareTo);
+
+        animals.stream().filter(s -> Character.isUpperCase(s.charAt(0)));
     }
 }

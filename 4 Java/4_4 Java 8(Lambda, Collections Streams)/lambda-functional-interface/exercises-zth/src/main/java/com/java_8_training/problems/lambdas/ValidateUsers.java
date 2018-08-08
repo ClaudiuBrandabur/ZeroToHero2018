@@ -34,5 +34,6 @@ public class ValidateUsers {
         UserFieldValidator phoneValidator = null; // TODO use lambda to create a phone validator
 
         // TODO use the validators to validate each user
+
     }
 }

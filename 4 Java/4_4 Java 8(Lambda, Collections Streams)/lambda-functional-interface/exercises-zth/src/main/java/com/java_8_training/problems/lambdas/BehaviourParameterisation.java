@@ -1,13 +1,14 @@
 package com.java_8_training.problems.lambdas;
 
 import com.java_8_training.problems.lambdas.model.Apple;
+import com.java_8_training.problems.lambdas.model.prettyApple;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
 
-public class BehaviourParameterisation {
+public class BehaviourParameterisation implements prettyApple {
 
 
     //TODO: 1. Implement the method prettyPrintOnlyWeightApple which prints to the console something like 'An apple of 60 grams'
@@ -50,5 +51,10 @@ public class BehaviourParameterisation {
             System.out.println("An apple of "+ apple.getWeight() + " grams");
         }
     }
+
+    public String test(Apple apple) {
+        return (apple.getWeight() < 200) ? "light" : "heavy";
+    }
+
 
 }
