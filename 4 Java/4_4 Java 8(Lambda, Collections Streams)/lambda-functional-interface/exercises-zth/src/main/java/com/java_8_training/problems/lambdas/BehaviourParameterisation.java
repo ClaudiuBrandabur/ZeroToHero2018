@@ -28,6 +28,7 @@ public class BehaviourParameterisation {
         // prettyPrintApple(inventory, ???);
     }
 
+
     public static void prettyPrintHeavyLightApple(List<Apple> inventory) {
         Objects.requireNonNull(inventory, "Inventory must not be null");
         for (Apple apple : inventory) {
@@ -45,6 +46,9 @@ public class BehaviourParameterisation {
     public static void prettyPrintOnlyWeightApple(List<Apple> inventory) {
         Objects.requireNonNull(inventory, "Inventory must not be null");
         //TODO
+        for (Apple apple: inventory) {
+            System.out.println("An apple of "+ apple.getWeight() + " grams");
+        }
     }
 
 }
