@@ -50,7 +50,7 @@ public class BehaviourParameterisation {
     }
 }
 
-
+@FunctionalInterface
 interface Printer{
     public void print(Apple apple);
 }
