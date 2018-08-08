@@ -6,4 +6,6 @@ public class MySecondClass implements MyInterface{
     public void print() {
         System.out.println("My Second Class");
     }
+
+
 }

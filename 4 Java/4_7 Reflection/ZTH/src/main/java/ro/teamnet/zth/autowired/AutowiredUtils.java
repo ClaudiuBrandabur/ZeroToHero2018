@@ -8,6 +8,12 @@ public class AutowiredUtils {
     private HashMap byClass;
     private HashMap byQualifier;
 
+//    @MyAutowired
+    public AutowiredUtils(HashMap byClass,HashMap byQualifier) {
+        this.byClass = byClass;
+        this.byQualifier = byQualifier;
+    }
+
     public void updateByType(Object obj){
         if(obj instanceof HashMap) {
             HashMap.Entry h = (HashMap.Entry) obj;
@@ -22,10 +28,15 @@ public class AutowiredUtils {
         }
     }
 
-    public HashMap.Entry getByTypeClass(Object key){
-        return byClass.get(key);
+    public HashMap.Entry getByTypeClass(HashMap byClass){
+        return (HashMap.Entry) byClass.get(0);
     }
 
+    public HashMap.Entry getByQualifier(Object key){
+        return (HashMap.Entry) byClass.get(key);
+    }
+
+//    public void myMethod (O)
 
 
 }
