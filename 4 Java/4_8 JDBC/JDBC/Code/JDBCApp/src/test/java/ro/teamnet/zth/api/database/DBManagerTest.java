@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 public class DBManagerTest {
 
@@ -24,5 +25,8 @@ public class DBManagerTest {
     @Test
     public void testCheckConnection() {
 
+        Connection con = DBManager.getConnection();
+        boolean res = DBManager.checkConnection(con);
+        assertTrue(res);
     }
 }

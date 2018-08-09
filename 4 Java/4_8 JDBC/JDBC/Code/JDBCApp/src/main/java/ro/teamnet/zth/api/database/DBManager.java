@@ -11,7 +11,7 @@ public class DBManager {
         throw new UnsupportedOperationException();
     }
 
-    final static String CONNECTION_STRING = "jdbc:oracle:thin:@" + DBProperties.IP + ":" + DBProperties.PORT;
+    final static String CONNECTION_STRING = "jdbc:oracle:thin:@" + DBProperties.IP + ":" + DBProperties.PORT + ":XE";
 
     private static void registerDriver(){
 
@@ -37,13 +37,16 @@ public class DBManager {
         return conn;
     }
 
-    public static void checkConnection(Connection connection){
+    public static boolean checkConnection(Connection connection){
 
+        boolean ok = false;
         try(Statement stm = connection.createStatement()){
-            stm.execute("SELECT 1 FROM DUAL");
+           ok = stm.execute("SELECT 1 FROM DUAL");
         }catch (SQLException e){
             e.printStackTrace();
         }
+
+        return ok;
 
     }
 }
