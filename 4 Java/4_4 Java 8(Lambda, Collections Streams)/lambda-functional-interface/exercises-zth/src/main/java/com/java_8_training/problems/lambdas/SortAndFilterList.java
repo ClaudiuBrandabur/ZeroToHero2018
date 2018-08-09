@@ -19,6 +19,14 @@ public class SortAndFilterList {
         // 4. put the strings that contain 'e' first in the list. The other ones last.
         // 5. filter only the strings that have the first letter capitalized
 
+        sorting(animals, new LengthSort());
+        sorting(animals, new ReverseLengthSort());
+        sorting(animals, new AlphabeticallySort());
+    }
+    public static void sorting(List<String> animals, SortInterface s){
+        for(String animal : animals){
+            s.sortare();
+        }
     }
 
 }
