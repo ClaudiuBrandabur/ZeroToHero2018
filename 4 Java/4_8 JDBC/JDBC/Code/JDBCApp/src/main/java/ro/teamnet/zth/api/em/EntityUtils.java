@@ -14,9 +14,17 @@ public class EntityUtils {
 
     }
 
+    /*  public static String getTableName(Class entity) {
+          Table tableAnnotation = (Table) entity.getAnnotation(Table.class);
+          return "".equals(tableAnnotation.name()) ? entity.getClass().getSimpleName() : tableAnnotation.name();
+      }*/
     public static String getTableName(Class entity) {
         Table tableAnnotation = (Table) entity.getAnnotation(Table.class);
-        return "".equals(tableAnnotation.name()) ? entity.getClass().getSimpleName() : tableAnnotation.name();
+        if (tableAnnotation.name().equals("")) {
+            return entity.getClass().getSimpleName();
+        } else {
+            return tableAnnotation.name();
+        }
     }
 
     public static List<ColumnInfo> getColumns(Class entity) {

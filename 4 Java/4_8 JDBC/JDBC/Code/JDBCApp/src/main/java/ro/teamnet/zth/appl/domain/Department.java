@@ -6,10 +6,13 @@ import ro.teamnet.zth.api.annotations.Table;
 
 @Table(name = "departments")
 public class Department {
+
     @Id(name = "department_id")
     private Long id;
+
     @Column(name = "department_name")
     private String departmentName;
+
     @Column(name = "location_id")
     private Long location;
 

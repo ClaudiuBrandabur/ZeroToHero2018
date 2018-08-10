@@ -8,6 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public class EntityManagerImpl implements EntityManager {
 
@@ -146,7 +147,7 @@ public class EntityManagerImpl implements EntityManager {
             ResultSet resultSet = stm.executeQuery(queryResult);
             
             ArrayList<T> myArray = new ArrayList<>();
-            T instance = null;
+            T instance;
             
             while (resultSet.next()){
                 instance = entityClass.newInstance();
@@ -164,6 +165,126 @@ public class EntityManagerImpl implements EntityManager {
             return myArray;
             
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
+    public <T> T update(T entity) {
+
+        Connection con = DBManager.getConnection();
+        String tableName = EntityUtils.getTableName(entity.getClass());
+        List <ColumnInfo> columns = EntityUtils.getColumns(entity.getClass());
+
+        try {
+            for (ColumnInfo c : columns) {
+                Field field = entity.getClass().getDeclaredField(c.getColumnName());
+                field.setAccessible(true);
+                c.setValue(field.get(entity));
+            }
+
+            Condition cond = new Condition();
+            cond.setColumnName(columns.get(0).getDbColumnName());
+            cond.setValue(columns.get(0).getValue());
+
+            QueryBuilder queryBuilder = new QueryBuilder();
+            queryBuilder.setTableName(tableName);
+            queryBuilder.addQueryColumns(columns);
+            queryBuilder.setQueryType(QueryType.UPDATE);
+            queryBuilder.addCondition(cond);
+
+            String queryResult = queryBuilder.createQuery();
+            Statement stm = con.createStatement();
+            ResultSet resultSet = stm.executeQuery(queryResult);
+
+            return (T) findById(entity.getClass(), (Long) columns.get(0).getValue());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public void delete(Object entity) {
+
+        Connection con = DBManager.getConnection();
+        String tableName = EntityUtils.getTableName(entity.getClass());
+        List <ColumnInfo> columns = EntityUtils.getColumns(entity.getClass());
+
+        try {
+
+            for(ColumnInfo c : columns){
+                Field field = entity.getClass().getDeclaredField(c.getColumnName());
+                field.setAccessible(true);
+                c.setValue(field.get(entity));
+            }
+
+            Condition condition = new Condition();
+            condition.setColumnName(columns.get(0).getDbColumnName());
+            condition.setValue(columns.get(0).getValue());
+
+            QueryBuilder queryBuilder = new QueryBuilder();
+            queryBuilder.setTableName(tableName);
+            queryBuilder.addQueryColumns(columns);
+            queryBuilder.setQueryType(QueryType.DELETE);
+            queryBuilder.addCondition(condition);
+
+            String resultQuery = queryBuilder.createQuery();
+            Statement stm = con.createStatement();
+            ResultSet resultSet = stm.executeQuery(resultQuery);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public <T> List<T> findByParams(Class<T> entityClass, Map<String, Object> params) {
+
+        Connection con = DBManager.getConnection();
+        String tableName = EntityUtils.getTableName(entityClass);
+        List <ColumnInfo> columns = EntityUtils.getColumns(entityClass);
+
+        try {
+
+            Condition condition = new Condition();
+            List<T> result = new ArrayList<>();
+
+            QueryBuilder queryBuilder = new QueryBuilder();
+            queryBuilder.setTableName(tableName);
+            queryBuilder.addQueryColumns(columns);
+            queryBuilder.setQueryType(QueryType.SELECT);
+
+            for(String key : params.keySet()){
+                condition.setColumnName(key);
+                condition.setValue(params.get(key));
+                queryBuilder.addCondition(condition);
+            }
+
+            Statement stm = con.createStatement();
+            String resultQuery = queryBuilder.createQuery();
+            ResultSet resultSet = stm.executeQuery(resultQuery);
+
+            while(resultSet.next()){
+
+                T instance = entityClass.newInstance();
+                for(ColumnInfo c : columns){
+                    Field field = instance.getClass().getDeclaredField(c.getColumnName());
+                    field.setAccessible(true);
+                    if(c.getValue() instanceof Timestamp){
+                        c.setValue(new Date(((Timestamp) c.getValue()).getTime()));
+                    }
+                    field.set(instance,EntityUtils.castFromSqlType(resultSet.getObject(c.getDbColumnName()),c.getColumnType()));
+                }
+
+                result.add(instance);
+            }
+
+            return result;
+
+        }catch (Exception e){
             e.printStackTrace();
         }
 
