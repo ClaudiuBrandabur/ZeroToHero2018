@@ -1,4 +1,4 @@
 package ro.teamnet.zerotohero.oop.graphicshape;
 
-public class MyClass  {
+public class MyClass {
 }
