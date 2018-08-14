@@ -10,6 +10,7 @@
  **/
 package ro.teamnet.zth.web;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -36,6 +37,12 @@ public class HelloWorldServlet extends HttpServlet {
         response.setContentType("text/html");
 
         // TODO: Complete the steps from RequestDispatcher Workshop
+
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/forward");
+        request.setAttribute("testAttribute","Enjoy Z2H");
+//        requestDispatcher.forward(request,response);
+        requestDispatcher.include(request,response);
+        response.getWriter().write(".This is my include method");
 
     }
 

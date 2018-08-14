@@ -6,6 +6,16 @@
 
   <display-name>Archetype Created Web Application</display-name>
 
+    <filter>
+        <filter-name>logHeaders</filter-name>
+        <filter-class>ro.teamnet.zth.web.HeadersLogFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>logHeaders</filter-name>
+        <servlet-name>HelloWorld</servlet-name>
+    </filter-mapping>
+
     <servlet>
         <servlet-name>HelloWorld</servlet-name>
         <servlet-class>ro.teamnet.zth.web.HelloWorldServlet</servlet-class>
@@ -18,7 +28,16 @@
     <welcome-file-list>
         <welcome-file>/index.jsp</welcome-file>
     </welcome-file-list>
+    
+    <servlet>
+        <servlet-name>HelloWorldServletForward</servlet-name>
+        <servlet-class > ro.teamnet.zth.web.HelloWorldServletForward</servlet-class>
+    </servlet>
 
+    <servlet-mapping>
+        <servlet-name>HelloWorldServletForward</servlet-name>
+        <url-pattern>/forward</url-pattern>
+    </servlet-mapping>
 
     <!-- Exercise (Workshop 4) -->
     <!--ExportFileServlet-->
