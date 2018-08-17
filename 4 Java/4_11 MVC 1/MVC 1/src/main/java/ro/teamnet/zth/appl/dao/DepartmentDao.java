@@ -11,7 +11,7 @@ public class DepartmentDao {
     EntityManager entityManager = new EntityManagerImpl();
 
     public Department findDepartmentById(Long id) {
-        return (Department) entityManager.findById(Department.class, id);
+        return entityManager.findById(Department.class, id);
     }
 
     public List<Department> findAllDepartments() {

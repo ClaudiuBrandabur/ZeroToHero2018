@@ -169,11 +169,7 @@ public class Employee {
         if (phoneNumber != null ? !phoneNumber.equals(employee.phoneNumber) : employee.phoneNumber != null) {
             return false;
         }
-        if (salary != null ? !salary.equals(employee.salary) : employee.salary != null) {
-            return false;
-        }
-
-        return true;
+        return salary != null ? salary.equals(employee.salary) : employee.salary == null;
     }
 
     @Override

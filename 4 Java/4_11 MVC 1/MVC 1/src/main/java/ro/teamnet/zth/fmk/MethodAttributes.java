@@ -50,11 +50,7 @@ public class MethodAttributes {
         if (methodType != null ? !methodName.equals(that.methodName) : that.methodName != null) {
             return false;
         }
-        if (methodType != null ? !methodType.equals(that.methodType) : that.methodType != null) {
-            return false;
-        }
-
-        return true;
+        return methodType != null ? methodType.equals(that.methodType) : that.methodType == null;
     }
 
     @Override

@@ -74,9 +74,7 @@ public class Location {
         if (!city.equals(location.city)) return false;
         if (!streetAddress.equals(location.streetAddress)) return false;
         if (!postalCode.equals(location.postalCode)) return false;
-        if (!stateProvince.equals(location.stateProvince)) return false;
-
-        return true;
+        return stateProvince.equals(location.stateProvince);
     }
 
     @Override

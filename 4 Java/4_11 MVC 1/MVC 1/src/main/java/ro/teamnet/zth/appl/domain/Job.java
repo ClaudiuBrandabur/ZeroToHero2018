@@ -71,11 +71,7 @@ public class Job {
         if (maxSalary != null ? !maxSalary.equals(job.maxSalary) : job.maxSalary != null) {
             return false;
         }
-        if (minSalary != null ? !minSalary.equals(job.minSalary) : job.minSalary != null) {
-            return false;
-        }
-
-        return true;
+        return minSalary != null ? minSalary.equals(job.minSalary) : job.minSalary == null;
     }
 
     @Override

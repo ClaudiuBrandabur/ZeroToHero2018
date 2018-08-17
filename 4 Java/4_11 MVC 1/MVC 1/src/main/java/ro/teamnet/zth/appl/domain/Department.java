@@ -51,8 +51,7 @@ public class Department {
         Department that = (Department) o;
 
         if (!id.equals(that.id)) return false;
-        if (!departmentName.equals(that.departmentName)) return false;
-        return true;
+        return departmentName.equals(that.departmentName);
 
     }
 

@@ -148,9 +148,9 @@ public class EntityManagerImpl implements EntityManager {
             String sql = queryBuilder.createQuery();
             statement.executeUpdate(sql);
             if (lastId == null) {
-                return (T) findByStringId(entity.getClass(), stringId);
+                return findByStringId(entity.getClass(), stringId);
             } else {
-                return (T) findById(entity.getClass(), lastId);
+                return findById(entity.getClass(), lastId);
             }
 
 
