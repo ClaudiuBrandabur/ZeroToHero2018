@@ -19,28 +19,50 @@ public class EntityUtils {
         return "".equals(tableAnnotation.name()) ? entity.getClass().getSimpleName() : tableAnnotation.name();
     }
 
-    public static List<ColumnInfo> getColumns(Class entity) {
-        List<ColumnInfo> columns = new ArrayList<>();
-
-        Field[] fields = entity.getDeclaredFields();
-        for (Field field : fields) {
-            Column column = field.getAnnotation(Column.class);
-            Id id = field.getAnnotation(Id.class);
-
-            ColumnInfo columnInfo = new ColumnInfo();
-            columnInfo.setColumnName(field.getName());
-            columnInfo.setColumnType(field.getType());
-            if (column != null) {
-                columnInfo.setDbColumnName(column.name());
-            } else {
-                columnInfo.setDbColumnName(id.name());
-                columnInfo.setId(true);
-            }
-
-            columns.add(columnInfo);
+//    public static List<ColumnInfo> getColumns(Class entity) {
+//        List<ColumnInfo> columns = new ArrayList<>();
+//
+//        Field[] fields = entity.getDeclaredFields();
+//        for (Field field : fields) {
+//            Column column = field.getAnnotation(Column.class);
+//            Id id = field.getAnnotation(Id.class);
+//
+//            ColumnInfo columnInfo = new ColumnInfo();
+//            columnInfo.setColumnName(field.getName());
+//            columnInfo.setColumnType(field.getType());
+//            if (column != null) {
+//                columnInfo.setDbColumnName(column.name());
+//            } else {
+//                columnInfo.setDbColumnName(id.name());
+//                columnInfo.setId(true);
+//            }
+//
+//            columns.add(columnInfo);
+//        }
+//        return columns;
+//    }
+public static ArrayList<ColumnInfo> getColumns(Class entity){
+    Field [] fields = (entity.getDeclaredFields());
+    ArrayList<ColumnInfo> columnInfoList = new ArrayList<ColumnInfo>();
+    for(int i = 0; i < fields.length; i++){
+        ColumnInfo column = new ColumnInfo();
+        if(fields[i].isAnnotationPresent(Column.class)){
+            column.setColumnName(fields[i].getName());
+            column.setDbColumnName(fields[i].getAnnotation(Column.class).name());
+            column.setColumnType(fields[i].getType());
+            column.setId(false);
+            columnInfoList.add(column);
         }
-        return columns;
+        if(fields[i].isAnnotationPresent(Id.class)){
+            column.setColumnName(fields[i].getName());
+            column.setDbColumnName(fields[i].getAnnotation(Id.class).name());
+            column.setColumnType(fields[i].getType());
+            column.setId(true);
+            columnInfoList.add(column);
+        }
     }
+    return columnInfoList;
+}
 
     public static Object castFromSqlType(Object value, Class wantedType) {
         if (value != null) {

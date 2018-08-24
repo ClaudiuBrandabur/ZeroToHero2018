@@ -4,13 +4,13 @@ import ro.teamnet.zth.api.annotations.Column;
 import ro.teamnet.zth.api.annotations.Id;
 import ro.teamnet.zth.api.annotations.Table;
 
-@Table(name = "departments")
+@Table(name = "DEPARTMENTS")
 public class Department {
-    @Id(name = "department_id")
+    @Id(name = "DEPARTMENT_ID")
     private Long id;
-    @Column(name = "department_name")
+    @Column(name = "DEPARTMENT_NAME")
     private String departmentName;
-    @Column(name = "location_id")
+    @Column(name = "LOCATION_ID")
     private Long location;
 
     public Long getId() {
