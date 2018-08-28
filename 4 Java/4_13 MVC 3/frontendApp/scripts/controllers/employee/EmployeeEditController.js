@@ -12,34 +12,84 @@ hrApp.controller('EmployeeEditController', ['$scope', '$http', '$routeParams', '
 
         DepartmentService.findAll().then(function(res) {
             $scope.departments = res.data;
+            $scope.findOneEmp();
         }, function(err) {
             console.log('An error occurred while finding all departments: ' + err.status);
         });
 
         JobService.findAll().then(function(res) {
             $scope.jobs = res.data;
+            $scope.findOneEmp();
         }, function(err) {
             console.log('An error occurred while finding all jobs: ' + err.status);
         });
 
         EmployeeService.findAll().then(function(res) {
             $scope.managers = res.data;
+            $scope.findOneEmp();
         }, function(err) {
             console.log('An error occurred while finding all employees: ' + err.status);
         });
 
-        EmployeeService.findOne($routeParams.employeeId).then(function(res) {
-            $scope.employee = res.data;
-            $scope.employee.hireDate = $filter('date')($scope.employee.hireDate, 'yyyy-MM-dd');
-        }, function(err) {
-            console.log('An error occurred while finding employee: ' + err.status);
-        });
 
+        $scope.findOneEmp = function() {
+
+            EmployeeService.findOne($routeParams.employeeId).then(function (res) {
+                $scope.employee = res.data;
+                $scope.employee.hireDate = $filter('date')($scope.employee.hireDate, 'yyyy-MM-dd');
+                $scope.idTitle = $scope.findMyJob($scope.employee.jobId);
+                $scope.DepName = $scope.findMyDep($scope.employee.departmentId);
+                $scope.ManName = $scope.findMyMan($scope.employee.managerId)
+            }, function (err) {
+                console.log('An error occurred while finding employee: ' + err.status);
+            });
+
+        };
+
+
+        $scope.findMyJob = function(jobId) {
+            if ($scope.jobs === undefined || $scope.jobs.length === 0) {
+                return '';
+            }
+            for (var i = 0; i < $scope.jobs.length; i++) {
+                if (jobId === $scope.jobs[i].jobId) {
+                    return $scope.jobs[i];
+                }
+            }
+        };
+
+        $scope.findMyDep = function(departmentId){
+            if($scope.departments === undefined || $scope.departments.length === 0){
+                return '';
+            }
+            for(var i = 0; i < $scope.departments.length; i++){
+                if(departmentId === $scope.departments[i].departmentId){
+                    return $scope.departments[i];
+                }
+            }
+        };
+
+
+        $scope.findMyMan = function(managerId){
+            if($scope.managers === undefined || $scope.managers.length === 0){
+                return '';
+            }
+
+            for(var i = 0; i < $scope.managers.length; i++){
+                if(managerId === $scope.managers[i].managerId){
+                    return $scope.managers[i];
+                }
+            }
+        };
         /**
          * Reset employee fields
          */
         $scope.reset = function() {
             $scope.employee = {};
+            $scope.idTitle = {};
+            $scope.DepName = {};
+            $scope.ManName = {};
+
         };
 
         /**

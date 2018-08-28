@@ -1,13 +1,57 @@
 'use strict';
 
-hrApp.controller('EmployeeListController', ['$scope', '$http', '$route', '$location', 'EmployeeService',
-    function($scope, $http, $route, $location, EmployeeService) {
+hrApp.controller('EmployeeListController', ['$scope', '$http', '$route', '$location', 'EmployeeService','JobService','DepartmentService',
+    function($scope, $http, $route, $location, EmployeeService, JobService, DepartmentService) {
 
-        EmployeeService.findAll().then(function(res) {
-            $scope.employees = res.data;
+        JobService.findAll().then(function(res) {
+            $scope.jobs = res.data;
+            $scope.getAllEmp() ;
         }, function(err) {
             console.log('An error occurred while finding all employees: ' + err.status);
         });
+
+        $scope.getAllEmp = function(){
+
+            EmployeeService.findAll().then(function(res) {
+                $scope.employees = res.data;
+            }, function(err) {
+                console.log('An error occurred while finding all employees: ' + err.status);
+            });
+
+        };
+
+        $scope.findJobName = function(jobId){
+            for(var i = 0; i < $scope.jobs.length; i++){
+                if(jobId === $scope.jobs[i].jobId){
+                    return $scope.jobs[i].jobTitle;
+                }
+            }
+        };
+
+        DepartmentService.findAll().then(function (res) {
+            $scope.dep = res.data;
+            $scope.getAllEmp();
+        },function (err) {
+            console.log('An error occurred while finding all deps: ' + err.status);
+        });
+
+
+        $scope.findDepName = function(departmentId){
+            for(var i = 0; i < $scope.dep.length; i++){
+                if(departmentId === $scope.dep[i].departmentId){
+                    return $scope.dep[i].departmentName;
+                }
+            }
+        };
+
+        $scope.findManName = function(managerId){
+
+            for(var i = 0; i < $scope.employees.length; i++){
+                if(managerId === $scope.employees[i].managerId){
+                    return $scope.employees[i].firstName +" "+ $scope.employees[i].lastName ;
+                }
+            }
+        };
 
         /**
          * Navigate to view page of an employee

@@ -1,5 +1,8 @@
 package ro.teamnet.zth.utils;
 
+
+import org.codehaus.jackson.JsonNode;
+import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
 import ro.teamnet.zth.api.annotations.Z2HRequestObject;
 import ro.teamnet.zth.api.annotations.Z2HRequestParam;
@@ -34,7 +37,12 @@ public class BeanDeserializator {
                     // Construim parametrii transmisi in body-ul request-ului HTTP.
                     BufferedReader requestBodyReader = req.getReader();
                     // Convertim body-ul requestului intr-un obiect de tipul asteptat de metoda din controller.
-                    Object requestBodyObject = new ObjectMapper().readValue(requestBodyReader, parameterType);
+
+                    ObjectMapper objectMapper = new ObjectMapper();
+
+//                    objectMapper.configure(DeserializationConfig.Feature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT,true);
+//                    JsonNode rootNode = objectMapper.readTree(requestBodyReader);
+                    Object requestBodyObject = objectMapper.readValue(requestBodyReader, parameterType);
                     methodParamsValues.add(requestBodyObject);
                 }
             }

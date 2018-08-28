@@ -14,7 +14,7 @@ public class Department {
     private String departmentName;
 
     @Column(name = "location_id")
-    private Long location;
+    private Long locationId;
 
     public Long getDepartmentId() {
         return departmentId;
@@ -33,11 +33,11 @@ public class Department {
     }
 
     public Long getLocation() {
-        return location;
+        return locationId;
     }
 
-    public void setLocation(Long location) {
-        this.location = location;
+    public void setLocation(Long locationId) {
+        this.locationId = locationId;
     }
 
     @Override
@@ -65,7 +65,7 @@ public class Department {
         return "Department{" +
                 "departmentId=" + departmentId +
                 ", departmentName='" + departmentName + '\'' +
-                ", location=" + location +
+                ", locationId=" + locationId +
                 '}';
     }
 }

@@ -41,7 +41,7 @@
             <div class="col-lg-6">
                 <div class="form-group">
                     <label for="jobId">Job Title:</label>
-                    <span id="jobId" class="form-control">{{employee.jobId.jobTitle}}</span>
+                    <span id="jobId" class="form-control">{{findOneJobName(employee.jobId)}}</span>
                 </div>
             </div>
         </div>
@@ -63,13 +63,15 @@
             <div class="col-lg-6">
                 <div class="form-group">
                     <label for="departmentId">Department:</label>
-                    <span id="departmentId" class="form-control">{{employee.departmentId.departmentName}}</span>
+                    <span id="departmentId" class="form-control">{{findOneDepName(employee.departmentId)}}</span>
                 </div>
             </div>
+            <!--employee.departmentId.departmentName-->
             <div class="col-lg-6">
                 <div class="form-group">
                     <label for="manager">Manager:</label>
-                    <span id="manager" class="form-control">{{employee.managerId.lastName}} {{employee.managerId.firstName}}</span>
+                    <span id="manager" class="form-control">{{findOneManName(employee.managerId)}}</span>
+                    <!--employee.managerId.lastName}} {{employee.managerId.firstName-->
                 </div>
             </div>
         </div>
