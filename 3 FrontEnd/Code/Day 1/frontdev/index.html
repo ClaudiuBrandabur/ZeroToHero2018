@@ -10,6 +10,14 @@
     </style>
     <link rel="stylesheet" type="text/css" href="css/main.css"/>
     <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <script type="text/javascript">
+        function showMenu(){
+            document.getElementById("appmenu").style.display = 'block';
+        }
+        function hideMenu(){
+            document.getElementById("appmenu").style.display = 'none';
+        }
+    </script>
 </head>
 <body>
 <h1> HR Home Page</h1>
@@ -25,6 +33,14 @@
             <a href="list.html">Employees list</a>
         </li>
     </ul>
+</div>
+<div class="btn-group">
+    <button type="button" onclick="showMenu()" class="btn btn-default">
+        Show menu
+    </button>
+    <button type="button" onclick="hideMenu()" class="btn btn-default">
+        Hide Menu
+    </button>
 </div>
 </body>
 </html>
