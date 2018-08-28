@@ -12,6 +12,7 @@ public interface DBProperties {
     //TODO de inlocuit cu parola voastra
     String PASS = "admin";
     String SID = "xe";
+    String SCHEMA = "system";
     String DRIVER_CLASS = "oracle.jdbc.driver.OracleDriver";
 
 }

@@ -18,4 +18,9 @@ public class LocationServiceImpl implements LocationService {
     public Location findOne(Long locationId) {
         return locationDao.getLocationById(locationId);
     }
+
+    @Override
+    public Location save(Location location) {
+        return locationDao.insertLocation(location);
+    }
 }

@@ -11,4 +11,6 @@ public interface LocationService {
     List<Location> findAll();
 
     Location findOne(Long locationId);
+
+    Location save(Location employee);
 }
