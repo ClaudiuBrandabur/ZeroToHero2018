@@ -4,6 +4,7 @@ hrApp.controller('EmployeeAddController', ['$scope', '$http', '$location', 'Depa
     function($scope, $http, $location, DepartmentService, JobService, EmployeeService) {
 
         $scope.employee = {};
+        $scope.employee1 = {};
 
         $scope.datePattern = /^\d{4}-\d{2}-\d{2}$/;
         $scope.commissionPattern = /^[0]\.\d{2}?$/;
@@ -42,6 +43,18 @@ hrApp.controller('EmployeeAddController', ['$scope', '$http', '$location', 'Depa
          * @param employee - employee to be persisted
          */
         $scope.save = function(employee) {
+
+            $scope.employee.firstName = employee.firstName;
+            $scope.employee.lastName = employee.lastName;
+            $scope.employee.email = employee.email;
+            $scope.employee.phoneNumber = employee.phoneNumber;
+            $scope.employee.hireDate = employee.hireDate;
+            $scope.employee.jobId = employee.jobId.jobId;
+            $scope.employee.salary = employee.salary;
+            $scope.employee.commissionPct = employee.commissionPct;
+            $scope.employee.departmentId = employee.departmentId.departmentId;
+            $scope.employee.managerId = employee.managerId.employeeId;
+
             EmployeeService.add(employee).then(function(res) {
                 $scope.employee = res.data;
                 $location.url('/employeeView/' + $scope.employee.employeeId);
@@ -49,5 +62,7 @@ hrApp.controller('EmployeeAddController', ['$scope', '$http', '$location', 'Depa
                 console.log('An error occurred while adding employee: ' + err.status);
             });
         };
+
+        ///dddddddddddddd
 
 }]);
