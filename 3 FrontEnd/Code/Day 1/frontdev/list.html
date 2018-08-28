@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Demo HR</title>
-    <link rel="stylesheet" type="text/css"
-          href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
     <link rel="stylesheet" type="text/css" href="css/main.css"/>
     <script type="text/javascript" src="scripts/app.js">
 
@@ -30,7 +30,12 @@
     <a href="index.html">
         Back to Home Page
     </a>
-
+    <div>
+        <p>
+            <button onclick="salaryTotal()">Salary Total
+            </button>
+        </p>
+    </div>
 </div>
 <div class="panel-body">
     <p>
@@ -46,9 +51,7 @@
         Salary:  <input type="text" id="salary"/>
     </p>
     <p>
-        <button onclick="addEmployee()">Add employee</button>
-
-
+        <button onclick="addEmployee();showList()">Add employee</button>
     </p>
 </div>
 
