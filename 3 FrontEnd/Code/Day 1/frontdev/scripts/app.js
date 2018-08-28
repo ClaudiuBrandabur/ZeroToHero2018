@@ -59,15 +59,18 @@ function addEmployee() {
     var phone = document.getElementById("phone").value;
     var salary = document.getElementById("salary").value;
     employeesList.push(new Employee(firstName, lastName, phone, salary));
-
+    showList();
 }
 
 function salaryTotal() {
     var total = 0;
-    for (var i = 0; i<rows.length; i++){
-        var linetot = employeesList[i].salary;
-        tot +=linetot;
+    for (var i in employeesList) {
+        total+=eval(employeesList[i].salary);
     }
-        }
+    document.getElementById("totalSalary").innerHTML = 'Total salary is: '+ total;
+}
 
-
+function deleteLast() {
+    employeesList.pop();
+    showList();
+}

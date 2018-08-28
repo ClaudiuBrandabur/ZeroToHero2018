@@ -30,12 +30,6 @@
     <a href="index.html">
         Back to Home Page
     </a>
-    <div>
-        <p>
-            <button onclick="salaryTotal()">Salary Total
-            </button>
-        </p>
-    </div>
 </div>
 <div class="panel-body">
     <p>
@@ -50,9 +44,12 @@
     <p>
         Salary:  <input type="text" id="salary"/>
     </p>
-    <p>
-        <button onclick="addEmployee();showList()">Add employee</button>
-    </p>
+
+    <button onclick="addEmployee()">Add employee</button>
+    <button onclick="salaryTotal()">Salary Total</button>
+    <p id="totalSalary"></p>
+    <br/>
+    <button onclick="deleteLast()">Delete last employee</button>
 </div>
 
 </body>
