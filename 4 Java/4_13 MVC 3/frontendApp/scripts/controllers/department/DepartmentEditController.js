@@ -13,10 +13,21 @@ hrApp.controller('DepartmentEditController', ['$scope', '$http', '$routeParams',
 
         DepartmentService.findOne($routeParams.departmentId).then(function(res) {
             $scope.department = res.data;
+            $scope.myLoc($scope.department.location)
         }, function(err) {
             console.log('An error occurred while finding department: ' + err.status);
         });
 
+
+        $scope.myLoc = function(locationId) {
+
+            LocationService.findOne(locationId).then(function (res) {
+                $scope.location = res.data;
+            }, function (err) {
+                console.log('An error occurred while finding location: ' + err.status);
+            });
+
+        };
         /**
          * Reset department fields
          */

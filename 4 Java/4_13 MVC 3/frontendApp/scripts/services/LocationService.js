@@ -11,7 +11,7 @@ hrApp.service('LocationService', ['$http', 'CommonResourcesFactory', function($h
                 });
         },
         findOne: function(locationId) {
-            return $http.get(CommonResourcesFactory.findOneLocationUrl + locationId)
+            return $http.get(CommonResourcesFactory.findOneLocationUrl, {params: {'locationId': locationId}})
                 .success(function(data) {
                     return data;
                 }).error(function(data) {
