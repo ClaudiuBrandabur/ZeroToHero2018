@@ -4,16 +4,13 @@ import ro.teamnet.zth.api.annotations.Column;
 import ro.teamnet.zth.api.database.DBManager;
 
 import java.lang.reflect.Field;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class EnityManagerImpl {
 
-    <T> T findById(Class<T> entityClass, Long id) throws SQLException, ClassNotFoundException, NoSuchFieldException, IllegalAccessException, InstantiationException {
+    static <T> T findById(Class<T> entityClass, Long id) throws SQLException, ClassNotFoundException, NoSuchFieldException, IllegalAccessException, InstantiationException {
 
         Connection connection = DBManager.getConnection();
 
@@ -24,9 +21,8 @@ public class EnityManagerImpl {
         Condition condition = new Condition();
         for (ColumnInfo column : columns) {
             if (column.isId()) {
-                condition.setColumnName(column.getColumnName());
-                condition.setValue(column.getValue());
-                break;
+                condition.setColumnName(column.getDbColumnName());
+                condition.setValue(id);
             }
         }
 
@@ -37,14 +33,19 @@ public class EnityManagerImpl {
         queryBuilder.setQueryType(QueryType.SELECT);
 
         String query = queryBuilder.createQuery();
-        ResultSet result = connection.createStatement().executeQuery(query);
+        Statement statement = connection.createStatement();
+        ResultSet result = statement.executeQuery(query);
 
         if (result.next()) {
             T t = entityClass.newInstance();
             for (ColumnInfo column : columns) {
                 Field field = t.getClass().getDeclaredField(column.getColumnName());
-                t.getClass().getField(column.getColumnName()).setAccessible(true);
-                field.set(t, result);
+                field.setAccessible(true);
+                if (column.getValue() instanceof Timestamp) {
+                    column.setValue(new Date(((Timestamp) column.getValue()).getTime()));
+                }
+                field.set(t, EntityUtils.castFromSqlType(result.getObject(column.getDbColumnName()),
+                        column.getColumnType()));
             }
             return t;
         }
@@ -59,10 +60,10 @@ public class EnityManagerImpl {
         ResultSet rezSet = null;
         try (Statement statement = connection.createStatement()) {
 
-            String select = "SELECT MAX(" + columnIdName + ") FROM " + tableName + ";";
+            String select = "select max( " + columnIdName + ") from " + tableName;
             rezSet = statement.executeQuery(select);
-
-            return ((Number) rezSet).longValue() + 1;
+            rezSet.next();
+            return rezSet.getLong(1) + 1;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -74,14 +75,16 @@ public class EnityManagerImpl {
 
         Connection connection = DBManager.getConnection();
 
-        String tableName = EntityUtils.getTableName((Class) entity);
-        List<ColumnInfo> columns = EntityUtils.getColumns((Class) entity);
-
+        String tableName = EntityUtils.getTableName(entity.getClass());
+        List<ColumnInfo> columns = EntityUtils.getColumns(entity.getClass());
+        Long id = 0L;
         for (ColumnInfo column : columns) {
-            if (column.isId())
-                column.setValue(getNextIdVal(tableName, column.getDbColumnName()));
+            if (column.isId()) {
+                id = getNextIdVal(tableName, column.getDbColumnName());
+                column.setValue(id);
+            }
             else {
-                Field field = ((Class) entity).getDeclaredField(column.getColumnName());
+                Field field = entity.getClass().getDeclaredField(column.getColumnName());
                 field.setAccessible(true);
                 column.setValue(field.get(entity));
             }
@@ -89,17 +92,12 @@ public class EnityManagerImpl {
         QueryBuilder queryBuilder = new QueryBuilder();
         queryBuilder.setTableName(tableName);
         queryBuilder.addQueryColumns(columns);
-        queryBuilder.setQueryType(QueryType.SELECT);
+        queryBuilder.setQueryType(QueryType.INSERT);
 
         String query = queryBuilder.createQuery();
-        ResultSet rezSet = null;
-        try (Statement statement = connection.createStatement()) {
-            rezSet = statement.executeQuery(query);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        ResultSet rezSet = connection.createStatement().executeQuery(query);
 
-        return findById(rezSet.getClass(),((Number) rezSet).longValue());
+        return findById(entity.getClass(), id);
     }
 
 
@@ -119,23 +117,25 @@ public class EnityManagerImpl {
         ResultSet rezSet = null;
         try (Statement statement = connection.createStatement()) {
             rezSet = statement.executeQuery(query);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        List<T> list = new ArrayList<>();
-        if (rezSet != null) {
+            List<T> list = new ArrayList<>();
+            T t;
             while (rezSet.next()) {
-                T t = entityClass.newInstance();
+                t = entityClass.newInstance();
                 for (ColumnInfo column : columns) {
                     Field field = t.getClass().getDeclaredField(column.getColumnName());
                     field.setAccessible(true);
-                    field.set(t, rezSet);
-                    list.add(t);
+                    if (column.getValue() instanceof Timestamp) {
+                        column.setValue(new Date(((Timestamp) column.getValue()).getTime()));
+                    }
+                    field.set(t, EntityUtils.castFromSqlType(column.getValue(),column.getColumnType()));
                 }
+                list.add(t);
             }
+            return list;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        return list;
+        return null;
     }
 
 }

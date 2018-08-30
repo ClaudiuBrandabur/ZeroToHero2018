@@ -1,5 +1,7 @@
 package ro.teamnet.zth.api.em;
 
+import ro.teamnet.zth.api.annotations.Column;
+
 import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -77,7 +79,14 @@ public class QueryBuilder {
 
     private String createDeleteQuery(){
         StringBuilder sql = new StringBuilder();
-        sql.append("delete from ").append(tableName);
+        sql.append("delete ").append(tableName);
+        boolean ok = true;
+        for (ColumnInfo column : queryColumns) {
+            if (!ok) {
+                sql.append(", ");
+            }
+            sql.append(tableName + ". " + column.getDbColumnName());
+        }
         boolean whereAdded = false;
         if (conditions != null  && !conditions.isEmpty()){
             for (Condition condition : conditions) {

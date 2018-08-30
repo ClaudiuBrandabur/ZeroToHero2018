@@ -4,14 +4,35 @@ import ro.teamnet.zth.api.annotations.Column;
 import ro.teamnet.zth.api.annotations.Id;
 import ro.teamnet.zth.api.annotations.Table;
 
-@Table(name = "departments")
+import java.util.Objects;
+
+@Table(name = "DEPARTMENTS")
 public class Department {
-    @Id(name = "department_id")
+    @Id(name = "DEPARTMENT_ID")
     private Long id;
-    @Column(name = "department_name")
+    @Column(name = "DEPARTMENT_NAME")
     private String departmentName;
-    @Column(name = "location_id")
+    @Column(name = "LOCATION_ID")
     private Long location;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Department that = (Department) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(departmentName, that.departmentName) &&
+                Objects.equals(location, that.location);
+    }
+
+    @Override
+    public String toString() {
+        return "Department{" +
+                "id=" + id +
+                ", departementName='" + departmentName + '\'' +
+                ", location='" + location + '\'' +
+                '}';
+    }
 
     public Long getId() {
         return id;
@@ -25,8 +46,8 @@ public class Department {
         return departmentName;
     }
 
-    public void setDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
+    public void setDepartmentName(String departementName) {
+        this.departmentName = departementName;
     }
 
     public Long getLocation() {
@@ -35,27 +56,5 @@ public class Department {
 
     public void setLocation(Long location) {
         this.location = location;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Department)) return false;
-
-        Department that = (Department) o;
-
-        if (getId() != null ? !getId().equals(that.getId()) : that.getId() != null) return false;
-        if (getDepartmentName() != null ? !getDepartmentName().equals(that.getDepartmentName()) : that.getDepartmentName() != null)
-            return false;
-        return !(getLocation() != null ? !getLocation().equals(that.getLocation()) : that.getLocation() != null);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = getId() != null ? getId().hashCode() : 0;
-        result = 31 * result + (getDepartmentName() != null ? getDepartmentName().hashCode() : 0);
-        result = 31 * result + (getLocation() != null ? getLocation().hashCode() : 0);
-        return result;
     }
 }

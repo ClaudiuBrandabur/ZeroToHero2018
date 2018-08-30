@@ -3,7 +3,7 @@ package ro.teamnet.zth.api.database;
 import java.sql.*;
 
 public class DBManager {
-    private static String CONNECTION_STRING = "jdbc:oracle:thin:@" + DBProperties.IP + ":" + DBProperties.PORT;
+    private static String CONNECTION_STRING = "jdbc:oracle:thin:@" + DBProperties.IP + ":" + DBProperties.PORT + ":XE";
 
     private DBManager() throws UnsupportedOperationException {
 
