@@ -11,4 +11,8 @@ public interface DepartmentService {
     List<Department> findAll();
 
     Department findOne(Long departmentId);
+
+    Department update(Department department);
+
+    Department save(Department department);
 }

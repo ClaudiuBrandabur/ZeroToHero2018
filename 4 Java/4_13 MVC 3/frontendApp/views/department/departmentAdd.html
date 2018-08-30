@@ -16,7 +16,7 @@
                 <div class="col-lg-6">
                     <div class="form-group" ng-class="{ 'has-error': departmentAddForm.location.$invalid }">
                         <label for="location">Location:</label>
-                        <select id="location" name="location" class="form-control" data-ng-model="department.locationId"
+                        <select id="location" name="location" class="form-control" data-ng-model="department.location"
                                 ng-options="location as location.streetAddress + ', ' + location.postalCode + ' - ' + location.city for location in locations track by location.locationId" required></select>
                         <span class="help-block" ng-show="departmentAddForm.location.$error.required
                              && departmentAddForm.location.$dirty">{{requiredErrorMessage}}</span>

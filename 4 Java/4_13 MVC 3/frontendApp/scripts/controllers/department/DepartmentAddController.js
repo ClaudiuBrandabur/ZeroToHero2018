@@ -25,6 +25,10 @@ hrApp.controller('DepartmentAddController', ['$scope', '$http', '$location', 'Lo
          * @param department - department to be persisted
          */
         $scope.save = function(department) {
+
+            $scope.department.departmentName = department.departmentName;
+            $scope.department.location = department.location.locationId;
+
             DepartmentService.add(department).then(function(res) {
                 $scope.department = res.data;
                 $location.url('/departmentView/' + $scope.department.departmentId);

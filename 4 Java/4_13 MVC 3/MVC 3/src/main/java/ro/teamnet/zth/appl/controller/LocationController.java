@@ -29,6 +29,11 @@ public class LocationController {
         return locationService.findOne(locationId);
     }
 
+    @Z2HRequestMethod(urlPath = "/edit", methodType = HttpMethod.PUT)
+    public Location updateLocation(@Z2HRequestObject Location location) {
+        return locationService.update(location);
+    }
+
 
     @Z2HRequestMethod(urlPath = "/create", methodType = HttpMethod.POST)
     public Location saveLocation(@Z2HRequestObject Location location) {

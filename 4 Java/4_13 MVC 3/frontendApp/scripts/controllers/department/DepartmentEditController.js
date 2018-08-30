@@ -33,6 +33,7 @@ hrApp.controller('DepartmentEditController', ['$scope', '$http', '$routeParams',
          */
         $scope.reset = function() {
             $scope.department = {};
+            $scope.location = {};
         };
 
         /**

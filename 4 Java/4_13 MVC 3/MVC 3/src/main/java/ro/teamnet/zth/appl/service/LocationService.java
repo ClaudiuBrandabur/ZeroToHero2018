@@ -13,4 +13,6 @@ public interface LocationService {
     Location findOne(Long locationId);
 
     Location save(Location employee);
+
+    Location update(Location location);
 }

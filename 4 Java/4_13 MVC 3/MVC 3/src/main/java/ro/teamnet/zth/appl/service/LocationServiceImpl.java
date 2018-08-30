@@ -23,4 +23,9 @@ public class LocationServiceImpl implements LocationService {
     public Location save(Location location) {
         return locationDao.insertLocation(location);
     }
+
+    @Override
+    public Location update(Location location) {
+        return locationDao.updateLocation(location);
+    }
 }
