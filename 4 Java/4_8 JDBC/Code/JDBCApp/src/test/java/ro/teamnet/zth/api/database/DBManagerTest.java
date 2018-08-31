@@ -17,22 +17,13 @@ public class DBManagerTest {
             con.close();
         }catch (SQLException e){
             e.printStackTrace();
-        }catch (ClassNotFoundException e) {
-            System.out.println("Error: unable to load driver class!");
-            System.exit(1);
         }
     }
 
     @Test
     public void testCheckConnection(){
         Connection connection = null;
-        try {
-            connection = DBManager.getConnection();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        connection = DBManager.getConnection();
         boolean ok = false;
         try {
             ok = DBManager.checkConnection(connection);

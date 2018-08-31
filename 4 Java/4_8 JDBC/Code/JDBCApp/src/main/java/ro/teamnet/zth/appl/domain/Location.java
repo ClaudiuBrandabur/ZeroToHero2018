@@ -4,24 +4,28 @@ import ro.teamnet.zth.api.annotations.Column;
 import ro.teamnet.zth.api.annotations.Id;
 import ro.teamnet.zth.api.annotations.Table;
 
-@Table(name = "locations")
+@Table(name="LOCATIONS")
 public class Location {
-    @Id(name = "location_id")
-    private Long id;
-    @Column(name = "street_address")
+    @Id(name="LOCATION_ID")
+    private long id;
+
+    @Column(name="STREET_ADDRESS")
     private String streetAddress;
-    @Column(name = "postal_code")
+
+    @Column(name="POSTAL_CODE")
     private String postalCode;
-    @Column(name = "city")
+
+    @Column(name="CITY")
     private String city;
-    @Column(name = "state_province")
+
+    @Column(name="STATE_PROVINCE")
     private String stateProvince;
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -58,28 +62,29 @@ public class Location {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Location that = (Location) o;
-
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (streetAddress != null ? !streetAddress.equals(that.streetAddress) : that.streetAddress != null)
+    public boolean equals(Object obj) {
+        if(obj == this){
+            return true;
+        }
+        if(obj == null){
             return false;
-        if (postalCode != null ? !postalCode.equals(that.postalCode) : that.postalCode != null) return false;
-        if (city != null ? !city.equals(that.city) : that.city != null) return false;
-        return stateProvince != null ? stateProvince.equals(that.stateProvince) : that.stateProvince == null;
+        }
+        if(!(obj instanceof Location)){
+            return false;
+        }
+        Location location = (Location) obj;
+        if(id != location.id || streetAddress != location.streetAddress || city != location.city
+                || stateProvince != location.stateProvince || postalCode != location.postalCode){
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-        return "Location{" +
-                "id=" + id +
-                ", streetAddress='" + streetAddress + '\'' +
-                ", postalCode='" + postalCode + '\'' +
-                ", city='" + city + '\'' +
-                ", stateProvince='" + stateProvince + '\'' +
-                '}';
+        String loc = new String();
+        loc = "ID: " + this.id + "\n" + "Street Address: " + this.streetAddress + "\n Postal Code: " + this.postalCode +
+                "\n City: " + this.city + "\n State Province: " + this.stateProvince;
+        return loc;
     }
 }

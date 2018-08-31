@@ -78,6 +78,20 @@ public static ArrayList<ColumnInfo> getColumns(Class entity){
         }
         return null;
     }
+    //    public static Object castFromSqlType(Object value, Class wantedType){
+//        if(value instanceof BigDecimal) {
+//            BigDecimal val = (BigDecimal) value;
+//            if (wantedType.equals(Integer.TYPE))
+//                return val.intValue();
+//            if (wantedType.equals(Long.TYPE))
+//                return val.longValue();
+//            if (wantedType.equals(Float.TYPE))
+//                return val.floatValue();
+//            if (wantedType.equals(Double.TYPE))
+//                return val.doubleValue();
+//        }
+//        return value;
+//    }
 
     public static List<Field> getFieldsByAnnotations(Class clazz, Class annotation) {
         List<Field> fields = new ArrayList<>();

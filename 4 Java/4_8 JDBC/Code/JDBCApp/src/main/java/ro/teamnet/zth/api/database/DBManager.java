@@ -8,8 +8,8 @@ import java.sql.Statement;
 public class DBManager {
     private DBManager() throws UnsupportedOperationException{
     }
-    private final static String CONNECTION_STRING = "jdbc:oracle:thin:@" + DBProperties.IP + ":" + DBProperties.PORT;
-    static void registerDriver() throws ClassNotFoundException{
+    private final static String CONNECTION_STRING = "jdbc:oracle:thin:@" + DBProperties.IP + ":" + DBProperties.PORT + ":XE";
+    static void registerDriver() {//throws ClassNotFoundException{
         try {
             Class.forName(DBProperties.DRIVER_CLASS);
         }
@@ -20,7 +20,7 @@ public class DBManager {
 
     }
 
-    public static Connection getConnection() throws ClassNotFoundException, SQLException{
+    public static Connection getConnection() {//throws ClassNotFoundException, SQLException{
         Connection connection = null;
         registerDriver();
         try {
