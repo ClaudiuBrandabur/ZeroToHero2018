@@ -28,7 +28,7 @@ public class DepartamentDaoTest {
     @Test
     public void testCallInsert(){
         department.setId(290L);
-        department.setLocation("loc");
+        department.setDepartmentName("depname");
 
     }
 }

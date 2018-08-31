@@ -11,7 +11,7 @@ public class DepartmentDao {
     EntityManager entityManager = new EntityManagerImpl();
 
     public Department callFindById(Long id) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
-        return entityManager.findById(Department.class, id);
+        return entityManager.findById(Department.class,id);
     }
 
     public Long callGetNextIdVal(String tableName, String columnIdName) throws SQLException, ClassNotFoundException {

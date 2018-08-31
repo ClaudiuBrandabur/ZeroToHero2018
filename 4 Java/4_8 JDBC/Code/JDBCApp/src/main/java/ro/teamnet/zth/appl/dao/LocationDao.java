@@ -11,7 +11,7 @@ public class LocationDao{
 
     EntityManager entityManager = new EntityManagerImpl();
     public Location callFindById(Long id) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
-        return entityManager.findById(Location.class, id);
+        return entityManager.findById(Location.class,id);
     }
 
     public Long callGetNextIdVal(String tableName, String columnIdName) throws SQLException, ClassNotFoundException {
