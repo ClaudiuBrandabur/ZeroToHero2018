@@ -80,13 +80,6 @@ public class QueryBuilder {
     private String createDeleteQuery(){
         StringBuilder sql = new StringBuilder();
         sql.append("delete ").append(tableName);
-        boolean ok = true;
-        for (ColumnInfo column : queryColumns) {
-            if (!ok) {
-                sql.append(", ");
-            }
-            sql.append(tableName + ". " + column.getDbColumnName());
-        }
         boolean whereAdded = false;
         if (conditions != null  && !conditions.isEmpty()){
             for (Condition condition : conditions) {
