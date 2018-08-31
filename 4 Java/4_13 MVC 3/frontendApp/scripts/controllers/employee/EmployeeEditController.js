@@ -97,6 +97,12 @@ hrApp.controller('EmployeeEditController', ['$scope', '$http', '$routeParams', '
          * @param employee - employee to be updated
          */
         $scope.save = function(employee) {
+
+            employee.jobId = $scope.idTitle.jobId;
+            employee.departmentId = $scope.DepName.departmentId;
+            employee.managerId = $scope.ManName.managerId;
+
+
             EmployeeService.edit(employee).then(function() {
                 $location.url('/employeeView/' + $scope.employee.employeeId);
             }, function(err) {

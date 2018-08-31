@@ -41,6 +41,9 @@ hrApp.controller('DepartmentEditController', ['$scope', '$http', '$routeParams',
          * @param department - department to be updated
          */
         $scope.save = function(department) {
+
+            department.location = $scope.location.locationId;
+
             DepartmentService.edit(department).then(function() {
                 $location.url('/departmentView/' + $scope.department.departmentId);
             }, function(err) {
