@@ -13,11 +13,12 @@
 <div ng-controller="MainController">
     <p> Enter name: <input type="text" ng-model="name"/> </p>
     <p> Hello<span ng-bind="someValue"></span> </p>
-    {{someValue}}
 </div>
 <div ng-include="'views/scopes.html'"></div>
 <div ng-controller="DescriptionController">
-
+    <p>
+        {{heading}}
+    </p>
 </div>
 <script type="text/javascript" src="bower_components/jquery/jquery.js"></script>
 <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
