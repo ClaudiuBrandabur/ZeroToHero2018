@@ -3,7 +3,7 @@ var employeesList = [
         firstName: 'John',
         lastName: 'King',
         phone: '0123456789',
-        salary: 4500,
+        salary: 4500
     },
     {
         firstName: 'Steven',
