@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HR APP</title>
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap-theme.css"/>
+</head>
+<body ng-app="hrApp">
+
+<h1>Sample Application</h1>
+<div ng-controller="MainController">
+    <p> Enter name: <input type="text" ng-model="name"/> </p>
+    <p> Hello<span ng-bind="someValue"></span> </p>
+    {{someValue}}
+</div>
+<div ng-include="'views/scopes.html'"></div>
+<div ng-controller="DescriptionController">
+
+</div>
+<script type="text/javascript" src="bower_components/jquery/jquery.js"></script>
+<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script type="text/javascript" src="bower_components/angular/angular.js"></script>
+<script type="text/javascript" src="bower_components/angular-resource/angular-resource.js"></script>
+<script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
+<script type="text/javascript" src="scripts/app.js"></script>
+<script type="text/javascript" src="scripts/DescriptionController.js"></script>
+<script type="text/javascript" src="scripts/MainController.js"></script>
+<!--<script type="text/javascript" src="scripts/controllers/MenuController.js"></script>-->
+<script type="text/javascript" src="scripts/ScopesController.js"></script>
+
+<div class="container">
+    <div class="jumbotron" ng-show="DescriptionController">
+        <h1>{{title}}</h1>
+        <p class="lead">
+            A simple demo application.
+        </p>
+        <p class="lead">
+            In this application we use AngularJS framework.
+        </p>
+    </div>
+    <div class="jumbotron"></div>
+    <p>
+        <a class="btn btn-primary btn-lg" role="button" ng-click="DescriptionController">Show/Hide Description</a>
+    </p>
+</div>
+</body>
+</html>
