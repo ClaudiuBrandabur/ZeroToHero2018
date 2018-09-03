@@ -64,34 +64,34 @@ public static ArrayList<ColumnInfo> getColumns(Class entity){
     return columnInfoList;
 }
 
-    public static Object castFromSqlType(Object value, Class wantedType) {
-        if (value != null) {
-            if (value instanceof BigDecimal) {
-                BigDecimal bdValue = (BigDecimal) value;
-                return wantedType.equals(Integer.class) ? bdValue.intValue() :
-                        wantedType.equals(Long.class) ? bdValue.longValue() :
-                                wantedType.equals(Float.class) ? bdValue.floatValue() :
-                                        wantedType.equals(Double.class) ? bdValue.doubleValue() : value;
-            } else {
-                return value;
-            }
-        }
-        return null;
-    }
-    //    public static Object castFromSqlType(Object value, Class wantedType){
-//        if(value instanceof BigDecimal) {
-//            BigDecimal val = (BigDecimal) value;
-//            if (wantedType.equals(Integer.TYPE))
-//                return val.intValue();
-//            if (wantedType.equals(Long.TYPE))
-//                return val.longValue();
-//            if (wantedType.equals(Float.TYPE))
-//                return val.floatValue();
-//            if (wantedType.equals(Double.TYPE))
-//                return val.doubleValue();
+//    public static Object castFromSqlType(Object value, Class wantedType) {
+//        if (value != null) {
+//            if (value instanceof BigDecimal) {
+//                BigDecimal bdValue = (BigDecimal) value;
+//                return wantedType.equals(Integer.class) ? bdValue.intValue() :
+//                        wantedType.equals(Long.class) ? bdValue.longValue() :
+//                                wantedType.equals(Float.class) ? bdValue.floatValue() :
+//                                        wantedType.equals(Double.class) ? bdValue.doubleValue() : value;
+//            } else {
+//                return value;
+//            }
 //        }
-//        return value;
+//        return null;
 //    }
+        public static Object castFromSqlType(Object value, Class wantedType){
+        if(value instanceof BigDecimal) {
+            BigDecimal val = (BigDecimal) value;
+            if (wantedType.equals(Integer.TYPE))
+                return val.intValue();
+            if (wantedType.equals(Long.TYPE))
+                return val.longValue();
+            if (wantedType.equals(Float.TYPE))
+                return val.floatValue();
+            if (wantedType.equals(Double.TYPE))
+                return val.doubleValue();
+        }
+        return value;
+    }
 
     public static List<Field> getFieldsByAnnotations(Class clazz, Class annotation) {
         List<Field> fields = new ArrayList<>();

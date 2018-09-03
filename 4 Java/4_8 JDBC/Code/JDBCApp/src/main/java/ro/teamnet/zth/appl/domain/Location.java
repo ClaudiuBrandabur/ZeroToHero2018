@@ -73,10 +73,16 @@ public class Location {
             return false;
         }
         Location location = (Location) obj;
-        if(id != location.id || streetAddress != location.streetAddress || city != location.city
-                || stateProvince != location.stateProvince || postalCode != location.postalCode){
+        if(id != location.id)
             return false;
-        }
+        if(location.stateProvince == null || !stateProvince.equals(location.stateProvince))
+            return false;
+        if(location.streetAddress == null || !streetAddress.equals(location.streetAddress))
+            return false;
+        if(location.city == null || !city.equals(location.city))
+            return false;
+        if(location.postalCode == null || !postalCode.equals(location.postalCode))
+            return false;
         return true;
     }
 
