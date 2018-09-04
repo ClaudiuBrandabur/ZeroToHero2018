@@ -1,12 +1,14 @@
-<div>
+<div ng-app="hrApp">
+<div ng-controller="MathController">
 
     <!--TODO #7-->
-    <p>Number a: </p>
+    <p>Number a: <input type="number" ng-model="nrA"/></p>
 
-    <p>Number b: </p>
+    <p>Number b: <input type="number" ng-model="nrB"/></p>
 
     <p>
         <!--TODO Button for calculating values-->
+        <button class="btn btn-primary" ng-click="calculate()">Calculate</button>
         
     </p>
 
@@ -18,4 +20,5 @@
 
     <p> a / b = <span>{{op4}}</span></p>
 
+</div>
 </div>
