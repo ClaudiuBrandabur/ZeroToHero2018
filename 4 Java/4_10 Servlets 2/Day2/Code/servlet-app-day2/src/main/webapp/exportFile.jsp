@@ -28,12 +28,14 @@
         var username = document.getElementById('user').value;
 
         if (username != null && username != "") {
-            // TODO 1: Use window.open to call ExportFileServlet using its mapping and the following request parameters: template, fileType and username
+            // TODO 1: Use window.open to call ExportFileServlet using its mapping
+            // and the following request parameters: template, fileType and username
             // TIP: template = UsernameReport, fileType = pdf
             // TIP: Remember that the application context it's named servlet-app
 
         } else {
-            // TODO 1: Use window.open to call ExportFileServlet using its mapping and the following request parameters: template and fileType
+            // TODO 1: Use window.open to call ExportFileServlet using its mapping
+            // and the following request parameters: template and fileType
             // TIP: Remember that the application context it's named servlet-app
 
         }

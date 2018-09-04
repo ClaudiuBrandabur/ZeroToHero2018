@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * TODO Write javadoc
@@ -33,6 +35,11 @@ public class ExportFileServlet extends HttpServlet {
         // TIP: Use lambda expression
         // TIP: Each entry of the map should be <parameterName, parameterValue>
 
+        Enumeration<String> names = request.getParameterNames();
+        while (names.hasMoreElements()) {
+            String name = names.nextElement();
+            paramsMap.put(name, request.getParameter(name));
+        }
         String passedTemplate = (String) (paramsMap.get("template"));  // the parameter sent from URL (exportFile.jsp)
         String passedFileType = (String) (paramsMap.get("fileType"));  // the parameter sent from URL (exportFile.jsp)
 
@@ -50,7 +57,6 @@ public class ExportFileServlet extends HttpServlet {
             jasperPrint = JasperFillManager.fillReport(reportStream, paramsMap);
 
             // TODO 2: Set the filename on the response header, based on the request parameters defined above
-
 
             JRPdfExporter exporter = new JRPdfExporter();
             exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
