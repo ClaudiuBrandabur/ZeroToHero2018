@@ -32,7 +32,6 @@ hrApp.config(['$routeProvider', function ($routeProvider) {
 }]);
 
 // TODO #4 add #/numbers route and use redirectTo
-
 // TODO #6 add route for mathematical operations
 hrApp.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/math', {

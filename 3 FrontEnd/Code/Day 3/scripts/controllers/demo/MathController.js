@@ -1,5 +1,6 @@
-hrApp.controller('MathController', ['$scope', function($scope) {
-
+hrApp.controller('MathController', ['$scope', function ($scope) {
+    $scope.nrA = 0;
+    $scope.nrB = 0;
     $scope.calculate = function () {
         $scope.op1 = $scope.nrA + $scope.nrB;
         $scope.op2 = $scope.nrA - $scope.nrB;

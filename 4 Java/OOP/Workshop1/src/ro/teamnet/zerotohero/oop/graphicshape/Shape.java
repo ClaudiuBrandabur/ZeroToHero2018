@@ -13,7 +13,7 @@ public class Shape extends AbstractShape implements ShapeBehaviour {
         this.saturation = saturation;
     }
 
-    public double area(){
+    public double area() {
         return area();
     }
 
