@@ -1,4 +1,5 @@
 package ro.teamnet.zerotohero.oop;
+
 import ro.teamnet.zerotohero.canvas.Canvas;
 import ro.teamnet.zerotohero.oop.graphicshape.*;
 
@@ -25,10 +26,10 @@ public class RunApp {
 
         System.out.println("p1 equals p2 is " + p1.equals(p2));
         System.out.println("p1 equals p3 is " + p1.equals(p3));
-        int i = 1;
-        if (i == 1) {
-            throw new Exception1("My exception");
-        }
+//        int i = 1;
+//        if (i == 1) {
+//            throw new Exception1("My exception");
+//        }
 
 
     }

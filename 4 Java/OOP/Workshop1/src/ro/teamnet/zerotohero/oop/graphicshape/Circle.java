@@ -36,19 +36,19 @@ public class Circle extends Shape {
 
     @Override
     public String toString() {
-        return "center=("+ xPos + "," + yPos + ") and radius=" + radius;
+        return "center=(" + xPos + "," + yPos + ") and radius=" + radius;
 
     }
 
-    public void fillColour(){
+    public void fillColour() {
         System.out.println(super.color);
     }
 
-    public void fillColour(int x){
+    public void fillColour(int x) {
         System.out.println("The circle color is now 2");
     }
 
-    public void fillColour(float x){
+    public void fillColour(float x) {
         super.setSaturation(x);
     }
 }
