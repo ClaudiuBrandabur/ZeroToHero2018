@@ -1,17 +1,28 @@
 package ro.teamnet.zth;
 
+import org.codehaus.jackson.map.ObjectMapper;
 import ro.teamnet.zth.fmk.domain.HttpMethod;
+import ro.teamnet.zth.utils.BeanDeserializator;
+import ro.teamnet.zth.utils.ComponentScanner;
+import ro.teamnet.zth.utils.ControllerScanner;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.List;
 
 public class Z2HDispatcherServlet extends HttpServlet {
 
+    private ComponentScanner componentScanner;
+
     @Override
     public void init() throws ServletException {
+        componentScanner = new ControllerScanner("ro.teamnet.zth.appl.controller");
+        componentScanner.scan();
     }
 
     @Override
@@ -51,11 +62,24 @@ public class Z2HDispatcherServlet extends HttpServlet {
         resp.getWriter().print(e.getMessage());
     }
 
-    private void reply(HttpServletResponse resp, Object resultToDisplay) {
-
+    private void reply(HttpServletResponse resp, Object resultToDisplay) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        String response = objectMapper.writeValueAsString(resultToDisplay);
+        resp.getWriter().write(response);
     }
 
     private Object dispatch(HttpServletRequest req, HttpMethod methodType) {
+        String url = req.getPathInfo();
+        Object instance = componentScanner.getInstance(url, methodType);
+        Method method = componentScanner.getMetaData(url, methodType).getMethod();
+        List<Object> params = BeanDeserializator.getMethodParams(method, req);
+        try {
+            return method.invoke(instance, params);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 

@@ -20,4 +20,5 @@ public interface ComponentScanner {
     }
 
 
+    Object getInstance(String url, HttpMethod methodType);
 }

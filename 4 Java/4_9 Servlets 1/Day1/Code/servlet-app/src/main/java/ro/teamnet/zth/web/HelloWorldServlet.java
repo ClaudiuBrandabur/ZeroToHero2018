@@ -10,6 +10,7 @@
 
 package ro.teamnet.zth.web;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -44,6 +45,11 @@ public class HelloWorldServlet extends HttpServlet {
         PrintWriter writer = response.getWriter();
         // TIP: you can also use html tags to markup your text
         writer.write("Hello " + user + "!");
+
+        request.setAttribute("testAttribute", "Enjoy Z2H");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/forward");
+        requestDispatcher.include(request,response);
+        response.getWriter().write("<br> This is include method");
     }
 
 }

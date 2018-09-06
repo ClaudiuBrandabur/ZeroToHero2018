@@ -6,6 +6,16 @@
 
     <display-name>Web Application</display-name>
 
+    <filter>
+        <filter-name>logHeaders</filter-name>
+        <filter-class>ro.teamnet.zth.web.HeaderLogFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>logHeaders</filter-name>
+        <servlet-name>HelloWorldServlet</servlet-name>
+    </filter-mapping>
+
     <!--Workshop 2 Exercise 1-->
     <!--HelloWorld Servlet-->
     <!--TODO Create a definition for HelloWorldServlet class using <servlet> tag -->
@@ -67,5 +77,15 @@
     <servlet-mapping>
         <servlet-name>InfoHttp</servlet-name>
         <url-pattern>/info</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>HelloWorldServletForward</servlet-name>
+        <servlet-class>ro.teamnet.zth.web.HelloWorldServletForward</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>HelloWorldServletForward</servlet-name>
+        <url-pattern>/forward</url-pattern>
     </servlet-mapping>
 </web-app>
