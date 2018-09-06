@@ -23,46 +23,46 @@ public class EntitiyManagerImplTest {
     @Test
     public void aTestFindById() {
         dep = entityManager.findById(Department.class, 10L);
-        assertTrue(dep.getId() == 10L);
-        assertTrue(dep.getDepartmentName().equals("Administration"));
+        assertEquals(10L, (long) dep.getId());
+        assertEquals("Administration", dep.getDepartmentName());
     }
 
     @Test
     public void bTestFindAll() {
         List<Department> deps = entityManager.findAll(Department.class);
-        assertEquals(deps.size(), 27);
+        assertEquals(deps.size(), 49);
     }
 
     @Test
     public void cTestInsert() {
         dep.setDepartmentName("Sales");
-        dep.setLocation(1000l);
+        dep.setLocation(1000L);
         dep = (Department) entityManager.insert(dep);
         assertEquals(entityManager.findById(Department.class, dep.getId()), dep);
     }
 
     @Test
     public void dTestUpdate() {
-        dep.setId(271L);
+        dep.setId(272L);
         dep.setDepartmentName("Sales updates");
-        dep.setLocation(1000l);
+        dep.setLocation(1000L);
         dep = entityManager.update(dep);
-        assertTrue(dep.getDepartmentName().equals("Sales updates"));
+        assertEquals("Sales updates", dep.getDepartmentName());
     }
 
     @Test
     public void eTestDelete() {
-        dep.setId(271L);
+        dep.setId(272L);
         entityManager.delete(dep);
-        assertTrue(entityManager.findById(Department.class, dep.getId()) == null);
+        assertNull(entityManager.findById(Department.class, dep.getId()));
     }
 
     @Test
     public void fTestFindByParams() {
         Map<String, Object> params = new HashMap<>();
-        params.put("location_id", 1700l);
+        params.put("location_id", 1700L);
         List<Department> departments = entityManager.findByParams(Department.class, params);
-        assertEquals(departments.size(), 21);
+        assertEquals(departments.size(), 22);
     }
 
     /*@Test
