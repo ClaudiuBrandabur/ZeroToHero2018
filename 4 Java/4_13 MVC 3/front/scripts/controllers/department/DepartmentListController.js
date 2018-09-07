@@ -3,11 +3,21 @@
 hrApp.controller('DepartmentListController', ['$scope', '$http', '$route', '$location', 'DepartmentService',
     function($scope, $http, $route, $location, DepartmentService) {
 
-        DepartmentService.findAll().then(function(res) {
-            $scope.departments = res.data;
-        }, function(err) {
-            console.log('An error occurred while finding all departments: ' + err.status);
-        });
+        LocationService.findAll()
+            .then(function(res) {
+                $scope.locations = res.data;
+                $scope.findAllDeps();
+            }, function(err) {
+                console.log('An error occurred while finding all departments: ' + err.status);
+            });
+
+        $scope.findAllDeps = function() {
+            DepartmentService.findAll().then(function (res) {
+                $scope.departments = res.data;
+            }, function (err) {
+                console.log('An error occurred while finding all departments: ' + err.status);
+            });
+        };
 
         /**
          * Navigate to view page of a department

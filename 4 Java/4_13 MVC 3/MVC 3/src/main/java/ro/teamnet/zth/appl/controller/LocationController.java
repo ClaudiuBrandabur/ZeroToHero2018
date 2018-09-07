@@ -2,9 +2,12 @@ package ro.teamnet.zth.appl.controller;
 
 import ro.teamnet.zth.api.annotations.Z2HController;
 import ro.teamnet.zth.api.annotations.Z2HRequestMethod;
+import ro.teamnet.zth.api.annotations.Z2HRequestObject;
 import ro.teamnet.zth.api.annotations.Z2HRequestParam;
+import ro.teamnet.zth.appl.domain.Department;
 import ro.teamnet.zth.appl.domain.Location;
 import ro.teamnet.zth.appl.service.LocationService;
+import ro.teamnet.zth.fmk.domain.HttpMethod;
 
 import java.util.List;
 
@@ -20,5 +23,15 @@ public class LocationController {
     @Z2HRequestMethod(urlPath = "/one")
     public Location getOne(@Z2HRequestParam(name = "locationId") Long locationId) {
         return locationService.findOne(locationId);
+    }
+
+    @Z2HRequestMethod(urlPath = "/add", methodType = HttpMethod.POST)
+    public Location addLocation(@Z2HRequestObject Location location) {
+        return locationService.add(location);
+    }
+
+    @Z2HRequestMethod(urlPath = "/edit", methodType = HttpMethod.PUT)
+    public Location updateLocation(@Z2HRequestObject Location location) {
+        return locationService.update(location);
     }
 }

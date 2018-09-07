@@ -7,6 +7,7 @@ hrApp.controller('DepartmentEditController', ['$scope', '$http', '$routeParams',
 
         LocationService.findAll().then(function(res) {
             $scope.locations = res.data;
+            $scope.findOneLoc($scope.department.location)
         }, function(err) {
             console.log('An error occurred while finding all locations: ' + err.status);
         });
@@ -16,6 +17,15 @@ hrApp.controller('DepartmentEditController', ['$scope', '$http', '$routeParams',
         }, function(err) {
             console.log('An error occurred while finding department: ' + err.status);
         });
+
+        $scope.findOneLoc = function(locationId) {
+            LocationService.findOne(locationId)
+                .then(function(res) {
+                    $scope.location = res.data;
+                }, function(err) {
+                    console.log('An error occurred while finding the location: ' + err.status);
+                })
+        }
 
         /**
          * Reset department fields
@@ -29,6 +39,8 @@ hrApp.controller('DepartmentEditController', ['$scope', '$http', '$routeParams',
          * @param department - department to be updated
          */
         $scope.save = function(department) {
+
+            department.location = $scope.location.locationId;
             DepartmentService.edit(department).then(function() {
                 $location.url('/departmentView/' + $scope.department.departmentId);
             }, function(err) {

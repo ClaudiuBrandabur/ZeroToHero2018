@@ -10,9 +10,20 @@ hrApp.controller('DepartmentViewController', ['$scope', '$http', '$routeParams',
         DepartmentService.findOne($routeParams.departmentId)
             .then(function(res) {
                 $scope.department = res.data;
+                $scope.findDepLocation($scope.department.location);
+
             }, function(err) {
                 console.log('An error occurred while finding the department: ' + err.status);
             });
+
+        $scope.findDepLocation = function(location) {
+            LocationService.findOne(location)
+                .then(function(res) {
+                    $scope.location = res.data;
+                }, function(err) {
+                    console.log('An error occurred while finding the location: ' + err.status);
+                });
+        }
 
         /**
          * Navigate back to department list page

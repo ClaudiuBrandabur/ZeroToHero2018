@@ -11,4 +11,8 @@ public interface LocationService {
     List<Location> findAll();
 
     Location findOne(Long locationId);
+
+    Location add(Location location);
+
+    Location update(Location location);
 }
