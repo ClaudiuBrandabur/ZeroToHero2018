@@ -6,10 +6,21 @@
 
   <display-name>Archetype Created Web Application</display-name>
 
+
+    <filter>
+        <filter-name>logHeaders</filter-name>
+        <filter-class>ro.teamnet.zth.web.HeadersLogFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>logHeaders</filter-name>
+        <servlet-name>HelloWorld</servlet-name>
+    </filter-mapping>
+
     <servlet>
         <servlet-name>HelloWorld</servlet-name>
         <servlet-class>ro.teamnet.zth.web.HelloWorldServlet</servlet-class>
     </servlet>
+    
     <servlet-mapping>
         <servlet-name>HelloWorld</servlet-name>
         <url-pattern>/hello</url-pattern>
@@ -29,7 +40,10 @@
         <servlet-name>HeloWorldServletForward</servlet-name>
         <servlet-class>ro.teamnet.zth.web.HelloWorldServletForward</servlet-class>
     </servlet>
-
+    <servlet>
+        <servlet-name>HttpSessionServlet</servlet-name>
+        <servlet-class>ro.teamnet.zth.web.HttpSessionLogin</servlet-class>
+    </servlet>
     <!--TODO Define a <servlet-mapping> for the servlet defined above -->
     <!--TIP 1: You should define servlet-name and servlet-pattern elements -->
     <!--TIP 2: Ctrl+Click on <servlet-mapping> opening tag and go to XSD file to see all the definitions of tag elements -->
@@ -37,5 +51,10 @@
         <servlet-name>HeloWorldServletForward</servlet-name>
         <url-pattern>/helloforward</url-pattern>
     </servlet-mapping>
-
+    
+    <servlet-mapping>
+        <servlet-name>HttpSessionServlet</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    
 </web-app>
