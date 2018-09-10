@@ -10,6 +10,7 @@
  **/
 package ro.teamnet.zth.web;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,13 +30,13 @@ public class HelloWorldServlet extends HttpServlet {
      * @throws IOException
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String user = "";
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher =
+                req.getRequestDispatcher("/helloforward");
 
-        // Set the response type
-        response.setContentType("text/html");
+        req.setAttribute("testAttribute", "Enjoy Z2H");
 
-        // TODO: Complete the steps from RequestDispatcher Workshop
+        requestDispatcher.forward(req, resp);
 
     }
 

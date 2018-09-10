@@ -25,11 +25,17 @@
     <!--TODO Create a definition for ExportFileServlet class using <servlet> tag -->
     <!--TIP 1: You should define servlet-name and servlet-class elements -->
     <!--TIP 2: Ctrl+Click on <servlet> opening tag and go to XSD file to see all the definitions of tag elements -->
-
+    <servlet>
+        <servlet-name>HeloWorldServletForward</servlet-name>
+        <servlet-class>ro.teamnet.zth.web.HelloWorldServletForward</servlet-class>
+    </servlet>
 
     <!--TODO Define a <servlet-mapping> for the servlet defined above -->
     <!--TIP 1: You should define servlet-name and servlet-pattern elements -->
     <!--TIP 2: Ctrl+Click on <servlet-mapping> opening tag and go to XSD file to see all the definitions of tag elements -->
-
+    <servlet-mapping>
+        <servlet-name>HeloWorldServletForward</servlet-name>
+        <url-pattern>/helloforward</url-pattern>
+    </servlet-mapping>
 
 </web-app>

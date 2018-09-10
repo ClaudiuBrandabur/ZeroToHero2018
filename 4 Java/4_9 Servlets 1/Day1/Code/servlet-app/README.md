@@ -27,6 +27,6 @@
 
 10. Upload List_of_people.csv located inside resources folder.
 
-11. Click Upload CSV button.
+11. Click Upload CSV button.nu
 
 12. Check the browser and the tomcat console to see the result.
