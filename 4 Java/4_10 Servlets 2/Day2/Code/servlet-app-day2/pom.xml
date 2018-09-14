@@ -65,7 +65,7 @@
                 </configuration>
             </plugin>
 
-            <plugin>
+           <!-- <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>jasperreports-maven-plugin</artifactId>
                 <version>1.0-beta-2</version>
@@ -87,7 +87,7 @@
                     <dependency>
                         <groupId>net.sf.jasperreports</groupId>
                         <artifactId>jasperreports</artifactId>
-                        <!-- TODO: set version element with net.sf.jasperreports property defined at the top of pom.xml file -->
+                        &lt;!&ndash; TODO: set version element with net.sf.jasperreports property defined at the top of pom.xml file &ndash;&gt;
                         <version>${net.sf.jasperreports}</version>
                         <exclusions>
                             <exclusion>
@@ -127,7 +127,7 @@
                         </exclusions>
                     </dependency>
                 </dependencies>
-            </plugin>
+            </plugin>-->
 
         </plugins>
 

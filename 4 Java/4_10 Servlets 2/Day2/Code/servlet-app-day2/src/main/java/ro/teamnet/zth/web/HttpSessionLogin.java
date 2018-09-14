@@ -19,15 +19,15 @@ public class HttpSessionLogin extends HttpServlet {
         PrintWriter printWriter = resp.getWriter();
 
         if(username.equals("admin") && password.equals("admin")){
-            printWriter.write("Welcome back " + username + "!");
+            printWriter.write("Welcome back " + username + "! ");
             String sessionId = req.getRequestedSessionId();
             printWriter.write(sessionId);
         }
         else{
-            req.getSession().setAttribute("username", username);
-            req.getSession().setAttribute("password", password);
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/loginFail.jsp");
-            requestDispatcher.forward(req, resp);
+            req.getSession().setAttribute("user", username);
+            req.getSession().setAttribute("session", req.getSession());
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/views/loginFail.jsp");
+            requestDispatcher.include(req, resp);
 
         }
 
