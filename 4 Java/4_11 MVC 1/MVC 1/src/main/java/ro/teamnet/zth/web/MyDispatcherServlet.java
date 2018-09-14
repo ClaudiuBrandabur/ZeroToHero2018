@@ -3,6 +3,7 @@ package ro.teamnet.zth.web;
 import ro.teamnet.zth.api.annotations.MyController;
 import ro.teamnet.zth.api.annotations.MyRequestMethod;
 import ro.teamnet.zth.fmk.AnnotationScanUtils;
+import ro.teamnet.zth.fmk.MethodAttributes;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +16,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MyDispatcherServlet extends HttpServlet {
+
+    Map<String,MethodAttributes> myMap = new HashMap();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         dispatchReply(req, resp, "get");
@@ -26,7 +30,7 @@ public class MyDispatcherServlet extends HttpServlet {
     }
 
     public void init(){
-        Map<String,String> map = new HashMap();
+
 
         try {
             Iterable<Class> classes = AnnotationScanUtils.getClasses("ro.teamnet.zth.appl.controller");
@@ -39,6 +43,11 @@ public class MyDispatcherServlet extends HttpServlet {
                     System.out.println(method.getAnnotation(MyRequestMethod.class).urlPath());
                     System.out.println(method.getAnnotation(MyRequestMethod.class).methodType());
                     key = myController.urlPath() + method.getAnnotation(MyRequestMethod.class).urlPath() + method.getAnnotation(MyRequestMethod.class).methodType();
+                    MethodAttributes value = new MethodAttributes();
+                    value.setMethodName(method.getName());
+                    value.setMethodType(method.getAnnotation(MyRequestMethod.class).methodType());
+                    value.setControllerClass(cls.getName());
+                    myMap.put(key, value);
 
                 }
             }
@@ -50,25 +59,33 @@ public class MyDispatcherServlet extends HttpServlet {
     }
     void dispatchReply(HttpServletRequest req, HttpServletResponse resp, String method){
         try {
-            dispatch(req, method);
-            reply(resp, method);
+            Object object = dispatch(req, method);
+            reply(resp, object);
         }
         catch (Exception e){
             sendExceptionError(e);
         }
     }
 
-    void dispatch(HttpServletRequest req, String method){
+    Object dispatch(HttpServletRequest req, String method){
         String path = req.getPathInfo();
         path += "/" + method;
         if(!(path.startsWith("/employees") || path.startsWith("/departments") || path.startsWith("/jobs") || path.startsWith("/locations"))){
             throw new RuntimeException("Url gresit");
         }
+        MethodAttributes methodAttributes = myMap.get(path);
+
+        return methodAttributes;
     }
 
-    void reply(HttpServletResponse resp, String method){
-        PrintWriter printWriter;
-//        printWriter.write();
+    void reply(HttpServletResponse resp, Object object){
+        PrintWriter printWriter = null;
+        try {
+            printWriter = resp.getWriter();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        printWriter.write((String) object);
     }
 
     void sendExceptionError(Exception e){
