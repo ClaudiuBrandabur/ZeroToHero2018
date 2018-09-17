@@ -1,4 +1,5 @@
 package exercise0;
+import java.util.HashMap;
 
 /**
  * Created by Radu.Hoaghe on 4/20/2015.
@@ -16,10 +17,16 @@ public class Exercise0 {
 
         // TODO Exercise #0 a) Create a Map (HashMap) and add elements to it (using put() method)
         // TODO Exercise #0 a) Hint: Don't forget to specify the types of the key and value when creating the Map
-
+        HashMap<String, String> petHashMap = new HashMap<String, String>();
+        petHashMap.put("My Cat", "Kitty");;
+        petHashMap.put("My Dog", "Rex");
         // TODO Exercise #0 b) Iterate over the Map using keySet() method and print all its elements
         // TODO Exercise #0 b) The elements could be printed like this: [key1=value1, key2=value2, ...]
-        
+        System.out.println(petHashMap);
+        String dog= petHashMap.get("My Dog");
+        System.out.println(dog);
+        System.out.println(petHashMap.containsKey("My Dog"));
+        System.out.println(petHashMap.containsValue(dog));
     }
 
     public static void main(String[] args) {

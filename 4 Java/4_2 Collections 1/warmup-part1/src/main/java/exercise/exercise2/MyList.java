@@ -119,9 +119,14 @@ public class MyList<Integer> extends ArrayList<Integer> {
     }
 
     // TODO Exercise #2 c) Override the clear method and reset the number of different elements
+    @Override
+    public void clear() {
+        differentElements = 0;
+        super.clear();
+    }
 
     // TODO Exercise #2 d) Return the number of different elements that exist into the list
     public int getDifferentElements() {
-        return 0;
+        return differentElements;
     }
 }

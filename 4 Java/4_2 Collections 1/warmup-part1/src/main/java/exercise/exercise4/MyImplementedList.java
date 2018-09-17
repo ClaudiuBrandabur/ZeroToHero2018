@@ -1,5 +1,8 @@
 package exercise.exercise4;
 
+import java.lang.invoke.ConstantCallSite;
+import java.util.Iterator;
+
 /**
  * You should implement from zero a data structure that acts as an ArrayList.
  * We have a default capacity of {@link MyImplementedList#DEFAULT_CAPACITY} elements of type <code>E</code>.
