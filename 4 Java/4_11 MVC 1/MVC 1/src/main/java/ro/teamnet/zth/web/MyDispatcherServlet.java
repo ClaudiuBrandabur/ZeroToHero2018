@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
@@ -74,6 +75,23 @@ public class MyDispatcherServlet extends HttpServlet {
             throw new RuntimeException("Url gresit");
         }
         MethodAttributes methodAttributes = myMap.get(path);
+        if(methodAttributes != null){
+            try {
+                Class cls = Class.forName(methodAttributes.getControllerClass());
+                Method met = cls.getMethod(methodAttributes.getMethodName())
+                return met.invoke(cls.newInstance());
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        }
 
         return methodAttributes;
     }
