@@ -19,12 +19,13 @@ public class LambdasRefactor {
         //TODO: refactor to use lambda expression
 
         List<Apple> inventory = asList(new Apple(80, "green"), new Apple(155, "green"), new Apple(120, "red"));
-        inventory.sort(new Comparator<Apple>() {
-            @Override
-            public int compare(Apple apple1, Apple apple2) {
-                return apple2.getWeight().compareTo(apple1.getWeight());
-            }
-        });
+        Comparator<Apple> newComparator = (Apple apple1, Apple apple2) -> Integer.compare(apple2.getWeight(),apple1.getWeight());
+//        inventory.sort(new Comparator<Apple>() {
+//            @Override
+//            public int compare(Apple apple1, Apple apple2) {
+//                return apple2.getWeight().compareTo(apple1.getWeight());
+//            }
+//        });
         return inventory;
     }
 
