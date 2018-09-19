@@ -35,12 +35,7 @@ public class LambdasRefactor {
         // TODO: refactor to use standard functional interface
         List<Apple> inventory = asList(new Apple(80, "green"), new Apple(155, "green"), new Apple(120, "red"));
 
-        List<Apple> greenApples = filterApples(inventory, new ApplePredicate() {
-            @Override
-            public boolean test(Apple apple) {
-                return "green".equals(apple.getColor());
-            }
-        });
+        List<Apple> greenApples = filterApples(inventory, apple -> "green".equals(apple.getColor()));
 
         return inventory;
     }
