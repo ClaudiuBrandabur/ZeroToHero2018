@@ -34,6 +34,13 @@ public class Exercise1 {
         // TODO Exercise #1 a) and add the countries that start with 'R' character into the seekingCountries list
         // TODO Exercise #1 a) hint: see String documentation
 
+        for (String key : countries.keySet()) {
+            char firstLetter = key.charAt(0);
+            if (firstLetter == 'R') {
+                seekingCountries.add(key);
+            }
+        }
+
         return seekingCountries;
     }
 
@@ -46,6 +53,13 @@ public class Exercise1 {
         // TODO Exercise #1 b) and convert to lowercase (hint: String documentation) all the countries that contain 'Q'
         // TODO Exercise #1 b) or 'q' letter into the seekingCountries list
 
+        for (Map.Entry<String, String> entry : countries.entrySet()) {
+            String s = entry.getKey();
+            for (int i = 0; i < s.length(); i++)
+                if (s.charAt(i) == 'Q' || s.charAt(i) == 'q')
+                    seekingCountries.add(s.toLowerCase());
+        }
+
         return seekingCountries;
     }
 
@@ -56,6 +70,17 @@ public class Exercise1 {
 
         // TODO Exercise #1 c) You need to iterate over the map values using a foreach loop (see Map.values())
         // TODO Exercise #1 c) and find the capital city with the longest name
+
+        int maximumLengthOfCapital = 0;
+        for (Map.Entry<String, String>entry : countries.entrySet()) {
+            String s = entry.getValue();
+            int sizeOfCapital = s.length();
+            if (sizeOfCapital > maximumLengthOfCapital)
+            {
+                maximumLengthOfCapital = sizeOfCapital;
+                seekingCapital = s;
+            }
+        }
 
         return seekingCapital;
     }

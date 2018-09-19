@@ -34,6 +34,8 @@ public class Exercise2 {
         // TODO Exercise 2 a) In order to print the properties (fields) of Student class in a human readable way you should override
         // TODO the toString() method from Student class -> TODO Exercise 2 a)
 
+
+
         // A Set with elements of type Student without the methods equals() and hashCode() implemented
         Set<StudentWithoutEqualsAndHashCode> studentSetWithoutEqualsAndHashCode =
                 new HashSet<StudentWithoutEqualsAndHashCode>();

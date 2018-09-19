@@ -3,7 +3,7 @@ package exercise2;
 /**
  * Created by Radu.Hoaghe on 20.04.2015.
  */
-public class Student {
+public class Student  {
     private final Integer id;
     private final String firstName;
     private final String lastName;

@@ -2,6 +2,7 @@ package com.java_8_training.problems.lambdas;
 
 import com.java_8_training.problems.lambdas.model.Apple;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -11,6 +12,7 @@ public class BehaviourParameterisation {
 
 
     //TODO: 1. Implement the method prettyPrintOnlyWeightApple which prints to the console something like 'An apple of 60 grams'
+
     //TODO: 2. Declare a new method prettyPrintApple which takes different formatters as parameter.
     // The formatter should be an interface that has a method which accepts an apple and returns a string from it.
     // Use the COllections.sort() method as an example
@@ -24,6 +26,16 @@ public class BehaviourParameterisation {
 
 
         prettyPrintHeavyLightApple(inventory);
+        List<Apple> resultNew = new ArrayList<>();
+//        for(Apple apple: inventory){
+//            System.out.println("An apple of " + apple.getWeight() + " grams.");
+//        }
+
+
+        for(Apple apple: inventory){
+            String result = String.format("An apple of " + apple.getWeight() + " grams.");
+            System.out.println(resultNew);
+        }
         //prettyPrintOnlyWeightApple(inventory);
         // prettyPrintApple(inventory, ???);
     }
