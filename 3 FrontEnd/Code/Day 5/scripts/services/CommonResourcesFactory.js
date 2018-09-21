@@ -1,5 +1,5 @@
 hrApp.factory('CommonResourcesFactory', function () {
-        var baseUrl = "http://10.6.198.94:8089/MVCApp/mvc/";
+        var baseUrl = "app/mvc/";
         return {
             findAllDepartmentsUrl: baseUrl + "departments/all",
             findAllEmployeesUrl: baseUrl + "employees/all",
@@ -26,7 +26,7 @@ hrApp.factory('CommonResourcesFactory', function () {
 );
 
 hrApp.factory('commonResourcesFactoryBackup', function () {
-        var baseUrl = "http://hrapp-zth.rhcloud.com/hrapp/";
+        var baseUrl = "/app/mvc/";
         return {
             findAllDepartmentsUrl: baseUrl + "departments",
             findAllEmployeesUrl: baseUrl + "employees",

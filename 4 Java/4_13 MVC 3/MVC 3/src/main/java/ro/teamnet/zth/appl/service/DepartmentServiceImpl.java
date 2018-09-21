@@ -18,4 +18,26 @@ public class DepartmentServiceImpl implements DepartmentService {
     public Department findOne(Long departmentId) {
         return departmentDao.findDepartmentById(departmentId);
     }
+
+    @Override
+    public Boolean delete(Long departmentId) {
+        Department departmentToDelete = departmentDao.findDepartmentById(departmentId);
+        if (departmentToDelete == null) {
+            return false;
+        }
+        departmentDao.deleteDepartment(departmentToDelete);
+        return true;
+    }
+
+    @Override
+    public Department save(Department department) {
+        return departmentDao.insertDepartment(department);
+    }
+
+    @Override
+    public Department update(Department department) {
+        return departmentDao.updateDepartment(department);
+    }
 }
+
+

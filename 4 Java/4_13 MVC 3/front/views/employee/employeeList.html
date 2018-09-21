@@ -33,7 +33,7 @@
             {{employee.hireDate | date: 'dd-MM-yyyy'}}
         </td>
         <td class="text-center">
-            {{employee.jobId.jobTitle}}
+            {{findJobTitle(employee.jobId)}}
         </td>
         <td class="text-center">
             {{employee.salary}}
@@ -42,10 +42,10 @@
             {{employee.commissionPct}}
         </td>
         <td class="text-center">
-            {{employee.managerId.firstName}} {{employee.managerId.lastName}}
+            {{findManagerFirstName(employee.managerId)}} {{findManagerLastName(employee.managerId)}}
         </td>
         <td class="text-center">
-            {{employee.departmentId.departmentName}}
+            {{findDepName(employee.departmentId)}}
         </td>
         <td class="text-center">
             <div class="row">

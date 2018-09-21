@@ -60,6 +60,11 @@
             <artifactId>jackson-jaxrs</artifactId>
             <version>${jackson-jaxrs.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc6</artifactId>
+            <version>6.2.0</version>
+        </dependency>
 
     </dependencies>
 
@@ -86,6 +91,7 @@
                     <path>/app</path>
                 </configuration>
             </plugin>
+
 
         </plugins>
     </build>

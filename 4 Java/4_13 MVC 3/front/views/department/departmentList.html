@@ -13,7 +13,8 @@
             {{department.departmentName}}
         </td>
         <td class="text-center">
-            {{department.locationId.streetAddress + ", " + department.locationId.postalCode + " - " + department.locationId.city}}{{department.locationId.stateProvince ? ", " + department.locationId.stateProvince : ""}}
+            {{findLocationStreetAddress(department.locationId) + ", " + findLocationPostalCode(department.locationId) +
+            " - " + findLocationCity(department.locationId)}}{{findStateProvince(department.locationId) ? ", " + findStateProvince(department.locationId) : ""}}
         </td>
         <td class="text-center">
             <button type="button" class="btn btn-link" ng-click="view(department.departmentId)">View</button>

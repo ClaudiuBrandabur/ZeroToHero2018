@@ -22,7 +22,7 @@ public class Z2HDispatcherServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        controllerScanner=new ControllerScanner("ro.teamnet.zth.appl.controller");
+        controllerScanner = new ControllerScanner("ro.teamnet.zth.appl.controller");
         controllerScanner.scan();
     }
 

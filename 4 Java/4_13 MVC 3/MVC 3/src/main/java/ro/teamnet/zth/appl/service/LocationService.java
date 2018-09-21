@@ -11,4 +11,10 @@ public interface LocationService {
     List<Location> findAll();
 
     Location findOne(Long locationId);
+
+    Boolean delete(Long locationId);
+
+    Location save(Location location);
+
+    Location update(Location location);
 }

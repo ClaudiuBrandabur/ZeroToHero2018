@@ -51,29 +51,15 @@ module.exports = function (grunt) {
             }
         },
         connect: {
-            /*proxies: [
+            proxies: [
                 {
-                    context: '/employees',
-                    host: 'hrapp-zth.rhcloud.com',
-                    port: 8282,
-                    https: false,
-                    changeOrigin: false
-                },
-                {
-                    context: '/departments',
-                    host: 'hrapp-zth.rhcloud.com',
-                    port: 8282,
-                    https: false,
-                    changeOrigin: false
-                },
-                {
-                    context: '/jobs',
-                    host: 'hrapp-zth.rhcloud.com',
-                    port: 8282,
+                    context: '/app/mvc/',
+                    host: 'localhost',
+                    port: 1521,
                     https: false,
                     changeOrigin: false
                 }
-            ],*/
+            ],
             options: {
                 port: 9089,
                 // Change this to 'localhost' to deny access to the server from outside.

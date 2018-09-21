@@ -16,6 +16,7 @@ hrApp.controller('EmployeeEditController', ['$scope', '$http', '$routeParams', '
             console.log('An error occurred while finding all departments: ' + err.status);
         });
 
+
         JobService.findAll().then(function(res) {
             $scope.jobs = res.data;
         }, function(err) {
@@ -38,6 +39,8 @@ hrApp.controller('EmployeeEditController', ['$scope', '$http', '$routeParams', '
         /**
          * Reset employee fields
          */
+
+
         $scope.reset = function() {
             $scope.employee = {};
         };
