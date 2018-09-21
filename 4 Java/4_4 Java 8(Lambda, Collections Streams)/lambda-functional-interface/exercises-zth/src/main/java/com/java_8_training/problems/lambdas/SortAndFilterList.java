@@ -18,5 +18,8 @@ public class SortAndFilterList {
         // 3. alphabetically
         // 4. put the strings that contain 'e' first in the list. The other ones last.
         // 5. filter only the strings that have the first letter capitalized
+
     }
+
 }
+
