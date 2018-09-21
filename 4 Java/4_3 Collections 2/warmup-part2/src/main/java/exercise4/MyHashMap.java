@@ -1,5 +1,7 @@
 package exercise4;
 
+import exercise2.Student;
+
 import java.util.*;
 
 /**
@@ -20,10 +22,25 @@ public class MyHashMap {
     public MyHashMap() {
 
         // TODO Initialize buckets list
+
+        buckets = new ArrayList<LinkedList<MyEntry>>(BUCKET_ARRAY_SIZE);
+        for(int i = 0; i < BUCKET_ARRAY_SIZE; i++){
+            buckets.add(new LinkedList<MyEntry>());
+        }
     }
 
     public String get(String key) {
         // TODO
+        if(key == null){
+            return null;
+        }
+        int index = Math.abs(key.hashCode()) % BUCKET_ARRAY_SIZE;
+        int i;
+        for(i = 0; i < buckets.get(index).size(); i++){
+            if(buckets.get(index).get(i).getKey().equals(key)){
+                return buckets.get(index).get(i).getValue();
+            }
+        }
         return null;
     }
 
