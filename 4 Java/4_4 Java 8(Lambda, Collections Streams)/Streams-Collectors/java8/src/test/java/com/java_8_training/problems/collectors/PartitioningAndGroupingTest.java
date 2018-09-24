@@ -23,7 +23,7 @@ public class PartitioningAndGroupingTest {
         Map<Boolean, List<Dish>> partitionedDishes = new HashMap<>();
 
         //TODO #C1
-
+        partitionedDishes = Dish.menu.stream().collect(partitioningBy(dish->dish.getCalories()>380));
         assertEquals(2, partitionedDishes.get(false).size());
         assertEquals(7, partitionedDishes.get(true).size());
     }
