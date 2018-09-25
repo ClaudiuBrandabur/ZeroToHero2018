@@ -1,4 +1,4 @@
-package com.java_8_training.problems.collectors;
+package java.com.java_8_training.problems.collectors;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -12,6 +12,7 @@ import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 import static junit.framework.Assert.assertEquals;
 
+import java.com.java_8_training.problems.collectors;
 @Ignore
 public class PartitioningAndGroupingTest {
 
