@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>ro.teamnet.zth</groupId>
+    <artifactId>ZTH</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <dependency>
+        <groupId>com.oracle</groupId>
+        <artifactId>ojdbc6</artifactId>
+        <version>11.2.0</version>
+    </dependency>
+
+    <plugins>
+        <plugin>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-maven-plugin</artifactId>
+            <version>3.0.5</version>
+            <configuration>
+                <changeLogFile> src/main/resources/db/changelog/db.changelog-master.xml </changeLogFile>
+                <driver>oracle.jdbc.driver.OracleDriver</driver>
+                <url>jdbc:oracle:thin:@ 192.168.99.104: 49161:xe</url>
+                <username>system</username>
+                <password>oracle</password>
+            </configuration>
+            <executions>
+                <execution>
+                    <phase>process-resources</phase>
+                    <goals>
+                        <goal>update</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+
+
+</project>
