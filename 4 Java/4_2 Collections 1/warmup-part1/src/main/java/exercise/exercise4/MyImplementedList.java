@@ -124,14 +124,32 @@ public class MyImplementedList<E> {
         return (E) elementData[index];
     }
     //TODO j) create the E remove(int index) method that removes the element from the given index
-
+    E remove(int index){
+        E elementToRemove;
+        elementToRemove = (E) elementData[index];
+        size--;
+        int i;
+        for(i = index; i < size ; i++){
+            elementData[i] = elementData[i + 1];
+        }
+        return elementToRemove;
+    }
     //TODO k) extend the current default capacity, if the number of elements in the data structure is > 75% of it
     //TODO you should name it: void extendCapacity() - HINT use capacity, DEFAULT_CAPACITY, LOAD_FACTOR and INCREASE_SIZE_FACTOR
-
+    public void extendCapacity(){
+        if(size/DEFAULT_CAPACITY > LOAD_FACTOR){
+            capacityAfterExtending = INCREASE_SIZE_FACTOR * capacityAfterExtending;
+            Object[] newArray = new Object[capacityAfterExtending];
+            for(int i = 0; i < size; i++)
+                newArray[i] = elementData[i];
+            elementData = newArray;
+        }
+    }
     //TODO l) implement the iterator() method in order to use the foreach statement over your data structure - HINT Iterable interface
     //TODO and implement a custom iterator for your custom data structure - methods boolean hasNext(), Object next() and void remove()
 
     //TODO m) implement a method, that uses a Comparator, for your data structure to sort the elements
     //TODO you should name it: void sort(Comparator<? super E> c)
+
     //TODO create a custom comparator that compares objects by their "what you want" :D - HINT Comparator interface
 }
