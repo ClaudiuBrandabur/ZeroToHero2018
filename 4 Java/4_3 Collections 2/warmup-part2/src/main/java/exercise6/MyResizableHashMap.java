@@ -1,5 +1,7 @@
 package exercise6;
 
+import com.sun.xml.internal.bind.v2.TODO;
+
 import java.util.Collection;
 import java.util.Set;
 
@@ -42,18 +44,47 @@ public class MyResizableHashMap<K, V> {
      * The number of entries stored in the Map.
      */
     private int size;
-
+    private int capacity;
     public MyResizableHashMap() {
-
+        size = 0;
+        capacity = DEFAULT_BUCKET_ARRAY_SIZE;
+        buckets = new Node[capacity];
         // TODO Initialize buckets list
     }
 
     private void resize() {
         // TODO function that does the rehashing of the HashMap
+        if((capacity * LOAD_FACTOR) < size){
+
+            Node<K, V>[] clone = buckets.clone();
+            Node<K, V> iter;
+
+            capacity *= INCREASE_SIZE_FACTOR;
+            buckets = new Node[capacity];
+            size = 0;
+
+            for (int i = 0; i < clone.length; i++) {
+                iter = clone[i];
+
+                while (iter != null) {
+                    put(iter.getEntry().getKey(), iter.getEntry().getValue());
+                    iter = iter.getNextElement();
+                }
+            }
+        }
     }
 
     public V get(K key) {
         // TODO
+        if (key == null) {
+            Node<K, V> iter = buckets[0];
+
+            while (iter != null) {
+                if (iter.getEntry().getKey() == null)
+                    return iter.getEntry().getValue();
+                iter = iter.getNextElement();
+            }
+        }
         return null;
     }
 

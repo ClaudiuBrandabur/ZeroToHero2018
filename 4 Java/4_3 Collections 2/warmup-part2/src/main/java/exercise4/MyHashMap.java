@@ -46,10 +46,28 @@ public class MyHashMap {
 
     public void put(String key, String value) {
         // TODO
+        if (key == null) {
+            buckets.get(0).add(new MyEntry(null, value));
+
+        }
+        int index = Math.abs(key.hashCode()) % BUCKET_ARRAY_SIZE;
+        for(int i = 0; i < buckets.get(index).size(); i++){
+            if(buckets.get(index).get(i).getKey().equals(key)){
+                buckets.get(index).get(i).setValue(value);
+                return;
+            }
+        }
+        buckets.get(index).add(new MyEntry(key, value));
     }
 
     public Set<String> keySet() {
         // TODO
+       HashSet keyset = new HashSet();
+        for(int i = 0; i < buckets.size(); i++){
+            for(int j = 0; j < buckets.get(i).size(); j++){
+                keyset.add(buckets.get(i).get(j).getKey());
+            }
+        }
         return null;
     }
 

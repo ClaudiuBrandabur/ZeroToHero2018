@@ -2,8 +2,7 @@ package exercise5;
 
 import exercise4.MyHashMap;
 
-import java.util.Collection;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Create a HashMap that uses to store the buckets your implementation of MyImplementedList that you
@@ -14,12 +13,16 @@ import java.util.Set;
 public class MyHashMapWithMyImplementedList {
 
     // TODO uncomment the following line and add your MyImplementedList implementation to the project
-//    private MyImplementedList<LinkedList<MyEntry>> buckets;
+    private MyImplementedList<LinkedList<MyEntry>> buckets;
 
     private final int BUCKET_ARRAY_SIZE = 16;
 
     public MyHashMapWithMyImplementedList() {
         // TODO
+        buckets = new MyImplementedList<LinkedList<MyEntry>>();
+        for(int i = 0; i < BUCKET_ARRAY_SIZE; i++){
+            buckets.add(new LinkedList<MyEntry>());
+        }
     }
 
     public String get(String key) {
