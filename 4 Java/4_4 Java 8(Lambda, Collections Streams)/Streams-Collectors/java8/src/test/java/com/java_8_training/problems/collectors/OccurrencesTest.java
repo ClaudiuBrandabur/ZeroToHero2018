@@ -1,4 +1,4 @@
-package java.com.java_8_training.problems.collectors;
+package com.java_8_training.problems.collectors;
 
 import org.junit.Ignore;
 import org.junit.Test;
