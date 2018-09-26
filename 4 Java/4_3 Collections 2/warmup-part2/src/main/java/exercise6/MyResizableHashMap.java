@@ -76,15 +76,26 @@ public class MyResizableHashMap<K, V> {
 
     public V get(K key) {
         // TODO
-        if (key == null) {
-            Node<K, V> iter = buckets[0];
+        if(key == null){
+            Node <K,V> iter = buckets[0];
 
-            while (iter != null) {
-                if (iter.getEntry().getKey() == null)
+            while(iter != null){
+                if(iter.getEntry().getKey() == null)
                     return iter.getEntry().getValue();
                 iter = iter.getNextElement();
             }
+            return null;
         }
+
+        int index = Math.abs(key.hashCode() % capacity);
+        Node <K,V> iter = buckets[index];
+
+        while(iter != null) {
+            if (iter.getEntry().getKey().equals(key))
+                return iter.getEntry().getValue();
+            //iter = iter.getNextElement();
+        }
+
         return null;
     }
 
