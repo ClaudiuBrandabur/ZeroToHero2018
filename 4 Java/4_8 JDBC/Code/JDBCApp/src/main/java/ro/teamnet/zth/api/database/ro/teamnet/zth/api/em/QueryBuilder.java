@@ -1,10 +1,9 @@
-package java.ro.teamnet.zth.api.em;
+package ro.teamnet.zth.api.em;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class QueryBuilder {
     private Object tableName;

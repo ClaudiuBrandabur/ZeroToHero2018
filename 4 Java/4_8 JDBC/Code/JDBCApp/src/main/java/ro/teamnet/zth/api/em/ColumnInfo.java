@@ -1,4 +1,4 @@
-package ro.teamnet.zth.api.em;
+package java.ro.teamnet.zth.api.em;
 
 public class ColumnInfo {
     private String columnName;

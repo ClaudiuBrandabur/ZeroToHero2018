@@ -1,8 +1,8 @@
-package ro.teamnet.zth.api.em;
+package java.ro.teamnet.zth.api.em;
 
-import ro.teamnet.zth.api.annotations.Column;
-import ro.teamnet.zth.api.annotations.Id;
-import ro.teamnet.zth.api.annotations.Table;
+import java.ro.teamnet.zth.api.annotations.Column;
+import java.ro.teamnet.zth.api.annotations.Id;
+import java.ro.teamnet.zth.api.annotations.Table;
 
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
