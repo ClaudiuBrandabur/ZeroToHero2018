@@ -22,11 +22,13 @@ public class DemoClass {
     }
 
     public DemoClass() {
-        this.name = name;
-        this.id = id;
+        this.name = "Sorin";
+        this.id = 1;
     }
 
-
+    public String method1(){
+        return "The name is: " + name + " and the id is: " + id;
+    }
     public String getDeclaredField(String name) {
         return name;
     }

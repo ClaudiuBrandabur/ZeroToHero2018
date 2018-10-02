@@ -6,6 +6,7 @@ import java.lang.String;
 import java.awt.*;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.*;
 
 
 import jdk.nashorn.internal.objects.NativeDebug;
@@ -22,20 +23,20 @@ public class ClassReflectionDemoMain {
         //TODO get the class for a String object, and print it
 
 		String string = new String();
-        System.out.println(string.getClass());
+        System.out.println("The name of the class is: " + string.getClass());
 
         //TODO get the class of an Enum, and print it
 
-        System.out.println(Enum.x.getClass());
+        System.out.println("The name of the class is is: " + Enum.x.getClass());
 
         //TODO get the class of a collection, and print it
 
         List list = new List();
-        System.out.println(list.getClass());
+        System.out.println("The name of class is: " + list.getClass());
 
         //TODO get the class of a primitive type, and print it
 
-        System.out.println(int.class);
+        System.out.println("Th name of the class is: " + int.class);
 
         //TODO get and print the class for a field of primitive type
 
@@ -43,7 +44,7 @@ public class ClassReflectionDemoMain {
 
         //TODO get and print the class for a primitive type, using the wrapper class
 
-        String string2 = new String ("Sorin");
+        String string2 = new String();
         System.out.println(string.getClass());
 
         //TODO get the class for a specified class name
@@ -86,7 +87,8 @@ public class ClassReflectionDemoMain {
         System.out.println(f);
 
         //TODO get and invoke one public method of a class
-        
+        Method method1 = DemoClass.class.getMethod("method1");
+        method1.invoke("obj", 20);
 
         //TODO get and invoke one inherited method of a class
        
