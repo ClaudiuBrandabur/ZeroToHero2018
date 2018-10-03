@@ -1,8 +1,8 @@
-package ro.teamnet.zth.appl.domain;
+package java.ro.teamnet.zth.appl.domain;
 
-import ro.teamnet.zth.api.annotations.Column;
-import ro.teamnet.zth.api.annotations.Id;
-import ro.teamnet.zth.api.annotations.Table;
+import java.ro.teamnet.zth.api.annotations.Column;
+import java.ro.teamnet.zth.api.annotations.Id;
+import java.ro.teamnet.zth.api.annotations.Table;
 
 @Table(name = "locations")
 public class Location {
