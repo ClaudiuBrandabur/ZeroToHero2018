@@ -1,5 +1,4 @@
 package ro.teamnet.zth.web;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +8,7 @@ import javax.servlet.http.Part;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +21,9 @@ public class ImportFileServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO 1: Obtain the username from the request instance
+        String user = "";
 
+        user = request.getParameter("user");
 
         // Obtain the File object from the request instance
         Part file = request.getPart("uploadFile");
@@ -35,7 +37,8 @@ public class ImportFileServlet extends HttpServlet {
 
         // TODO 6: Print a nice message to the response so the user will be notified of the result
         // TIP: The final text printed on the response should be something like this: "Hello <username>! You successfully imported 4 people. "
-
+        PrintWriter pw = response.getWriter();
+        pw.println("Hello, " + user + "! You successfully imported 4 people!");
 
     }
 
@@ -68,7 +71,7 @@ public class ImportFileServlet extends HttpServlet {
         // let's print again to check if it's sorted
         persons.forEach(System.out :: println);
 
-        return persons;
+       return persons;
     }
 
     private class T {
