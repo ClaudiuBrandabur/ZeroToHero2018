@@ -1,16 +1,19 @@
-package java.ro.teamnet.zth.api.em;
+package ro.teamnet.zth.api.em;
 
-import org.testng.annotations.Test;
+import org.junit.Test;
+import ro.teamnet.zth.appl.domain.Department;
 
-import java.ro.teamnet.zth.appl.domain.Department;
-import java.ro.teamnet.zth.appl.domain.Location;
+import ro.teamnet.zth.appl.domain.Location;
+
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertTrue;
+
 
 public class EntityManagerImplTest {
 

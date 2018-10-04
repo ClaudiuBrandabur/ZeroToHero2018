@@ -1,4 +1,4 @@
-package java.ro.teamnet.zth.api.em;
+package ro.teamnet.zth.api.em;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

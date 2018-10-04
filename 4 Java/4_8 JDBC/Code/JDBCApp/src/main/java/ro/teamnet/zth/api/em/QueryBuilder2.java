@@ -1,15 +1,15 @@
-package java.ro.teamnet.zth.api.em;
+package ro.teamnet.zth.api.em;
 
 import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-
+import ro.teamnet.zth.api.em.*;
 public class QueryBuilder2 {
     private Object tableName;
     private List<ColumnInfo> queryColumns;
-    private java.ro.teamnet.zth.api.em.QueryType queryType;
+    private QueryType queryType;
     private List<Condition> conditions;
 
     public String getValueForQuery(Object value){
@@ -46,7 +46,7 @@ public class QueryBuilder2 {
         return this;
     }
 
-    public QueryBuilder2 setQueryType(java.ro.teamnet.zth.api.em.QueryType queryType){
+    public QueryBuilder2 setQueryType(ro.teamnet.zth.api.em.QueryType queryType){
         this.queryType = queryType;
         return this;
     }

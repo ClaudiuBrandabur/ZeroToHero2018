@@ -1,8 +1,8 @@
-package java.ro.teamnet.zth.appl.dao;
+package ro.teamnet.zth.appl.dao;
 
-import java.ro.teamnet.zth.api.em.EntityManager;
-import java.ro.teamnet.zth.api.em.EntityManagerImpl;
-import java.ro.teamnet.zth.appl.domain.Location;
+import ro.teamnet.zth.api.em.EntityManager;
+import ro.teamnet.zth.api.em.EntityManagerImpl;
+import ro.teamnet.zth.appl.domain.Location;
 
 import java.sql.SQLException;
 import java.util.List;

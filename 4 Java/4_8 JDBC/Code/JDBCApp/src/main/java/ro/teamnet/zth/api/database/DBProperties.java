@@ -1,4 +1,4 @@
-package java.ro.teamnet.zth.api.database;
+package ro.teamnet.zth.api.database;
 
 public class DBProperties {
 

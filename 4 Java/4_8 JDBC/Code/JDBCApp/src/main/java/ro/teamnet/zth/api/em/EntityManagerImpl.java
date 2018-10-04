@@ -1,9 +1,9 @@
-package java.ro.teamnet.zth.api.em;
+package ro.teamnet.zth.api.em;
 
-import java.ro.teamnet.zth.api.annotations.Column;
-import java.ro.teamnet.zth.api.database.DBManager;
-import java.ro.teamnet.zth.api.database.DBProperties;
-
+import ro.teamnet.zth.api.annotations.Column;
+import ro.teamnet.zth.api.database.DBManager;
+import ro.teamnet.zth.api.database.DBProperties;
+import ro.teamnet.zth.api.em.*;
 import java.lang.reflect.Field;
 import java.sql.*;
 import java.util.ArrayList;
@@ -33,7 +33,7 @@ public class EntityManagerImpl implements EntityManager{
         QueryBuilder2 qb = new QueryBuilder2();
         qb.setTableName(tableName);
         qb.addQueryColumns(columns);
-        qb.setQueryType(java.ro.teamnet.zth.api.em.QueryType.SELECT);
+        qb.setQueryType(ro.teamnet.zth.api.em.QueryType.SELECT);
         qb.addCondition(cond);
 
         String query = qb.createQuery();

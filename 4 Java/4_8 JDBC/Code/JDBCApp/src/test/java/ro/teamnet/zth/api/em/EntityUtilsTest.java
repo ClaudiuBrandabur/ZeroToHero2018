@@ -1,10 +1,14 @@
-package java.ro.teamnet.zth.api.em;
 
-import org.testng.annotations.Test;
-import java.ro.teamnet.zth.api.annotations.Column;
-import java.ro.teamnet.zth.appl.domain.Department;
+
+package ro.teamnet.zth.api.em;
+
+import org.junit.Test;
+import ro.teamnet.zth.api.annotations.Column;
+import ro.teamnet.zth.appl.domain.Department;
+
 import java.util.List;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import static org.junit.Assert.assertEquals;
 
 public class EntityUtilsTest {
     @Test
