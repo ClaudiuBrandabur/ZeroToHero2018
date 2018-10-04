@@ -6,39 +6,39 @@ import ro.teamnet.zth.api.annotations.Table;
 
 import java.util.Date;
 
-@Table(name="employees")
+@Table(name = "employees")
 public class Employee {
-    @Id(name="employee_id")
+    @Id(name = "employee_id")
     private long id;
 
-    @Column(name="first_name")
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name="last_name")
+    @Column(name = "last_name")
     private String lastName;
 
-    @Column(name="email")
+    @Column(name = "email")
     private String email;
 
-    @Column(name="phone_number")
+    @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Column(name="hire_date")
+    @Column(name = "hire_date")
     private Date hireDate;
 
-    @Column(name="job_id")
+    @Column(name = "job_id")
     private String jobId;
 
-    @Column(name="salary")
+    @Column(name = "salary")
     private int salary;
 
-    @Column(name="commission_pct")
+    @Column(name = "commission_pct")
     private int commission;
 
-    @Column(name="ManagerId")
+    @Column(name = "ManagerId")
     private long managerId;
 
-    @Column(name="department_id")
+    @Column(name = "department_id")
     private long depId;
 
     public long getId() {
