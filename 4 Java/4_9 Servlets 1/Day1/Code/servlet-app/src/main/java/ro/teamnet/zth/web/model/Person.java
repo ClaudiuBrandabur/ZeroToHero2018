@@ -7,4 +7,6 @@ public class Person {
     public Long age;
     public Boolean married;
 
+    public Person(String person, String person1, Long aLong, Boolean aBoolean) {
+    }
 }

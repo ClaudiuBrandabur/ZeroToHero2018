@@ -1,4 +1,6 @@
 package ro.teamnet.zth.web;
+import ro.teamnet.zth.web.model.Person;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +13,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * TODO Write javadoc
@@ -21,8 +24,8 @@ public class ImportFileServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO 1: Obtain the username from the request instance
-        String user = "";
 
+        String user = "";
         user = request.getParameter("user");
 
         // Obtain the File object from the request instance
@@ -30,7 +33,7 @@ public class ImportFileServlet extends HttpServlet {
 
         // read the lines from CSV file and print the values
         // TODO 2: Replace T with Person
-        List<T> personsFromFile = readLines(file);
+        List<Person> personsFromFile = readLines(file);
 
         // Set the response type
         response.setContentType("text/html");
@@ -39,7 +42,7 @@ public class ImportFileServlet extends HttpServlet {
         // TIP: The final text printed on the response should be something like this: "Hello <username>! You successfully imported 4 people. "
         PrintWriter pw = response.getWriter();
         pw.println("Hello, " + user + "! You successfully imported 4 people!");
-
+        pw.println(personsFromFile.toString());
     }
 
     /**
@@ -47,10 +50,10 @@ public class ImportFileServlet extends HttpServlet {
      * @param file
      * @return
      */
-    private List<T> readLines(Part file) {
-        List<T> persons = new ArrayList<>();
+    private List<Person> readLines(Part file) {
+        List<Person> persons = new ArrayList<>();
 
-        // TODO 3: Replace with try-with-resources
+        // TODO x3: Replace with try-with-resources
         try {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(file.getInputStream()));
         } catch (IOException e) {
@@ -61,7 +64,10 @@ public class ImportFileServlet extends HttpServlet {
         // TIP: Use split() method for each line (check API documentation)
         // TIP: For Long and Boolean fields you should use valueOf() method
         // TIP: Use Collectors to return a List
+        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(file.getInputStream()))){
 
+            persons = bufferedReader.lines().map(line -> line.split(",")).
+                    map(person -> new Person(person[0], person[1], Long.valueOf(person[2]), Boolean.valueOf(person[3]))).collect(Collectors.toList());
         // after implementing the list, let's print it. It will print nicely if you have overridden the toString() method ;)
         persons.forEach(System.out :: println);
 
@@ -72,8 +78,13 @@ public class ImportFileServlet extends HttpServlet {
         persons.forEach(System.out :: println);
 
        return persons;
-    }
+    } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-    private class T {
+        class T {
+    }
+        return persons;
     }
 }
+
