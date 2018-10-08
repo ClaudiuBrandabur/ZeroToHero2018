@@ -38,6 +38,16 @@
         <filter-name>logHeaders</filter-name>
         <servlet-name>HelloWorld</servlet-name>
     </filter-mapping>
+    
+    <servlet>
+        <servlet-name>HttpLogin</servlet-name>
+        <servlet-class>ro.teamnet.zth.web.HttpSessionLogin</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>HttpLogin</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
     <!-- Exercise (Workshop 4) -->
     <!--ExportFileServlet-->
     <!--TODO Create a definition for ExportFileServlet class using <servlet> tag -->
