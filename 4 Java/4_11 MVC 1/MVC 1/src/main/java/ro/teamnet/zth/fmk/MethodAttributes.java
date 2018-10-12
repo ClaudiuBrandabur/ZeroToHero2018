@@ -1,6 +1,8 @@
 package ro.teamnet.zth.fmk;
 
-/**
+import ro.teamnet.zth.fmk.domain.HttpMethod;
+
+import java.lang.reflect.Method; /**
  * MethodAttributes.java
  */
 public class MethodAttributes {
@@ -72,5 +74,17 @@ public class MethodAttributes {
                 ", methodName='" + methodName + '\'' +
                 ", methodType='" + methodType + '\'' +
                 '}';
+    }
+
+    public void setMethod(Method method) {
+    }
+
+    public void setControllerClass(Class aClass) {
+    }
+
+    public void setMethodType(HttpMethod methodType) {
+    }
+
+    public void setParameterTypes(Class<?>[] parameterTypes) {
     }
 }

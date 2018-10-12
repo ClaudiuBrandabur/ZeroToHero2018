@@ -165,19 +165,6 @@ INSERT INTO departments VALUES
 -- JOBS
 
 INSERT INTO jobs VALUES
-  ( 'AD_PRES'
-    , 'President'
-    , 20000
-    , 40000
-  );
-INSERT INTO jobs VALUES
-  ( 'AD_VP'
-    , 'Administration Vice President'
-    , 15000
-    , 30000
-  );
-
-INSERT INTO jobs VALUES
   ( 'AD_ASST'
     , 'Administration Assistant'
     , 3000
@@ -201,8 +188,7 @@ INSERT INTO jobs VALUES
 INSERT INTO jobs VALUES
   ( 'AC_MGR'
     , 'Accounting Manager'
-    , 8200
-    , 16000
+    , 8200    , 16000
   );
 
 INSERT INTO jobs VALUES
@@ -372,7 +358,7 @@ INSERT INTO employees VALUES
     , 'DAUSTIN'
     , '590.423.4569'
     , TO_DATE('25-06-1997', 'DD-MM-YYYY')
-    , 'IT_PROG'
+    , 'AD_ASST'
     , 4800
     , NULL
     , 103

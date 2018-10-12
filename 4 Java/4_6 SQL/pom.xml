@@ -27,7 +27,7 @@
                     <changeLogFile>src/main/resources/db/changelog/db.changelog-master.xml</changeLogFile>
                     <driver>oracle.jdbc.driver.OracleDriver</driver>
                     <url>jdbc:oracle:thin:@ 192.168.99.100: 49161:xe</url>
-                    <username>system</username>
+                    <username>botteasorin</username>
                     <password>oracle</password>
                 </configuration>
                 <executions>
