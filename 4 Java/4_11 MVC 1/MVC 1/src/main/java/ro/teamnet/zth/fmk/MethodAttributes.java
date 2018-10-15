@@ -10,6 +10,7 @@ public class MethodAttributes {
     String controllerClass;
     String methodName;
     String methodType;
+    Method method;
 
     public String getControllerClass() {
         return controllerClass;
@@ -77,6 +78,7 @@ public class MethodAttributes {
     }
 
     public void setMethod(Method method) {
+        this.method = method;
     }
 
     public void setControllerClass(Class aClass) {
@@ -86,5 +88,9 @@ public class MethodAttributes {
     }
 
     public void setParameterTypes(Class<?>[] parameterTypes) {
+    }
+
+    public Method getMethod() {
+        return method;
     }
 }

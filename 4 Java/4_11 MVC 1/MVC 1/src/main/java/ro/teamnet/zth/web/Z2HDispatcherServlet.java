@@ -1,6 +1,7 @@
 package ro.teamnet.zth.web;
 
 import org.codehaus.jackson.map.ObjectMapper;
+import ro.teamnet.zth.appl.domain.Employee;
 import ro.teamnet.zth.fmk.MethodAttributes;
 import ro.teamnet.zth.fmk.*;
 import ro.teamnet.zth.fmk.domain.HttpMethod;
@@ -76,19 +77,32 @@ public class Z2HDispatcherServlet extends HttpServlet {
 
     }
 
-    private Object dispatch(HttpServletRequest req, HttpMethod methodType) {
-        String reqUrlPath=req.getPathInfo();
-        Object controllerInstance=controllerScanner.getInstance(reqUrlPath,methodType);
-        Method method = controllerScanner.getMethodMetaData(reqUrlPath,methodType).getMethod();
-        List<Object> params= BeanDeserializator.getMethodParams(method,req);
-        Object  ret;
-        try {
-            ret = method.invoke(controllerInstance,params.toArray());
-        } catch (IllegalAccessException | InvocationTargetException e) {
-            throw new RuntimeException(e);
+    private Object dispatch(HttpServletRequest req, String method){
+        String path = req.getPathInfo();
+        path += "/" + method;
+        if(!(path.startsWith("/employees") || path.startsWith("/departments") || path.startsWith("/jobs") || path.startsWith("/locations"))){
+            throw new RuntimeException("Url gresit");
         }
-        return ret;
-    }
+        MethodAttributes methodAttributes = Employee.get(path);
+        if(methodAttributes != null){
+            try {
+                Class cls = Class.forName(methodAttributes.getControllerClass());
+                Method met = cls.getMethod(methodAttributes.getMethodName())
+                return met.invoke(cls.newInstance());
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return methodAttributes;
 
 
 }

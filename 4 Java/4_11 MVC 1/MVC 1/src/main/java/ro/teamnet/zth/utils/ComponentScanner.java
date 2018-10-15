@@ -4,6 +4,8 @@ import ro.teamnet.zth.fmk.MethodAttributes;
 import ro.teamnet.zth.fmk.domain.BeanKey;
 import ro.teamnet.zth.fmk.domain.HttpMethod;
 
+import java.lang.reflect.Method;
+
 /**
  * Created by Alexandru.Bottea on 7/20/2017.
  */
@@ -22,5 +24,5 @@ public interface ComponentScanner {
 
     Object getInstance(String reqUrlPath, HttpMethod methodType);
 
-    Class<Object> getMethodMetaData(String reqUrlPath, HttpMethod methodType);
+    Method getMethod(String reqUrlPath, HttpMethod methodType);
 }

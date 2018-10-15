@@ -74,11 +74,18 @@ public class ControllerScanner implements ComponentScanner {
 
     @Override
     public Object getInstance(String reqUrlPath, HttpMethod methodType) {
+        MethodAttributes metaData = getMetaData(reqUrlPath, methodType);
+        try {
+            return Class.forName(metaData.getControllerClass()).newInstance();
+        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
     @Override
-    public Class<Object> getMethodMetaData(String reqUrlPath, HttpMethod methodType) {
-        return null;
+    public Method getMethod(String reqUrlPath, HttpMethod methodType) {
+        MethodAttributes metaData = getMetaData(reqUrlPath, methodType);
+        return metaData.getMethod();
     }
 }
