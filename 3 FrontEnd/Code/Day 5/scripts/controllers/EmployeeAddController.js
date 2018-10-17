@@ -13,6 +13,28 @@ hrApp.controller('EmployeeAddController', ['$scope', '$http', '$location', '$com
         $scope.reset = function () {
             this.employee = {};
         };
+        $http.get(CommonResourcesFactory.findAllDepartmentsUrl)
+            .success(function (data, status, header, config) {
+                $scope.departments = data;
+            })
+            .error(function (data, status, header, config) {
+                alert('error:' + status);
+            });
+        $http.get(CommonResourcesFactory.findAllEmployeesUrl)
+            .success(function(data, status, header, config){
+                $scope.managers = data;
+            })
+            .error(function (data, status, header, config) {
+                alert('error:' + status);
+            });
+        $http.get(CommonResourcesFactory.findAllJobsUrl)
+            .success(function (data, status, header, config) {
+                $scope.jobs = data;
+            })
+            .error(function (data, status, header, config) {
+                alert('error:' + status);
+            });
+
 
         /**
          * Persist an employee

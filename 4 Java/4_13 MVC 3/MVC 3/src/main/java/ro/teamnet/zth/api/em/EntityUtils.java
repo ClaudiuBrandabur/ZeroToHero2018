@@ -24,7 +24,7 @@ public class EntityUtils {
      */
     public static String getTableName(Class entity) {
         Table tableAnnotation = (Table) entity.getAnnotation(Table.class);
-        if (tableAnnotation.name().equals("")) {
+        if (tableAnnotation.name().isEmpty()) {
             return entity.getClass().getSimpleName();
         } else {
             return tableAnnotation.name();

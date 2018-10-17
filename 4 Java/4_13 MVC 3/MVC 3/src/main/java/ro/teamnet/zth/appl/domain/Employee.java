@@ -7,7 +7,7 @@ import ro.teamnet.zth.api.annotations.Table;
 import java.math.BigDecimal;
 import java.sql.Date;
 
-@Table(name = "employees")
+@Table(name = "EMPLOYEES")
 public class Employee {
 
     @Id(name = "EMPLOYEE_ID")

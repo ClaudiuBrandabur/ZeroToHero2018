@@ -3,7 +3,7 @@ hrApp.controller('EmployeeListController', ['$scope', '$http', '$location', 'Com
 
         $scope.employees = [];
 
-         /*
+
          $scope.employees = [
          {
              "id": 100,
@@ -45,13 +45,22 @@ hrApp.controller('EmployeeListController', ['$scope', '$http', '$location', 'Com
              "departmentId": 90
          }
          ];
-         */
+
 
         $http({url: CommonResourcesFactory.findAllEmployeesUrl, method: 'GET'})
             .success(function (data, status, headers, config) {
                 $scope.employees = data;
             });
 
+        $http({url: CommonResourcesFactory.findAllDepartmentsUrl, method: 'GET'})
+            .success(function (data, status, headers, config) {
+                $scope.employees = data;
+            });
+
+        $http({url: CommonResourcesFactory.findAllJobsUrl, method: 'GET'})
+            .success(function (data, status, headers, config) {
+                $scope.employees = data;
+            });
         $scope.viewEmployee = function (employeeId) {
             $location.url('/employeeView/' + employeeId);
         };
