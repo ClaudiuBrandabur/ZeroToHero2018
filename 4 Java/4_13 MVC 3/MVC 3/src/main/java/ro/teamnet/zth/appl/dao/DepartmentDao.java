@@ -5,7 +5,6 @@ import ro.teamnet.zth.api.em.EntityManagerImpl;
 import ro.teamnet.zth.appl.domain.Department;
 
 import java.util.List;
-
 public class DepartmentDao {
 
     EntityManager entityManager = new EntityManagerImpl();
@@ -14,7 +13,8 @@ public class DepartmentDao {
         return (Department) entityManager.findById(Department.class, id);
     }
 
-    public List<Department> findAllDepartments() {
+    public List<Department> getAllDepartments() {
+        EntityManager entityManager = new EntityManagerImpl();
         return entityManager.findAll(Department.class);
     }
 
