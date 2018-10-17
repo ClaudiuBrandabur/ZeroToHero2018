@@ -5,7 +5,7 @@
         <th class="text-center">Location</th>
         <th class="text-center">Actions</th>
     </tr>
-    <tr ng-repeat="department in departments">
+    <tr ng-repeat="department in departments track by $index">
         <td class="text-center">
             {{department.departmentId}}
         </td>

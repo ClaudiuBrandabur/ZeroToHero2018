@@ -4,7 +4,7 @@ hrApp.controller('DepartmentListController', ['$scope', '$http', '$route', '$loc
     function($scope, $http, $route, $location, DepartmentService) {
 
         DepartmentService.findAll().then(function(res) {
-            $scope.departments = JSON.parse(res.data);
+            $scope.departments = res.data;
         }, function(err) {
             console.log('An error occurred while finding all departments: ' + err.status);
         });
