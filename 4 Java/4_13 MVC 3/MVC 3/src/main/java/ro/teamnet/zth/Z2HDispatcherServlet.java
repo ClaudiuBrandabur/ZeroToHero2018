@@ -28,6 +28,7 @@ public class Z2HDispatcherServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setHeader("Access-Control-Allow-Origin", "*");
         dispatchReply(req, resp, HttpMethod.GET);
     }
 
