@@ -8,7 +8,7 @@ import java.util.List;
  * Created by Oana.Mihai on 7/15/2016.
  */
 public interface JobService {
-    List<Job> findAll();
+    List<Job> findAllJobs();
 
     Job findOne(String jobId);
 

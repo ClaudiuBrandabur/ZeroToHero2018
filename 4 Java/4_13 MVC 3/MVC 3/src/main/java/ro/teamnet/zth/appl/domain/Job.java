@@ -4,7 +4,7 @@ import ro.teamnet.zth.api.annotations.Column;
 import ro.teamnet.zth.api.annotations.Id;
 import ro.teamnet.zth.api.annotations.Table;
 
-@Table(name = "jobs")
+@Table(name = "JOBS")
 public class Job {
 
     @Id(name = "JOB_ID")

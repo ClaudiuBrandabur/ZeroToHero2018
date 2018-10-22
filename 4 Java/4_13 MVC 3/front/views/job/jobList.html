@@ -6,7 +6,7 @@
         <th class="text-center">Minimum Salary</th>
         <th class="text-center">Actions</th>
     </tr>
-    <tr ng-repeat="job in jobs">
+    <tr ng-repeat="job in jobs track by $index">
         <td class="text-center">
             {{job.jobId}}
         </td>

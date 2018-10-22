@@ -47,12 +47,17 @@ public class EntityUtils {
 
             if (column != null) {
                 columnInfo.setDbName(column.name());
+                columnInfos.add(columnInfo);
             } else {
                 Id id = f.getAnnotation(Id.class);
-                columnInfo.setDbName(id.name());
-                columnInfo.setIsId(true);
+                if(id != null) {
+                    columnInfo.setDbName(id.name());
+                    columnInfo.setIsId(true);
+                    columnInfos.add(columnInfo);
+                }
+
             }
-            columnInfos.add(columnInfo);
+
         }
 
         return columnInfos;

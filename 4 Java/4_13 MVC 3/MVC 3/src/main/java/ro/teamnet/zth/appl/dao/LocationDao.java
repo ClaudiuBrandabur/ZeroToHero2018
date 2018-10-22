@@ -5,6 +5,8 @@ import ro.teamnet.zth.api.em.EntityManager;
 import ro.teamnet.zth.api.em.EntityManagerImpl;
 import ro.teamnet.zth.appl.domain.Job;
 import ro.teamnet.zth.appl.domain.Location;
+import ro.teamnet.zth.appl.service.LocationService;
+import ro.teamnet.zth.appl.service.LocationServiceImpl;
 
 import java.util.List;
 

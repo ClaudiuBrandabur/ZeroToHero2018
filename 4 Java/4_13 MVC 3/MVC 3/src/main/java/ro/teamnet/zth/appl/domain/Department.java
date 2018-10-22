@@ -7,6 +7,8 @@ import ro.teamnet.zth.api.annotations.Table;
 @Table(name = "departments")
 public class Department {
 
+
+
     @Id(name = "department_id")
     private Long departmentId;
 
@@ -15,6 +17,16 @@ public class Department {
 
     @Column(name = "location_id")
     private Long location;
+
+    private Location locationObj;
+
+    public Location getLocationObj() {
+        return locationObj;
+    }
+
+    public void setLocationObj(Location locationObj) {
+        this.locationObj = locationObj;
+    }
 
     public Long getDepartmentId() {
         return departmentId;

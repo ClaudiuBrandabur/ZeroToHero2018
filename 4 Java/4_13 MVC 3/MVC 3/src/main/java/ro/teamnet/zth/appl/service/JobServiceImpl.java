@@ -10,7 +10,7 @@ public class JobServiceImpl implements JobService {
     private final JobDao jobDao = new JobDao();
 
     @Override
-    public List<Job> findAll() {
+    public List<Job> findAllJobs() {
         return jobDao.getAllJobs();
     }
 

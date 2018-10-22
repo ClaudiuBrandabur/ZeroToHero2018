@@ -7,7 +7,7 @@
         <th class="text-center">Street Address</th>
         <th class="text-center">Actions</th>
     </tr>
-    <tr ng-repeat="location in locations">
+    <tr ng-repeat="location in locations track by $index">
         <td class="text-center">
             {{location.locationId}}
         </td>
