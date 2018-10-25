@@ -12,6 +12,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     private final DepartmentDao departmentDao = new DepartmentDao();
     private final LocationService locationService =  new LocationServiceImpl();
+
     @Override
     public List<Department> findAllDepartments() {
         List<Department> departments = departmentDao.getAllDepartments();
@@ -19,6 +20,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         for (Department department : departments){
             locationIds.add(department.getLocation());
         }
+
     List<Location> locations = locationService.findAllById(locationIds);
     for (Department department : departments){
         for(Location location : locations){
@@ -32,7 +34,11 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public Department findOne(Long departmentId) {
-        return departmentDao.findDepartmentById(departmentId);
+
+        Department department =  departmentDao.findDepartmentById(departmentId);
+        Location location = locationService.findOne(department.getLocation());
+        department.setLocationObj(location);
+        return department;
     }
 
     @Override

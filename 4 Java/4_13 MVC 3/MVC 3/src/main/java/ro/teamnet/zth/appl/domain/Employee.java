@@ -43,6 +43,36 @@ public class Employee {
     @Column(name = "DEPARTMENT_ID")
     private Long departmentId;
 
+    private Job job;
+
+    private Department department;
+
+    private  Employee manager;
+
+    public Job getJob() {
+        return job;
+    }
+
+    public void setJob(Job job) {
+        this.job = job;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    public Employee getManager() {
+        return manager;
+    }
+
+    public void setManager(Employee manager) {
+        this.manager = manager;
+    }
+
     public Long getEmployeeId() {
         return employeeId;
     }

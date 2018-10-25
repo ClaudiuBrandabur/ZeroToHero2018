@@ -42,9 +42,22 @@ hrApp.controller('EmployeeAddController', ['$scope', '$http', '$location', 'Depa
          * @param employee - employee to be persisted
          */
         $scope.save = function(employee) {
-            EmployeeService.add(employee).then(function(res) {
-                $scope.employee = res.data;
-                $location.url('/employeeView/' + $scope.employee.employeeId);
+            var employeeJson;
+            employeeJson = {
+                firstName: employee.firstName,
+                lastName: employee.lastName,
+                email: employee.email,
+                phoneNumber: employee.phoneNumber,
+                hireDate: employee.hireDate,
+                jobId: employee.jobId.jobId,
+                salary: employee.salary,
+                commissionPct: employee.commissionPct,
+                managerId: employee.managerId.managerId,
+                departmentId: employee.departmentId.departmentId
+            } ;
+            EmployeeService.add(employeeJson).then(function(res) {
+                // $scope.employee = res.data;
+                $location.url('/employeeView/' + employeeJson.employeeId);
             }, function(err) {
                 console.log('An error occurred while adding employee: ' + err.status);
             });

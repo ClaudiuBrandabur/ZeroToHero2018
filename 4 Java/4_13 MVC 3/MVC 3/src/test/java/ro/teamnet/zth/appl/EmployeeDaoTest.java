@@ -24,7 +24,7 @@ public class EmployeeDaoTest {
         employee.setEmail("mail@mail.com");
         employee.setFirstName("fName");
         employee.setLastName("lName");
-        employee.setJobId("AD_PRES");
+//        employee.setJobId("AD_PRES");
         employee.setSalary(BigDecimal.ONE);
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
@@ -63,7 +63,7 @@ public class EmployeeDaoTest {
         employee.setEmail("mail@mail.com");
         employee.setFirstName("fName_all");
         employee.setLastName("lName_all");
-        employee.setJobId("AD_PRES");
+//        employee.setJobId("AD_PRES");
         employee.setHireDate(new java.sql.Date(new Date().getTime()));
         employee = employeeDao.insertEmployee(employee);
         List<Employee> newLoc = employeeDao.getAllEmployees();

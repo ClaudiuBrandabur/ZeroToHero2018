@@ -48,6 +48,7 @@ public class EmployeeDao {
      * @return employee object
      */
     public Employee getEmployeeById(Long id) {
+        EntityManager entityManager = new EntityManagerImpl();
         return entityManager.findById(Employee.class, id);
     }
 }

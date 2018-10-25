@@ -13,7 +13,7 @@
             <div class="col-lg-6">
                 <div class="form-group">
                     <label for="location">Location:</label>
-                    <span id="location" class="form-control">{{department.locationId.streetAddress + ", " + department.locationId.postalCode + " - " + department.locationId.city}}{{department.locationId.stateProvince ? ", " + department.locationId.stateProvince : ""}}</span>
+                    <span id="location" class="form-control">{{department.locationObj.streetAddress + " " + department.locationObj.postalCode + " - " + department.locationObj.city}}{{department.locationObj.stateProvince ? ", " + department.locationObj.stateProvince : ""}}</span>
                 </div>
             </div>
         </div>

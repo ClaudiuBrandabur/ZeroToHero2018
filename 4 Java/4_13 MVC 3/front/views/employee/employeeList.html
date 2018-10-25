@@ -13,7 +13,7 @@
         <th class="text-center">Department</th>
         <th class="text-center">Actions</th>
     </tr>
-    <tr ng-repeat="employee in employees">
+    <tr ng-repeat="employee in employees track by $index">
         <td class="text-center">
             {{employee.employeeId}}
         </td>

@@ -15,6 +15,7 @@ import java.util.List;
 public class EmployeeController {
 
     private EmployeeService employeeService;
+    private Employee employee;
 
 
     public EmployeeController() {
