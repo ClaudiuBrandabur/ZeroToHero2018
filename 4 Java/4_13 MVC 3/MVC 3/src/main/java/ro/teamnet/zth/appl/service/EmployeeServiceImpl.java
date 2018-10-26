@@ -45,6 +45,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         if (employeeToDelete == null) {
             return false;
         }
+        List<Employee> employeesSetNull = employeeDao.findByManagerId(employeeId);
+        for (Employee employee : employeesSetNull){
+            employee.setManagerId(null);
+            employeeDao.updateEmployee(employee);
+        }
         employeeDao.deleteEmployee(employeeToDelete);
         return true;
     }

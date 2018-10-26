@@ -30,7 +30,7 @@ hrApp.controller('EmployeeListController', ['$scope', '$http', '$route', '$locat
          * @param employeeId - identifier of the employee to be deleted
          */
         $scope.delete = function(employeeId) {
-            EmployeeService.delete(employeeId).then(function() {
+            EmployeeService.delete(employeeId).then(function(res) {
                 alert('Employee has been deleted successfully');
                 $route.reload();
             }, function(err) {

@@ -11,8 +11,8 @@ hrApp.factory('CommonResourcesFactory', function() {
             findOneEmployeeUrl: baseUrl + "employees/one",
             findOneJobUrl: baseUrl + "jobs/one?jobId=",
             findOneLocationUrl: baseUrl + "locations/one?locationId=",
-            deleteDepartmentUrl: baseUrl + "departments/one/",
-            deleteEmployeeUrl: baseUrl + "employees/one/",
+            deleteDepartmentUrl: baseUrl + "departments/one",
+            deleteEmployeeUrl: baseUrl + "employees/one",
             deleteJobUrl: baseUrl + "jobs",
             deleteLocationUrl: baseUrl + "locations",
             addDepartmentUrl: baseUrl + "departments",
@@ -20,7 +20,7 @@ hrApp.factory('CommonResourcesFactory', function() {
             addJobUrl: baseUrl + "jobs",
             addLocationUrl: baseUrl + "locations",
             editDepartmentUrl: baseUrl + "departments",
-            editEmployeeUrl: baseUrl + "employees",
+            editEmployeeUrl: baseUrl + "employees/edit",
             editJobUrl: baseUrl + "jobs",
             editLocationUrl: baseUrl + "locations"
         };

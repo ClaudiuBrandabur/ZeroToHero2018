@@ -4,7 +4,9 @@ import ro.teamnet.zth.api.em.EntityManager;
 import ro.teamnet.zth.api.em.EntityManagerImpl;
 import ro.teamnet.zth.appl.domain.Employee;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Raluca.Russindilar on 13.07.2016.
@@ -26,6 +28,11 @@ public class EmployeeDao {
      */
     public Employee updateEmployee(Employee employee) {
         return entityManager.update(employee);
+    }
+    public List<Employee> findByManagerId(Long managerId){
+        Map<String, Object> params = new HashMap<>();
+        params.put("MANAGER_ID", managerId);
+        return entityManager.findByParams(Employee.class, params);
     }
 
     /**

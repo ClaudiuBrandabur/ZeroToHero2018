@@ -6,6 +6,8 @@ import ro.teamnet.zth.api.annotations.Table;
 
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,6 +77,9 @@ public class EntityUtils {
                         wantedType.equals(Double.class) ? valueBD.doubleValue() :
                                 wantedType.equals(Long.class) ? valueBD.longValue() : value;
             } else {
+                if (value instanceof Timestamp && wantedType.getName().equals("java.sql.Date")) {
+                    return new Date(((Timestamp) value).getTime());
+                }
                 return value;
             }
         }
